@@ -10,9 +10,10 @@ type FaqItem = {
 
 type FaqAccordionProps = {
   items: FaqItem[];
+  theme?: "light" | "dark";
 };
 
-export function FaqAccordion({ items }: FaqAccordionProps) {
+export function FaqAccordion({ items, theme = "light" }: FaqAccordionProps) {
   const [openIndex, setOpenIndex] = useState<number | null>(0);
 
   return (
@@ -22,17 +23,25 @@ export function FaqAccordion({ items }: FaqAccordionProps) {
         return (
           <div
             key={item.question}
-            className="group rounded-[1.6rem] border border-[color:var(--line)] bg-white/80 px-5 py-4 shadow-[0_16px_35px_rgba(23,94,146,0.06)] overflow-hidden"
+            className={`group rounded-[1.6rem] border overflow-hidden transition-colors ${
+              theme === "dark" 
+                ? "border-white/10 bg-white/5 hover:bg-white/10" 
+                : "border-[color:var(--line)] bg-white/80 shadow-[0_16px_35px_rgba(23,94,146,0.06)]"
+            }`}
           >
             <button
               onClick={() => setOpenIndex(isOpen ? null : index)}
-              className="flex w-full items-center justify-between gap-4 text-left text-lg font-bold text-[color:var(--ink)] cursor-pointer"
+              className={`flex w-full items-center justify-between gap-4 text-left text-lg font-bold cursor-pointer px-5 py-4 ${
+                theme === "dark" ? "text-white" : "text-[color:var(--ink)]"
+              }`}
             >
               <span>{item.question}</span>
               <motion.span
                 animate={{ rotate: isOpen ? 45 : 0 }}
                 transition={{ duration: 0.2 }}
-                className="text-2xl text-[color:var(--muted)] flex-shrink-0"
+                className={`text-2xl flex-shrink-0 ${
+                  theme === "dark" ? "text-white/60" : "text-[color:var(--muted)]"
+                }`}
               >
                 +
               </motion.span>
@@ -45,7 +54,11 @@ export function FaqAccordion({ items }: FaqAccordionProps) {
                   exit={{ height: 0, opacity: 0 }}
                   transition={{ duration: 0.3, ease: "easeInOut" }}
                 >
-                  <p className="pt-4 pb-2 text-sm leading-7 text-[color:var(--muted)]">{item.answer}</p>
+                  <p className={`px-5 pb-5 leading-relaxed ${
+                    theme === "dark" ? "text-white/70" : "text-[color:var(--muted)]"
+                  }`}>
+                    {item.answer}
+                  </p>
                 </motion.div>
               )}
             </AnimatePresence>

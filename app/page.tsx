@@ -2,6 +2,7 @@ import {
   ArrowRight,
   CalendarDays,
   CheckCircle2,
+  Clock3,
   Cpu,
   Heart,
   MapPin,
@@ -19,6 +20,8 @@ import { HeroModernHealth } from "@/components/hero-modern-health";
 import { MapCard } from "@/components/map-card";
 import { ReviewCarousel } from "@/components/review-carousel";
 import { SectionShell } from "@/components/section-shell";
+import { TreatmentsStickyStack } from "@/components/treatments-sticky-stack";
+import { ClinicAtmosphereReveal } from "@/components/clinic-atmosphere-reveal";
 import {
   doctors,
   galleryItems,
@@ -52,80 +55,16 @@ export default async function HomePage() {
 
 
 
-      <SectionShell
-        eyebrow="Clinical Excellence"
-        title="Guided Pathways to Your Best Smile"
-        body="Experience a new standard of dental care where every procedure is mapped out with clarity, comfort, and clinical precision. Your journey to health and aesthetics starts here."
-        align="center"
-      >
-        <div className="hide-scrollbar flex lg:grid snap-x snap-mandatory lg:snap-none gap-8 overflow-x-auto lg:overflow-visible pb-8 lg:grid-cols-2 -mx-4 px-4 sm:mx-0 sm:px-0">
-          {treatments.map((treatment) => (
-            <article
-              key={treatment.slug}
-              className="group relative min-w-[90%] sm:min-w-[48%] lg:min-w-0 snap-center overflow-hidden rounded-[3rem] border border-white/10 bg-black shadow-2xl aspect-[16/11] flex flex-col justify-end p-8 lg:p-12 lg:pb-14 text-center"
-            >
-              {/* Cinematic Background Image */}
-              <div className="absolute inset-0 z-0">
-                <img 
-                  src={treatment.image} 
-                  alt={treatment.shortTitle} 
-                  className="h-full w-full object-cover transition-transform duration-1000 group-hover:scale-105"
-                />
-                {/* Dark Clinical Overlay for contrast */}
-                <div className="absolute inset-0 bg-black/50 group-hover:bg-black/40 transition-colors duration-700 z-10" />
-                <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent z-10" />
-              </div>
-
-              {/* Content Layer */}
-              <div className="relative z-20 w-full flex flex-col items-center pt-10">
-                <div className="inline-flex rounded-full bg-white/10 backdrop-blur-md px-4 py-1 text-[10px] font-bold uppercase tracking-[0.3em] text-white/90 border border-white/20">
-                  {treatment.category}
-                </div>
-                <h2 className="mt-6 font-[family:var(--font-display)] text-3xl sm:text-4xl lg:text-4xl font-extrabold text-white leading-tight tracking-tight max-w-[85%]">
-                  {treatment.shortTitle}
-                </h2>
-                <p className="mt-4 text-sm sm:text-base leading-relaxed text-white/60 max-w-lg line-clamp-2">
-                  {treatment.summary}
-                </p>
-                
-                {/* Benefits reveal on hover */}
-                <div className="hidden lg:block overflow-hidden pointer-events-none w-full">
-                  <div className="max-h-0 group-hover:max-h-[200px] opacity-0 group-hover:opacity-100 transition-all duration-700 ease-in-out">
-                    <div className="mt-10 flex flex-col items-center gap-4 text-white/50">
-                      {treatment.benefits.slice(0, 3).map((benefit, bIdx) => (
-                        <div 
-                          key={benefit} 
-                          className="flex items-center justify-center gap-3 transition-transform duration-700 delay-[100ms] group-hover:translate-y-0 translate-y-6"
-                          style={{ transitionDelay: `${bIdx * 80 + 200}ms` }}
-                        >
-                          <div className="shrink-0 h-5 w-5 rounded-full bg-white/5 flex items-center justify-center border border-white/10">
-                            <CheckCircle2 className="h-3 w-3 text-[color:var(--accent)]" />
-                          </div>
-                          <p className="text-xs font-medium tracking-tight leading-none">{benefit}</p>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-                </div>
-
-                <div className="mt-12 pt-8 border-t border-white/10 w-full flex items-center justify-center">
-                  <ActionLink
-                    href={`/treatments/${treatment.slug}`}
-                    className="inline-flex items-center gap-3 text-sm font-bold text-white transition-all hover:gap-6 group/link"
-                  >
-                    <span>Begin Your Treatment Journey</span>
-                    <ArrowRight className="h-4 w-4 transition-transform group-hover/link:translate-x-2" />
-                  </ActionLink>
-                </div>
-              </div>
-            </article>
-          ))}
-        </div>
-      </SectionShell>
+      <TreatmentsStickyStack treatments={treatments} />
 
       <SectionShell
         eyebrow="Real Results"
-        title="Transformative dental care that speaks for itself."
+        title={
+          <>
+            Transformative dental care <br className="hidden md:block" />
+            <span className="font-serif italic font-light text-[color:var(--accent)]">that speaks for itself.</span>
+          </>
+        }
         body="Swipe to see the difference our restorative and cosmetic treatments make. Transparency builds confidence before you book."
         className="bg-white/46"
         align="center"
@@ -142,65 +81,70 @@ export default async function HomePage() {
 
       <SectionShell
         eyebrow="Why Smile Hub"
-        title="Clinical authority centered on patient comfort."
+        title={
+          <>
+            Clinical authority centered <br className="hidden md:block" />
+            <span className="font-serif italic font-light text-[color:var(--accent)]">on patient comfort.</span>
+          </>
+        }
         body="We focus on clear paths to health, not complex jargon or unnecessary procedures."
         className="bg-white"
         align="center"
       >
         <div className="grid gap-8 lg:grid-cols-12">
           {/* Main Value Prop - Bento Hero */}
-          <article className="lg:col-span-7 group relative overflow-hidden rounded-[3.5rem] border border-white/10 bg-[#050505] p-10 lg:p-14 shadow-2xl transition-all duration-700 hover:-translate-y-2">
-            {/* Background Image with Cinematic Overlay */}
+          <article className="lg:col-span-7 group relative overflow-hidden rounded-[3.5rem] border border-[color:var(--line)] bg-[color:var(--ink)] p-10 lg:p-14 shadow-2xl transition-all duration-700 hover:-translate-y-2 flex flex-col justify-end">
+            {/* Background Image with Deep Ink Overlay */}
             <div className="absolute inset-0 z-0">
               <img 
                 src="/images/why/clinical-standard.png" 
                 alt="Clinical Standard" 
-                className="h-full w-full object-cover opacity-30 transition-transform duration-1000 group-hover:scale-110" 
+                className="h-full w-full object-cover opacity-40 transition-transform duration-1000 group-hover:scale-105" 
               />
-              <div className="absolute inset-0 bg-gradient-to-r from-black via-black/60 to-transparent z-10" />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent z-10" />
+              <div className="absolute inset-0 bg-gradient-to-r from-[color:var(--ink)] via-[color:var(--ink)]/80 to-transparent z-10" />
+              <div className="absolute inset-0 bg-gradient-to-t from-[color:var(--ink)]/90 via-[color:var(--ink)]/20 to-transparent z-10" />
             </div>
 
             <div className="relative z-20">
-              <div className="inline-flex h-14 w-14 items-center justify-center rounded-2xl bg-white/10 backdrop-blur-xl text-white ring-1 ring-white/20">
-                <ShieldCheck className="h-7 w-7" />
+              <div className="inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-white/10 backdrop-blur-xl text-white ring-1 ring-white/20">
+                <ShieldCheck className="h-6 w-6" />
               </div>
-              <h3 className="mt-10 font-[family:var(--font-display)] text-4xl lg:text-5xl font-bold text-white leading-[1.1] tracking-tight drop-shadow-md">
+              <h3 className="mt-8 font-[family:var(--font-display)] text-4xl lg:text-5xl font-bold text-white leading-[1.05] tracking-tight">
                 The Clinical Standard
               </h3>
-              <p className="mt-6 text-lg leading-relaxed text-zinc-100 max-w-xl font-medium drop-shadow-sm">
+              <p className="mt-6 text-lg leading-relaxed text-white/80 max-w-xl font-medium">
                 Smile Hub prioritizes evidence-based dentistry and patient education. Every plan is explained in plain language, ensuring you're a partner in your own care journey.
               </p>
               
               <div className="mt-12 flex flex-wrap gap-8 border-t border-white/10 pt-10">
                 <div className="flex items-start gap-4">
-                  <div className="mt-1 h-2 w-2 rounded-full bg-[color:var(--accent)]" />
+                  <div className="mt-1 h-2 w-2 rounded-full bg-[color:var(--accent-light)]" />
                   <div>
-                    <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-zinc-400">Philosophy</p>
-                    <p className="mt-1 text-sm font-semibold text-zinc-100 drop-shadow-sm">Patient-led care</p>
+                    <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-white/50">Philosophy</p>
+                    <p className="mt-1 text-sm font-semibold text-white">Patient-led care</p>
                   </div>
                 </div>
                 <div className="flex items-start gap-4">
-                  <div className="mt-1 h-2 w-2 rounded-full bg-[color:var(--accent)]" />
+                  <div className="mt-1 h-2 w-2 rounded-full bg-[color:var(--accent-light)]" />
                   <div>
-                    <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-zinc-400">Tech</p>
-                    <p className="mt-1 text-sm font-semibold text-zinc-100 drop-shadow-sm">Digital-first safety</p>
+                    <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-white/50">Tech</p>
+                    <p className="mt-1 text-sm font-semibold text-white">Digital-first safety</p>
                   </div>
                 </div>
                 <div className="flex items-start gap-4">
-                  <div className="mt-1 h-2 w-2 rounded-full bg-[color:var(--accent)]" />
+                  <div className="mt-1 h-2 w-2 rounded-full bg-[color:var(--accent-light)]" />
                   <div>
-                    <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-zinc-400">Standard</p>
-                    <p className="mt-1 text-sm font-semibold text-zinc-100 drop-shadow-sm">Clinical Excellence</p>
+                    <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-white/50">Standard</p>
+                    <p className="mt-1 text-sm font-semibold text-white">Clinical Excellence</p>
                   </div>
                 </div>
               </div>
             </div>
           </article>
 
-          {/* Feature Grid - Bento Complement */}
           <div className="lg:col-span-5 grid gap-4 sm:grid-cols-2">
             {trustHighlights.map((item, idx) => {
+              const isAccent = idx === 2; // "Mobile booking" is the accent card
               const Icon = {
                 Heart,
                 Cpu,
@@ -211,24 +155,42 @@ export default async function HomePage() {
               return (
                 <article 
                   key={item.title} 
-                  className="group relative overflow-hidden rounded-[2.5rem] border border-white/10 bg-[#050505] p-8 transition-all duration-500 hover:shadow-2xl hover:-translate-y-1"
+                  className={cn(
+                    "group relative overflow-hidden rounded-[2.5rem] p-8 transition-all duration-500 hover:shadow-xl hover:-translate-y-1 flex flex-col justify-between border",
+                    isAccent 
+                      ? "bg-gradient-to-br from-[color:var(--accent)] to-[color:var(--accent-strong)] border-transparent text-white shadow-lg shadow-[color:var(--accent)]/20" 
+                      : "bg-white border-[color:var(--line)] text-[color:var(--ink)]"
+                  )}
                 >
-                  {/* Background Image with Overlay */}
-                  <div className="absolute inset-0 z-0">
-                    <img 
-                      src={item.image} 
-                      alt={item.title} 
-                      className="h-full w-full object-cover opacity-25 transition-transform duration-1000 group-hover:scale-110" 
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent z-10" />
-                  </div>
-
-                  <div className="relative z-20">
-                    <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-white/10 backdrop-blur-xl text-white ring-1 ring-white/20 transition-all duration-500 group-hover:scale-110 group-hover:bg-[color:var(--accent)] group-hover:rotate-3">
+                  {/* Top Row: Icon & Number */}
+                  <div className="flex items-start justify-between relative z-20">
+                    <div className={cn(
+                      "flex h-12 w-12 items-center justify-center rounded-2xl transition-all duration-500 group-hover:scale-110 group-hover:rotate-3",
+                      isAccent ? "bg-white/20 text-white" : "bg-slate-50 text-[color:var(--accent-strong)] group-hover:bg-[color:var(--accent-light)]/20"
+                    )}>
                       <Icon className="h-5 w-5" />
                     </div>
-                    <h4 className="mt-6 font-bold text-zinc-100 tracking-tight drop-shadow-sm">{item.title}</h4>
-                    <p className="mt-2 text-xs leading-5 text-zinc-300 font-medium drop-shadow-sm">{item.description}</p>
+                    <div className={cn(
+                      "font-serif italic text-3xl font-light",
+                      isAccent ? "text-white/40" : "text-[color:var(--accent)]/30"
+                    )}>
+                      0{idx + 1}
+                    </div>
+                  </div>
+
+                  <div className="relative z-20 mt-12">
+                    <h4 className={cn(
+                      "font-bold tracking-tight text-lg",
+                      isAccent ? "text-white" : "text-[color:var(--ink)]"
+                    )}>
+                      {item.title}
+                    </h4>
+                    <p className={cn(
+                      "mt-2 text-xs leading-relaxed font-medium",
+                      isAccent ? "text-white/90" : "text-[color:var(--muted)]"
+                    )}>
+                      {item.description}
+                    </p>
                   </div>
                 </article>
               );
@@ -239,9 +201,14 @@ export default async function HomePage() {
 
       <SectionShell
         id="reviews"
-        eyebrow="Google reviews"
-        title="Real trust signals belong in a polished layout, not a pasted widget."
-        body="The review area keeps the live rating highly visible while turning featured reviews into a swipe-friendly deck that feels more premium on mobile."
+        eyebrow="Patient Experiences"
+        title={
+          <>
+            Care that leaves a <br className="hidden md:block" />
+            <span className="font-serif italic font-light text-[color:var(--accent)]">lasting impression.</span>
+          </>
+        }
+        body="Read what our patients have to say. We pride ourselves on delivering comfortable, transparent, and transformative dental care."
         align="center"
       >
         <ReviewCarousel snapshot={reviewSnapshot} />
@@ -249,78 +216,77 @@ export default async function HomePage() {
 
       <SectionShell
         eyebrow="Clinic atmosphere"
-        title="Designed for clarity and patient calm."
+        title={
+          <>
+            Designed for clarity <br className="hidden md:block" />
+            <span className="font-serif italic font-light text-[color:var(--accent)]">and patient calm.</span>
+          </>
+        }
         body="A preview of the spaces where our clinical team provides gentle, expert care."
         className="bg-white/46"
         align="center"
       >
-        <div className="grid gap-6 md:grid-cols-12 md:grid-rows-2 h-auto md:h-[600px]">
-          {/* Main Hero Shot */}
-          <article className="md:col-span-7 md:row-span-2 group relative overflow-hidden rounded-[3rem] border border-[color:var(--line)] bg-white shadow-sm">
-            <img src="/images/clinic-1.png" alt="Clinical Suite" className="absolute inset-0 h-full w-full object-cover transition-transform duration-1000 group-hover:scale-105" />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-            <div className="absolute bottom-10 left-10 right-10 translate-y-10 group-hover:translate-y-0 opacity-0 group-hover:opacity-100 transition-all duration-500">
-              <p className="text-[10px] font-bold uppercase tracking-[0.3em] text-white/60">Featured Space</p>
-              <h3 className="mt-2 font-[family:var(--font-display)] text-2xl font-bold text-white">Modern Clinical Suite</h3>
-            </div>
-          </article>
-
-          {/* Secondary Shots */}
-          <article className="md:col-span-5 md:row-span-1 group relative overflow-hidden rounded-[3rem] border border-[color:var(--line)] bg-white shadow-sm">
-            <div className="absolute inset-0 bg-[linear-gradient(135deg,rgba(166,224,246,0.92)_0%,rgba(255,255,255,0.96)_100%)] h-full w-full" />
-            <div className="absolute inset-0 p-10 flex flex-col justify-end">
-              <p className="section-kicker">Patient Focus</p>
-              <h3 className="mt-2 text-xl font-bold text-[color:var(--ink)]">Comfort-First Consultations</h3>
-              <p className="mt-2 text-xs leading-relaxed text-[color:var(--muted)]">Spaces designed for clear communication.</p>
-            </div>
-          </article>
-
-          <div className="md:col-span-5 md:row-span-1 grid grid-cols-2 gap-6">
-            <article className="group relative overflow-hidden rounded-[2.5rem] border border-[color:var(--line)] bg-white shadow-sm">
-              <div className="absolute inset-0 bg-[color:var(--accent-light)] h-full w-full opacity-40" />
-              <div className="absolute inset-0 p-8 flex flex-col justify-end">
-                <p className="text-[9px] font-bold uppercase tracking-widest text-[color:var(--accent-deep)]">Tech</p>
-                <h4 className="mt-1 text-sm font-bold text-[color:var(--ink)]">Digital Diagnostics</h4>
-              </div>
-            </article>
-            <article className="group relative overflow-hidden rounded-[2.5rem] border border-[color:var(--line)] bg-white shadow-sm">
-              <div className="absolute inset-0 bg-slate-100 h-full w-full" />
-              <div className="absolute inset-0 p-8 flex flex-col justify-end">
-                <p className="text-[9px] font-bold uppercase tracking-widest text-[color:var(--accent-deep)]">Clinic</p>
-                <h4 className="mt-1 text-sm font-bold text-[color:var(--ink)]">Reception Welcome</h4>
-              </div>
-            </article>
-          </div>
-        </div>
+        <ClinicAtmosphereReveal />
       </SectionShell>
 
       <SectionShell
         eyebrow="Clinical Team"
-        title="Expertise you can talk to."
+        title={
+          <>
+            Expertise you <br className="hidden md:block" />
+            <span className="font-serif italic font-light text-[color:var(--accent)]">can talk to.</span>
+          </>
+        }
         body="Our team combines clinical precision with a gentle, patient-first philosophy."
         align="center"
       >
-        <div className="grid gap-6 lg:grid-cols-2">
-          {/* Doctor 1 */}
-          <article className="group relative overflow-hidden rounded-[3rem] border border-[color:var(--line)] bg-white p-6 shadow-sm transition-all hover:shadow-xl">
-            <div className="grid gap-8 md:grid-cols-[200px_1fr]">
-              <div className="relative aspect-[4/5] overflow-hidden rounded-[2rem]">
-                <img src="/images/doctor-1.png" alt="Clinical Lead" className="absolute inset-0 h-full w-full object-cover grayscale transition-all group-hover:grayscale-0" />
+        <div className="relative mt-20 pt-16 lg:pt-24 max-w-6xl mx-auto">
+          {/* Bottom Layer: The Navy Banner */}
+          <article className="relative z-0 rounded-[3rem] lg:rounded-[4rem] bg-[color:var(--ink)] px-8 pb-12 pt-48 lg:px-20 lg:pb-20 lg:pt-36 text-white flex flex-col lg:flex-row lg:items-end justify-between gap-12 shadow-2xl overflow-hidden">
+            <div className="absolute inset-0 bg-gradient-to-br from-[color:var(--ink)] to-black opacity-50 pointer-events-none" />
+            
+            <div className="relative z-10 max-w-xl">
+              <p className="text-xs font-bold uppercase tracking-[0.4em] text-[color:var(--accent-light)]">Clinical Philosophy</p>
+              <h3 className="mt-6 font-[family:var(--font-display)] text-4xl lg:text-5xl font-bold leading-[1.05] tracking-tight">
+                Evidence-based care for every smile.
+              </h3>
+              <p className="mt-8 text-base lg:text-lg leading-relaxed text-white/70">
+                We don't just treat teeth; we guide patients through a lifecycle of health with transparent planning and cutting-edge diagnostics.
+              </p>
+            </div>
+            
+            <div className="relative z-10 grid grid-cols-2 gap-8 lg:gap-12 lg:min-w-[300px] border-t border-white/10 lg:border-t-0 lg:border-l pt-10 lg:pt-0 lg:pl-12">
+              <div>
+                <p className="text-5xl lg:text-6xl font-black font-[family:var(--font-display)] text-[color:var(--accent-light)]">5k<span className="text-3xl lg:text-4xl text-white/40">+</span></p>
+                <p className="text-[10px] uppercase tracking-[0.2em] text-white/50 mt-3 font-bold">Successful Cases</p>
               </div>
-              <div className="flex flex-col justify-center py-4">
-                <div className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-[color:var(--accent-deep)]">
+              <div>
+                <p className="text-5xl lg:text-6xl font-black font-[family:var(--font-display)] text-[color:var(--accent-light)]">100<span className="text-3xl lg:text-4xl text-white/40">%</span></p>
+                <p className="text-[10px] uppercase tracking-[0.2em] text-white/50 mt-3 font-bold">Digital Workflow</p>
+              </div>
+            </div>
+          </article>
+
+          {/* Top Layer: Overlapping Doctor Card */}
+          <article className="absolute top-0 left-4 right-4 lg:left-16 lg:w-[600px] z-10 group overflow-hidden rounded-[2.5rem] border border-[color:var(--line)] bg-white/90 backdrop-blur-xl p-5 shadow-2xl transition-all duration-500 hover:shadow-3xl hover:-translate-y-2">
+            <div className="grid gap-6 md:grid-cols-[180px_1fr] items-center">
+              <div className="relative aspect-[4/5] overflow-hidden rounded-[1.5rem]">
+                <img src="/images/doctor-1.png" alt="Clinical Lead" className="absolute inset-0 h-full w-full object-cover grayscale transition-all duration-700 group-hover:grayscale-0 group-hover:scale-105" />
+              </div>
+              <div className="flex flex-col justify-center py-2 pr-4">
+                <div className="inline-flex items-center gap-2 text-[10px] font-bold uppercase tracking-widest text-[color:var(--accent-deep)]">
                   <Star className="h-3 w-3 fill-current" />
                   <span>{doctors[0]?.role}</span>
                 </div>
-                <h3 className="mt-4 font-[family:var(--font-display)] text-3xl font-bold text-[color:var(--ink)]">
+                <h3 className="mt-3 font-[family:var(--font-display)] text-2xl lg:text-3xl font-bold text-[color:var(--ink)] tracking-tight">
                   {doctors[0]?.name}
                 </h3>
-                <p className="mt-4 text-sm leading-relaxed text-[color:var(--muted)] line-clamp-2">
+                <p className="mt-3 text-xs lg:text-sm leading-relaxed text-[color:var(--muted)] line-clamp-2 font-medium">
                   Focused on clear patient guidance and gentle, evidence-based care.
                 </p>
-                <div className="mt-6 flex flex-wrap gap-2">
+                <div className="mt-5 flex flex-wrap gap-1.5">
                   {doctors[0]?.specialties.slice(0, 3).map((s) => (
-                    <span key={s} className="rounded-full bg-slate-50 px-3 py-1 text-[10px] font-bold text-[color:var(--ink)] border border-slate-100 uppercase tracking-wider">
+                    <span key={s} className="rounded-full bg-slate-50 px-2.5 py-1 text-[9px] font-bold text-[color:var(--ink)] border border-slate-100 uppercase tracking-wider">
                       {s}
                     </span>
                   ))}
@@ -328,67 +294,121 @@ export default async function HomePage() {
               </div>
             </div>
           </article>
+        </div>
+      </SectionShell>
 
-          {/* Doctor 2 / Value Prop */}
-          <article className="rounded-[3.5rem] bg-[color:var(--ink)] p-10 text-white flex flex-col justify-center">
-            <p className="text-xs font-bold uppercase tracking-[0.4em] text-white/40">Clinical Philosophy</p>
-            <h3 className="mt-6 font-[family:var(--font-display)] text-4xl font-bold leading-tight">
-              Evidence-based care for every smile.
-            </h3>
-            <p className="mt-6 text-sm leading-relaxed text-white/60 max-w-md">
-              We don't just treat teeth; we guide patients through a lifecycle of health with transparent planning and cutting-edge diagnostics.
+      <section className="relative py-24 sm:py-32 overflow-hidden bg-[color:var(--ink)] mt-20 lg:mt-32 rounded-t-[3rem] lg:rounded-t-[4rem]">
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,rgba(255,255,255,0.05)_0%,transparent_70%)]" />
+        <div className="relative mx-auto max-w-7xl px-6 sm:px-8 lg:px-12">
+          
+          {/* Header */}
+          <div className="max-w-3xl mb-12 lg:mb-16">
+            <div className="flex items-center gap-3 mb-6">
+              <div className="h-px w-8 bg-[color:var(--accent-light)]/50" />
+              <p className="text-xs uppercase tracking-[0.25em] font-bold text-[color:var(--accent-light)]">
+                Visit Smile Hub
+              </p>
+            </div>
+            <h2 className="text-balance font-[family:var(--font-display)] text-5xl font-semibold leading-[1.05] text-white sm:text-6xl tracking-tight">
+              Ready to begin your <br className="hidden md:block" />
+              <span className="font-serif italic font-light text-[color:var(--accent)]">smile journey?</span>
+            </h2>
+            <p className="mt-6 max-w-xl text-lg leading-relaxed text-white/70 font-medium">
+              Our clinic is conveniently located on Peradeniya Road with easy parking. Reach out via WhatsApp or phone to schedule your consultation.
             </p>
-            <div className="mt-10 grid grid-cols-2 gap-8 border-t border-white/10 pt-8">
-              <div>
-                <p className="text-2xl font-bold font-[family:var(--font-display)]">5000+</p>
-                <p className="text-[10px] uppercase tracking-widest text-white/40 mt-1">Successful Cases</p>
-              </div>
-              <div>
-                <p className="text-2xl font-bold font-[family:var(--font-display)]">100%</p>
-                <p className="text-[10px] uppercase tracking-widest text-white/40 mt-1">Digital Workflow</p>
+          </div>
+
+          {/* Map and Contacts Grid */}
+          <div className="grid gap-6 lg:grid-cols-[1fr_400px]">
+            {/* The Map */}
+            <div className="relative h-[400px] lg:h-auto min-h-[400px] rounded-[2rem] overflow-hidden border border-white/10 shadow-2xl">
+              <iframe
+                title="Smile Hub map"
+                src="https://www.google.com/maps?q=Smile%20Hub%20Premium%20Dental%20Care%2C%20Kandy&z=16&output=embed"
+                className="absolute inset-0 h-full w-full border-0 opacity-90"
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+              />
+              <div className="absolute inset-0 ring-1 ring-inset ring-white/10 rounded-[2rem] pointer-events-none" />
+            </div>
+
+            {/* Contact Directory */}
+            <div className="flex flex-col gap-4">
+              <div className="bg-white/5 backdrop-blur-xl border border-white/10 rounded-[2rem] p-8 lg:p-10 h-full flex flex-col justify-center">
+                <div className="flex items-start gap-5">
+                  <span className="inline-flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-white/10 text-[color:var(--accent-light)]">
+                    <MapPinned className="h-5 w-5" />
+                  </span>
+                  <div>
+                    <p className="text-xs uppercase tracking-[0.2em] text-white/50 font-bold">Address</p>
+                    <p className="mt-2 text-sm leading-relaxed text-white/90 font-medium">
+                      951, 1st Floor, Art Lanka Building, Peradeniya Road, Kandy, Opposite Damro Showroom
+                    </p>
+                  </div>
+                </div>
+                
+                <div className="mt-10 pt-10 border-t border-white/10">
+                  <div className="flex items-start gap-5">
+                    <span className="inline-flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-white/10 text-[color:var(--accent-light)]">
+                      <Clock3 className="h-5 w-5" />
+                    </span>
+                    <div className="w-full">
+                      <p className="text-xs uppercase tracking-[0.2em] text-white/50 font-bold">Hours</p>
+                      <ul className="mt-4 space-y-4 text-sm text-white/80">
+                        <li className="flex justify-between items-center gap-4 border-b border-white/5 pb-3">
+                          <span className="font-semibold text-white">Tue - Sat</span> 
+                          <span>5:00 PM – 7:00 PM</span>
+                        </li>
+                        <li className="flex justify-between items-center gap-4 border-b border-white/5 pb-3">
+                          <span className="font-semibold text-white">Sunday</span> 
+                          <span>9:00 AM – 2:00 PM</span>
+                        </li>
+                        <li className="flex justify-between items-center gap-4">
+                          <span className="font-semibold text-white/50">Monday</span> 
+                          <span className="text-white/50">Closed</span>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
-          </article>
-        </div>
-      </SectionShell>
+          </div>
 
-      <SectionShell
-        eyebrow="Visit Smile Hub"
-        title="Directions, hours, and quick actions without forcing extra taps."
-        body="The final conversion layer keeps map, phone, and WhatsApp obvious, especially on smaller screens."
-        className="bg-white/46"
-      >
-        <MapCard />
+          {/* Action Cards Grid */}
+          <div className="mt-6 grid gap-4 md:grid-cols-3">
+            <ActionLink
+              href={quickWhatsAppMessages.general}
+              external
+              className="group relative overflow-hidden bg-white/5 backdrop-blur-xl border border-white/10 rounded-[2rem] p-6 lg:p-8 flex items-center justify-between transition-all duration-300 hover:bg-white/10 hover:border-white/20 hover:-translate-y-1"
+              eventName="home_contact_whatsapp_click"
+            >
+              <span>
+                <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-white/40">WhatsApp</p>
+                <p className="mt-1.5 text-lg font-bold text-white group-hover:text-[color:var(--accent-light)] transition-colors">Chat instantly</p>
+              </span>
+              <MessageCircleMore className="h-6 w-6 text-white/40 group-hover:text-[color:var(--accent-light)] transition-colors" />
+            </ActionLink>
 
-        <div className="mt-8 grid gap-4 md:grid-cols-3">
-          <ActionLink
-            href={quickWhatsAppMessages.general}
-            external
-            className="surface-card flex items-center justify-between"
-            eventName="home_contact_whatsapp_click"
-          >
-            <span>
-              <p className="section-kicker">WhatsApp</p>
-              <p className="mt-2 text-xl font-semibold text-[color:var(--ink)]">Chat instantly</p>
-            </span>
-            <MessageCircleMore className="h-5 w-5 text-[color:var(--accent-deep)]" />
-          </ActionLink>
-          <a href={`tel:${formatPhoneForTel(siteSettings.phonePrimary)}`} className="surface-card flex items-center justify-between">
-            <span>
-              <p className="section-kicker">Call now</p>
-              <p className="mt-2 text-xl font-semibold text-[color:var(--ink)]">{siteSettings.phonePrimary}</p>
-            </span>
-            <Phone className="h-5 w-5 text-[color:var(--accent-deep)]" />
-          </a>
-          <ActionLink href="/contact" className="surface-card flex items-center justify-between" eventName="home_contact_map_click">
-            <span>
-              <p className="section-kicker">Find us</p>
-              <p className="mt-2 text-xl font-semibold text-[color:var(--ink)]">Open map and directions</p>
-            </span>
-            <MapPinned className="h-5 w-5 text-[color:var(--accent-deep)]" />
-          </ActionLink>
+            <a href={`tel:${formatPhoneForTel(siteSettings.phonePrimary)}`} className="group relative overflow-hidden bg-white/5 backdrop-blur-xl border border-white/10 rounded-[2rem] p-6 lg:p-8 flex items-center justify-between transition-all duration-300 hover:bg-white/10 hover:border-white/20 hover:-translate-y-1">
+              <span>
+                <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-white/40">Call now</p>
+                <p className="mt-1.5 text-lg font-bold text-white group-hover:text-[color:var(--accent-light)] transition-colors">{siteSettings.phonePrimary}</p>
+              </span>
+              <Phone className="h-6 w-6 text-white/40 group-hover:text-[color:var(--accent-light)] transition-colors" />
+            </a>
+
+            <ActionLink href="/contact" className="group relative overflow-hidden bg-[color:var(--accent)] border border-transparent rounded-[2rem] p-6 lg:p-8 flex items-center justify-between transition-all duration-300 hover:brightness-110 hover:-translate-y-1 shadow-lg shadow-[color:var(--accent)]/20" eventName="home_contact_map_click">
+              <span>
+                <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-white/70">Find us</p>
+                <p className="mt-1.5 text-lg font-bold text-white">Open map & directions</p>
+              </span>
+              <MapPinned className="h-6 w-6 text-white" />
+            </ActionLink>
+          </div>
+
         </div>
-      </SectionShell>
+      </section>
     </>
   );
 }

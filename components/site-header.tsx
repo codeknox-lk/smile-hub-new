@@ -119,9 +119,8 @@ export function SiteHeader() {
                                       <div className="shrink-0 h-8 w-8 rounded-lg bg-white/10 backdrop-blur-md flex items-center justify-center text-[color:var(--accent)] border border-white/10">
                                         <Icon className="h-4 w-4" />
                                       </div>
-                                      <p className="font-bold text-sm text-white">{t.shortTitle}</p>
+                                      <p className="font-bold text-sm text-white group-hover/item:text-[color:var(--accent)] transition-colors">{t.shortTitle}</p>
                                     </div>
-                                    <p className="text-[10px] text-white/60 leading-tight mt-2 line-clamp-2">{t.summary}</p>
                                   </div>
                                 </ActionLink>
                               );

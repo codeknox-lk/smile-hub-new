@@ -58,17 +58,18 @@ export function ClinicAtmosphereReveal() {
           {spaces.map((space) => (
             <div 
               key={space.id}
-              className="group cursor-pointer py-4 transition-all duration-300"
+              className="group cursor-pointer py-3 lg:py-4 transition-all duration-300"
               onMouseEnter={() => setActiveSpace(space.id)}
+              onClick={() => setActiveSpace(space.id)}
             >
-              <div className="flex items-center gap-4">
+              <div className="flex items-center gap-3 lg:gap-4">
                 {/* Animated Line Indicator */}
                 <div className={cn(
                   "h-[2px] transition-all duration-500",
-                  activeSpace === space.id ? "w-8 lg:w-12 bg-[color:var(--accent-light)]" : "w-0 bg-white/30 group-hover:w-4"
+                  activeSpace === space.id ? "w-6 lg:w-12 bg-[color:var(--accent-light)]" : "w-0 bg-white/30 group-hover:w-4"
                 )} />
                 <h3 className={cn(
-                  "font-display text-3xl lg:text-5xl font-bold transition-all duration-500 tracking-tight",
+                  "font-display text-2xl lg:text-5xl font-bold transition-all duration-500 tracking-tight",
                   activeSpace === space.id ? "text-white" : "text-white/40 group-hover:text-white/70"
                 )}>
                   {space.title}

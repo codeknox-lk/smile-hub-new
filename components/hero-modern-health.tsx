@@ -70,13 +70,13 @@ export function HeroModernHealth({ reviewSnapshot }: HeroModernHealthProps) {
 
           {/* Headline */}
           <motion.h1 
-            className="font-display text-5xl sm:text-7xl lg:text-[6.5rem] font-bold leading-[0.95] tracking-tight text-[color:var(--ink)] mb-8 drop-shadow-sm text-balance"
+            className="font-display text-4xl sm:text-6xl lg:text-[6.5rem] font-bold leading-[1.05] lg:leading-[0.95] tracking-tight text-[color:var(--ink)] mb-6 lg:mb-8 drop-shadow-sm text-balance"
             initial={{ opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, ease: [0.22, 1, 0.36, 1], delay: 0.6 }}
           >
             Smile Brightly,<br />
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-[color:var(--accent-strong)] to-[color:var(--accent)] font-serif italic font-light pr-4 pb-2">Smile Confidently</span>
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-[color:var(--accent-strong)] to-[color:var(--accent)] font-serif italic font-light pr-2 lg:pr-4 pb-2">Smile Confidently</span>
           </motion.h1>
 
           {/* Subtext */}
@@ -95,7 +95,7 @@ export function HeroModernHealth({ reviewSnapshot }: HeroModernHealthProps) {
 
           {/* Primary Action Zone */}
           <motion.div 
-            className="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 mt-12"
+            className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 lg:gap-4 mt-8 lg:mt-12"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 1 }}
@@ -103,7 +103,7 @@ export function HeroModernHealth({ reviewSnapshot }: HeroModernHealthProps) {
             <ActionLink 
               href={quickWhatsAppMessages.general} 
               external 
-              className="group inline-flex items-center gap-3 justify-center rounded-2xl bg-[color:var(--ink)] px-8 py-5 text-base font-bold text-white transition-all duration-300 hover:scale-[1.03] hover:shadow-[0_15px_40px_rgba(11,25,44,0.3)] active:scale-95 shadow-md border border-[color:var(--ink)]"
+              className="group inline-flex items-center gap-3 justify-center rounded-full bg-[color:var(--ink)] px-6 lg:px-8 py-4 text-base lg:text-lg font-bold text-white transition-all duration-300 hover:scale-[1.03] hover:shadow-[0_15px_40px_rgba(11,25,44,0.3)] active:scale-95 shadow-md border border-[color:var(--ink)] w-full sm:w-auto"
             >
               <MessageCircleMore className="h-5 w-5 text-[#25D366] transition-colors duration-300 group-hover:text-white" />
               Chat on WhatsApp
@@ -111,7 +111,7 @@ export function HeroModernHealth({ reviewSnapshot }: HeroModernHealthProps) {
 
             <ActionLink 
               href="/book" 
-              className="inline-flex items-center gap-3 justify-center rounded-2xl border-2 border-[color:var(--line)] bg-white/70 backdrop-blur-xl px-8 py-5 text-base font-bold text-[color:var(--ink)] transition-all hover:border-[color:var(--accent-strong)] hover:bg-white active:scale-95 shadow-sm"
+              className="inline-flex items-center gap-3 justify-center rounded-full border border-[color:var(--line)] bg-white/70 backdrop-blur-xl px-6 lg:px-8 py-4 text-base lg:text-lg font-bold text-[color:var(--ink)] transition-all hover:border-[color:var(--accent-strong)] hover:bg-white active:scale-95 shadow-sm w-full sm:w-auto"
             >
               <CalendarDays className="h-5 w-5 text-[color:var(--accent-strong)]" />
               Book Consultation
@@ -121,7 +121,7 @@ export function HeroModernHealth({ reviewSnapshot }: HeroModernHealthProps) {
 
         {/* 3. Trust Signals (Light Mode) */}
         <motion.div 
-          className="mt-20 lg:mt-24 grid grid-cols-1 gap-8 border-t border-[color:var(--line)]/80 pt-10 sm:grid-cols-3 relative z-30"
+          className="mt-12 lg:mt-24 grid grid-cols-1 gap-6 lg:gap-8 border-t border-[color:var(--line)]/80 pt-8 lg:pt-10 sm:grid-cols-3 relative z-30"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 1.2 }}

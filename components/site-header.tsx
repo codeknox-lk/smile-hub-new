@@ -38,8 +38,8 @@ export function SiteHeader() {
       <motion.div 
         className={`mx-auto flex max-w-7xl items-center justify-between gap-4 transition-all duration-500 relative
           ${isScrolled 
-            ? "rounded-2xl border border-black/5 bg-white/95 backdrop-blur-xl px-6 py-3 shadow-[0_12px_40px_rgba(0,0,0,0.08)]" 
-            : "rounded-[2.5rem] border border-white bg-white/100 px-8 py-4 shadow-[0_4px_20px_rgba(0,0,0,0.04)]"
+            ? "rounded-2xl border border-black/5 bg-white/95 backdrop-blur-xl px-4 sm:px-6 py-3 shadow-[0_12px_40px_rgba(0,0,0,0.08)]" 
+            : "rounded-3xl sm:rounded-[2.5rem] border border-white bg-white/100 px-4 sm:px-8 py-3 sm:py-4 shadow-[0_4px_20px_rgba(0,0,0,0.04)]"
           }`}
         initial={{ y: -20, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}

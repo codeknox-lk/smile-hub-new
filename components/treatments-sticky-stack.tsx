@@ -35,7 +35,7 @@ export function TreatmentsStickyStack({ treatments }: TreatmentsStickyStackProps
             return (
               <div 
                 key={treatment.slug}
-                className="sticky w-full rounded-t-[2rem] lg:rounded-t-[3rem] rounded-b-xl lg:rounded-b-3xl overflow-hidden shadow-[0_-20px_40px_rgba(0,0,0,0.1)] bg-white border-t border-x border-[color:var(--line)] group flex flex-col top-[calc(10vh+calc(var(--index)*3.5rem))] lg:top-[calc(15vh+calc(var(--index)*4rem))] h-[calc(90vh-calc(var(--index)*3.5rem))] lg:h-[calc(85vh-calc(var(--index)*4rem))] transform-gpu"
+                className="relative lg:sticky w-full rounded-t-[2rem] lg:rounded-t-[3rem] rounded-b-xl lg:rounded-b-3xl overflow-hidden shadow-[0_-20px_40px_rgba(0,0,0,0.1)] bg-white border-t border-x border-[color:var(--line)] group flex flex-col mb-8 lg:mb-0 lg:top-[calc(15vh+calc(var(--index)*4rem))] h-auto lg:h-[calc(85vh-calc(var(--index)*4rem))] transform-gpu"
                 style={{ 
                   '--index': index,
                 } as React.CSSProperties}

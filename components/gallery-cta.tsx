@@ -20,7 +20,7 @@ export function GalleryCta() {
         <p className="text-sm font-bold uppercase tracking-[0.3em] text-[color:var(--accent)] drop-shadow-sm">
           Visit Us
         </p>
-        <h2 className="mt-6 font-[family:var(--font-display)] text-5xl lg:text-7xl font-semibold leading-[1.1] tracking-tight">
+        <h2 className="mt-6 font-display text-5xl lg:text-7xl font-semibold leading-[1.1] tracking-tight">
           Experience a calmer <br /> standard of care.
         </h2>
         <p className="mx-auto mt-6 max-w-xl text-lg text-white/80">

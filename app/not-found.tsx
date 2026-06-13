@@ -4,7 +4,7 @@ export default function NotFound() {
   return (
     <section className="mx-auto flex min-h-[70vh] max-w-4xl flex-col items-center justify-center gap-6 px-4 text-center">
       <p className="section-kicker">Page not found</p>
-      <h1 className="font-[family:var(--font-display)] text-5xl text-[color:var(--ink)]">
+      <h1 className="font-display text-5xl text-[color:var(--ink)]">
         That page has been moved into the new Smile Hub structure.
       </h1>
       <p className="max-w-2xl text-lg leading-8 text-[color:var(--muted)]">

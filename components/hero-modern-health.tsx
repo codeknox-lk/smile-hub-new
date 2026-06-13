@@ -70,7 +70,7 @@ export function HeroModernHealth({ reviewSnapshot }: HeroModernHealthProps) {
 
           {/* Headline */}
           <motion.h1 
-            className="font-[family:var(--font-display)] text-5xl sm:text-7xl lg:text-[6.5rem] font-bold leading-[0.95] tracking-tight text-[color:var(--ink)] mb-8 drop-shadow-sm text-balance"
+            className="font-display text-5xl sm:text-7xl lg:text-[6.5rem] font-bold leading-[0.95] tracking-tight text-[color:var(--ink)] mb-8 drop-shadow-sm text-balance"
             initial={{ opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, ease: [0.22, 1, 0.36, 1], delay: 0.6 }}

@@ -68,7 +68,7 @@ export function ClinicAtmosphereReveal() {
                   activeSpace === space.id ? "w-8 lg:w-12 bg-[color:var(--accent-light)]" : "w-0 bg-white/30 group-hover:w-4"
                 )} />
                 <h3 className={cn(
-                  "font-[family:var(--font-display)] text-3xl lg:text-5xl font-bold transition-all duration-500 tracking-tight",
+                  "font-display text-3xl lg:text-5xl font-bold transition-all duration-500 tracking-tight",
                   activeSpace === space.id ? "text-white" : "text-white/40 group-hover:text-white/70"
                 )}>
                   {space.title}

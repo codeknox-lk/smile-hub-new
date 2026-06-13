@@ -1,5 +1,10 @@
 @import "tailwindcss";
 
+@theme {
+  --font-display: "Avenir Next", "Segoe UI", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --font-sans: "Avenir Next", "Segoe UI", "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
 :root {
   --background: #f3f9fe;
   --surface: rgba(248, 252, 255, 0.94);
@@ -12,8 +17,6 @@
   --accent-strong: #136f9b;
   --accent-deep: #0e668c;
   --accent-soft: #a6e6fc;
-  --font-display: "Avenir Next", "Segoe UI", "Helvetica Neue", Helvetica, Arial, sans-serif;
-  --font-sans: "Avenir Next", "Segoe UI", "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
 @layer base {

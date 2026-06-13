@@ -45,7 +45,7 @@ export function HeroVisualDeck({ reviewSnapshot }: HeroVisualDeckProps) {
           <p className="text-[10px] uppercase tracking-[0.16em] font-semibold text-[color:var(--accent-deep)]">Google Rating</p>
         </div>
         <div className="mt-2.5 flex items-baseline gap-1.5">
-          <p className="font-[family:var(--font-display)] text-4xl font-bold text-[color:var(--ink)]">
+          <p className="font-display text-4xl font-bold text-[color:var(--ink)]">
             {reviewSnapshot.rating.toFixed(1)}
           </p>
           <div className="flex text-amber-400 text-xs mb-1">

@@ -40,7 +40,7 @@ export default function FaqPage() {
             <div className="flex h-full flex-col justify-between gap-8">
               <div>
                 <p className="section-kicker">Still unsure?</p>
-                <h2 className="mt-4 font-[family:var(--font-display)] text-3xl font-semibold leading-tight text-[color:var(--ink)]">
+                <h2 className="mt-4 font-display text-3xl font-semibold leading-tight text-[color:var(--ink)]">
                   A quick WhatsApp message is often easier than reading through every question.
                 </h2>
                 <p className="mt-4 text-sm leading-7 text-[color:var(--muted)]">

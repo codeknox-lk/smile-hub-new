@@ -109,7 +109,7 @@ export default async function HomePage() {
               <div className="inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-white/10 backdrop-blur-xl text-white ring-1 ring-white/20">
                 <ShieldCheck className="h-6 w-6" />
               </div>
-              <h3 className="mt-8 font-[family:var(--font-display)] text-4xl lg:text-5xl font-bold text-white leading-[1.05] tracking-tight">
+              <h3 className="mt-8 font-display text-4xl lg:text-5xl font-bold text-white leading-[1.05] tracking-tight">
                 The Clinical Standard
               </h3>
               <p className="mt-6 text-lg leading-relaxed text-white/80 max-w-xl font-medium">
@@ -247,7 +247,7 @@ export default async function HomePage() {
             
             <div className="relative z-10 max-w-xl">
               <p className="text-xs font-bold uppercase tracking-[0.4em] text-[color:var(--accent-light)]">Clinical Philosophy</p>
-              <h3 className="mt-6 font-[family:var(--font-display)] text-4xl lg:text-5xl font-bold leading-[1.05] tracking-tight">
+              <h3 className="mt-6 font-display text-4xl lg:text-5xl font-bold leading-[1.05] tracking-tight">
                 Evidence-based care for every smile.
               </h3>
               <p className="mt-8 text-base lg:text-lg leading-relaxed text-white/70">
@@ -257,11 +257,11 @@ export default async function HomePage() {
             
             <div className="relative z-10 grid grid-cols-2 gap-8 lg:gap-12 lg:min-w-[300px] border-t border-white/10 lg:border-t-0 lg:border-l pt-10 lg:pt-0 lg:pl-12">
               <div>
-                <p className="text-5xl lg:text-6xl font-black font-[family:var(--font-display)] text-[color:var(--accent-light)]">5k<span className="text-3xl lg:text-4xl text-white/40">+</span></p>
+                <p className="text-5xl lg:text-6xl font-black font-display text-[color:var(--accent-light)]">5k<span className="text-3xl lg:text-4xl text-white/40">+</span></p>
                 <p className="text-[10px] uppercase tracking-[0.2em] text-white/50 mt-3 font-bold">Successful Cases</p>
               </div>
               <div>
-                <p className="text-5xl lg:text-6xl font-black font-[family:var(--font-display)] text-[color:var(--accent-light)]">100<span className="text-3xl lg:text-4xl text-white/40">%</span></p>
+                <p className="text-5xl lg:text-6xl font-black font-display text-[color:var(--accent-light)]">100<span className="text-3xl lg:text-4xl text-white/40">%</span></p>
                 <p className="text-[10px] uppercase tracking-[0.2em] text-white/50 mt-3 font-bold">Digital Workflow</p>
               </div>
             </div>
@@ -278,7 +278,7 @@ export default async function HomePage() {
                   <Star className="h-3 w-3 fill-current" />
                   <span>{doctors[0]?.role}</span>
                 </div>
-                <h3 className="mt-3 font-[family:var(--font-display)] text-2xl lg:text-3xl font-bold text-[color:var(--ink)] tracking-tight">
+                <h3 className="mt-3 font-display text-2xl lg:text-3xl font-bold text-[color:var(--ink)] tracking-tight">
                   {doctors[0]?.name}
                 </h3>
                 <p className="mt-3 text-xs lg:text-sm leading-relaxed text-[color:var(--muted)] line-clamp-2 font-medium">
@@ -309,7 +309,7 @@ export default async function HomePage() {
                 Visit Smile Hub
               </p>
             </div>
-            <h2 className="text-balance font-[family:var(--font-display)] text-5xl font-semibold leading-[1.05] text-white sm:text-6xl tracking-tight">
+            <h2 className="text-balance font-display text-5xl font-semibold leading-[1.05] text-white sm:text-6xl tracking-tight">
               Ready to begin your <br className="hidden md:block" />
               <span className="font-serif italic font-light text-[color:var(--accent)]">smile journey?</span>
             </h2>

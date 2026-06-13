@@ -20,7 +20,7 @@ export function TreatmentsStickyStack({ treatments }: TreatmentsStickyStackProps
              </p>
              <div className="h-[2px] w-8 lg:w-12 bg-[color:var(--accent-strong)]" />
            </div>
-           <h2 className="font-[family:var(--font-display)] text-5xl sm:text-6xl lg:text-7xl font-bold leading-[0.95] tracking-tight text-[color:var(--ink)] mb-6 text-balance">
+           <h2 className="font-display text-5xl sm:text-6xl lg:text-7xl font-bold leading-[0.95] tracking-tight text-[color:var(--ink)] mb-6 text-balance">
              Guided Pathways <br/>
              <span className="font-serif italic font-light text-[color:var(--accent)]">to Your Best Smile</span>
            </h2>
@@ -46,7 +46,7 @@ export function TreatmentsStickyStack({ treatments }: TreatmentsStickyStackProps
                   Must precisely match the rem multipliers in the top-[calc(...)] offset above.
                 */}
                 <div className="h-[3.5rem] lg:h-[4rem] w-full bg-white/95 backdrop-blur-md flex items-center px-5 lg:px-12 shrink-0 border-b border-[color:var(--line)] z-30 relative">
-                   <span className="text-[color:var(--accent-strong)] font-bold font-[family:var(--font-display)] text-lg lg:text-2xl mr-3 lg:mr-4">
+                   <span className="text-[color:var(--accent-strong)] font-bold font-display text-lg lg:text-2xl mr-3 lg:mr-4">
                      0{index + 1}
                    </span>
                    <h3 className="text-[color:var(--ink)] font-bold uppercase tracking-[0.1em] lg:tracking-[0.2em] text-[10px] lg:text-sm truncate">
@@ -66,7 +66,7 @@ export function TreatmentsStickyStack({ treatments }: TreatmentsStickyStackProps
                    
                    {/* Content */}
                    <div className="relative z-20 p-5 pb-24 sm:p-8 lg:p-14 flex flex-col items-start w-full transform transition-transform duration-700 lg:group-hover:-translate-y-2">
-                     <h3 className="font-[family:var(--font-display)] text-2xl sm:text-4xl lg:text-5xl font-extrabold text-white leading-tight tracking-tight max-w-[100%] lg:max-w-[90%]">
+                     <h3 className="font-display text-2xl sm:text-4xl lg:text-5xl font-extrabold text-white leading-tight tracking-tight max-w-[100%] lg:max-w-[90%]">
                        {treatment.shortTitle}
                      </h3>
                      

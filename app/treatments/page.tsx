@@ -46,7 +46,7 @@ export default function TreatmentsPage() {
                 <div className="inline-flex rounded-full bg-[color:var(--sand-strong)] px-3 py-1 text-[11px] font-medium uppercase tracking-[0.16em] text-[color:var(--accent-deep)]">
                   {treatment.category}
                 </div>
-                <h2 className="mt-5 font-[family:var(--font-display)] text-3xl font-semibold text-[color:var(--ink)]">
+                <h2 className="mt-5 font-display text-3xl font-semibold text-[color:var(--ink)]">
                   {treatment.shortTitle}
                 </h2>
                 <p className="mt-4 text-sm leading-7 text-[color:var(--muted)]">{treatment.summary}</p>

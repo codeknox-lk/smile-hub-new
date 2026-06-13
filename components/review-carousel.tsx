@@ -111,7 +111,7 @@ export function ReviewCarousel({ snapshot }: ReviewCarouselProps) {
                    </div>
                  )}
                  <div>
-                   <p className="font-[family:var(--font-display)] text-xl lg:text-2xl font-bold text-[color:var(--ink)]">{currentReview.author}</p>
+                   <p className="font-display text-xl lg:text-2xl font-bold text-[color:var(--ink)]">{currentReview.author}</p>
                    <div className="flex items-center gap-2 mt-1">
                      <div className="flex text-yellow-400">
                        {[...Array(5)].map((_, i) => (

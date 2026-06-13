@@ -49,7 +49,7 @@ export function AboutDoctor({ eyebrow, name, role, quote, body, credentials, ima
               {eyebrow}
             </p>
             
-            <h2 className="font-[family:var(--font-display)] text-3xl sm:text-4xl lg:text-5xl font-medium leading-[1.1] tracking-tight text-[color:var(--ink)] mb-8">
+            <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl font-medium leading-[1.1] tracking-tight text-[color:var(--ink)] mb-8">
               "{quote}"
             </h2>
             
@@ -61,7 +61,7 @@ export function AboutDoctor({ eyebrow, name, role, quote, body, credentials, ima
               <p className={cn(signatureFont.className, "text-5xl md:text-6xl text-[color:var(--accent-strong)] mb-4 -rotate-3 origin-left opacity-90 mix-blend-multiply")}>
                 {signatureText || name}
               </p>
-              <p className="font-[family:var(--font-display)] text-xl font-semibold text-[color:var(--ink)]">
+              <p className="font-display text-xl font-semibold text-[color:var(--ink)]">
                 {name}
               </p>
               <p className="text-xs uppercase tracking-[0.2em] text-[color:var(--accent-deep)] mt-1 font-bold">

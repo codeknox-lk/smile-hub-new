@@ -82,7 +82,7 @@ export function ContactHero({
           <p className="text-[10px] font-bold uppercase tracking-[0.25em] text-[color:var(--accent-strong)]">
             {eyebrow}
           </p>
-          <h1 className="mt-8 font-[family:var(--font-display)] text-5xl sm:text-6xl lg:text-[5rem] font-semibold leading-[1.05] tracking-tight text-[color:var(--ink)]">
+          <h1 className="mt-8 font-display text-5xl sm:text-6xl lg:text-[5rem] font-semibold leading-[1.05] tracking-tight text-[color:var(--ink)]">
             {title}
           </h1>
           <p className="mt-8 text-lg md:text-xl leading-relaxed text-[color:var(--muted)] font-medium">

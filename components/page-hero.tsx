@@ -31,7 +31,7 @@ export function PageHero({
       <div className="mx-auto grid max-w-7xl gap-12 px-4 py-16 sm:px-6 md:py-24 lg:grid-cols-[1.05fr_0.95fr] lg:px-8">
         <div className="space-y-6">
           <p className="section-kicker">{eyebrow}</p>
-          <h1 className="text-balance font-[family:var(--font-display)] text-5xl leading-[1.02] text-[color:var(--ink)] md:text-7xl">
+          <h1 className="text-balance font-display text-5xl leading-[1.02] text-[color:var(--ink)] md:text-7xl">
             {title}
           </h1>
           <p className="max-w-2xl text-lg leading-8 text-[color:var(--muted)]">{body}</p>
@@ -78,7 +78,7 @@ export function PageHero({
                   <div className="flex items-start justify-between gap-4">
                     <div>
                       <p className="text-xs uppercase tracking-[0.22em] text-[color:var(--muted)]">Experience direction</p>
-                      <p className="mt-3 max-w-md text-balance font-[family:var(--font-display)] text-3xl leading-tight text-[color:var(--ink)]">
+                      <p className="mt-3 max-w-md text-balance font-display text-3xl leading-tight text-[color:var(--ink)]">
                         Cleaner, brighter, and easier to trust on mobile.
                       </p>
                     </div>

@@ -49,7 +49,7 @@ export function HeroCentered({ reviewSnapshot }: HeroCenteredProps) {
               {homepageSections.heroEyebrow}
             </div>
             
-            <h1 className="font-[family:var(--font-display)] text-4xl sm:text-5xl lg:text-5xl font-extrabold leading-[1.1] tracking-tight text-white max-w-2xl text-left">
+            <h1 className="font-display text-4xl sm:text-5xl lg:text-5xl font-extrabold leading-[1.1] tracking-tight text-white max-w-2xl text-left">
               Smile Brightly,<br />
               <span className="text-transparent bg-clip-text bg-[linear-gradient(135deg,rgba(103,198,238,1)_0%,rgba(255,255,255,1)_100%)]">Smile Confidently</span>
             </h1>

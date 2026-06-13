@@ -79,7 +79,7 @@ export default async function AboutPage() {
             <p className="text-[10px] font-bold uppercase tracking-[0.25em] text-[color:var(--accent-strong)]">
               Patient Voices
             </p>
-            <h2 className="mt-4 font-[family:var(--font-display)] text-4xl sm:text-5xl font-semibold leading-[1.05] tracking-tight text-[color:var(--ink)]">
+            <h2 className="mt-4 font-display text-4xl sm:text-5xl font-semibold leading-[1.05] tracking-tight text-[color:var(--ink)]">
               Real stories from our <span className="font-serif italic font-light text-[color:var(--accent-strong)]">patients.</span>
             </h2>
           </div>

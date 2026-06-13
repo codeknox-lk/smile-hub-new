@@ -80,7 +80,7 @@ export function BookHero({
           <p className="text-[10px] font-bold uppercase tracking-[0.25em] text-[color:var(--accent-strong)] mb-6">
             Secure Your Spot
           </p>
-          <h1 className="font-[family:var(--font-display)] text-5xl sm:text-6xl md:text-[5rem] font-semibold leading-[1.05] tracking-tight text-[color:var(--ink)] text-balance">
+          <h1 className="font-display text-5xl sm:text-6xl md:text-[5rem] font-semibold leading-[1.05] tracking-tight text-[color:var(--ink)] text-balance">
             How would you like to <span className="font-serif italic font-light text-[color:var(--accent-strong)]">book?</span>
           </h1>
         </motion.div>

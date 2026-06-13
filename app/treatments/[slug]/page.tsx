@@ -62,7 +62,7 @@ export default async function TreatmentDetailPage({ params }: TreatmentDetailPag
                 {treatment.heroTag}
               </p>
             </div>
-            <h1 className="font-[family:var(--font-display)] text-5xl sm:text-6xl lg:text-[5.5rem] font-bold text-[color:var(--ink)] leading-[0.95] tracking-tight mb-8">
+            <h1 className="font-display text-5xl sm:text-6xl lg:text-[5.5rem] font-bold text-[color:var(--ink)] leading-[0.95] tracking-tight mb-8">
               {treatment.title}
             </h1>
             <p className="text-xl sm:text-2xl text-[color:var(--muted)] max-w-2xl leading-relaxed font-medium">
@@ -93,7 +93,7 @@ export default async function TreatmentDetailPage({ params }: TreatmentDetailPag
       <section className="py-24 sm:py-32 bg-[color:var(--background)] relative overflow-hidden">
         <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 relative z-10">
           <p className="text-[10px] font-bold uppercase tracking-[0.3em] text-[color:var(--accent-strong)] mb-8">Who this is for</p>
-          <h2 className="font-[family:var(--font-display)] text-3xl sm:text-4xl lg:text-5xl leading-tight text-[color:var(--ink)] max-w-4xl font-medium">
+          <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl leading-tight text-[color:var(--ink)] max-w-4xl font-medium">
             "{treatment.idealFor}"
           </h2>
         </div>
@@ -104,7 +104,7 @@ export default async function TreatmentDetailPage({ params }: TreatmentDetailPag
         <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
           <div className="mb-16">
             <p className="text-[10px] font-bold uppercase tracking-[0.3em] text-[color:var(--accent-strong)] mb-4">The Benefits</p>
-            <h2 className="font-[family:var(--font-display)] text-4xl lg:text-5xl font-bold text-[color:var(--ink)]">Why patients choose this</h2>
+            <h2 className="font-display text-4xl lg:text-5xl font-bold text-[color:var(--ink)]">Why patients choose this</h2>
           </div>
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {treatment.benefits.map((benefit, idx) => (
@@ -124,7 +124,7 @@ export default async function TreatmentDetailPage({ params }: TreatmentDetailPag
         <div className="max-w-3xl mx-auto px-6 sm:px-8 lg:px-12">
           <div className="text-center mb-20">
             <p className="text-[10px] font-bold uppercase tracking-[0.3em] text-[color:var(--accent-strong)] mb-4">The Process</p>
-            <h2 className="font-[family:var(--font-display)] text-4xl lg:text-5xl font-bold text-[color:var(--ink)]">What your journey looks like</h2>
+            <h2 className="font-display text-4xl lg:text-5xl font-bold text-[color:var(--ink)]">What your journey looks like</h2>
           </div>
           
           <div className="relative">
@@ -150,7 +150,7 @@ export default async function TreatmentDetailPage({ params }: TreatmentDetailPag
       <section className="pt-24 pb-32 sm:pt-32 sm:pb-40 bg-[color:var(--ink)] rounded-t-[3rem] lg:rounded-t-[4rem] relative z-20">
         <div className="max-w-3xl mx-auto px-6 sm:px-8 lg:px-12">
           <div className="text-center mb-16">
-            <h2 className="font-[family:var(--font-display)] text-4xl lg:text-5xl font-bold text-white mb-6">Patient FAQs</h2>
+            <h2 className="font-display text-4xl lg:text-5xl font-bold text-white mb-6">Patient FAQs</h2>
             <p className="text-white/60 text-lg">Clear answers to help you feel completely comfortable.</p>
           </div>
           
@@ -159,7 +159,7 @@ export default async function TreatmentDetailPage({ params }: TreatmentDetailPag
           </div>
 
           <div className="text-center space-y-8">
-            <h2 className="font-[family:var(--font-display)] text-5xl lg:text-7xl font-bold text-white tracking-tight">
+            <h2 className="font-display text-5xl lg:text-7xl font-bold text-white tracking-tight">
               Ready to begin?
             </h2>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">

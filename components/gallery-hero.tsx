@@ -101,7 +101,7 @@ export function GalleryHero({
           </motion.div>
 
           <p className="section-kicker drop-shadow-sm">{eyebrow}</p>
-          <h1 className="text-balance font-[family:var(--font-display)] text-5xl leading-[1.02] text-[color:var(--ink)] md:text-7xl lg:text-8xl tracking-tight">
+          <h1 className="text-balance font-display text-5xl leading-[1.02] text-[color:var(--ink)] md:text-7xl lg:text-8xl tracking-tight">
             {title}
           </h1>
           <p className="max-w-xl text-xl leading-relaxed text-[color:var(--muted)] font-medium drop-shadow-sm">{body}</p>

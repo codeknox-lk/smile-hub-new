@@ -43,7 +43,7 @@ export function SectionShell({
               {isCentered && <div className="h-px w-8 bg-[color:var(--accent-strong)]/30" />}
             </div>
           )}
-          <h2 className="text-balance font-[family:var(--font-display)] text-5xl font-semibold leading-[1.05] text-[color:var(--ink)] sm:text-6xl tracking-tight">
+          <h2 className="text-balance font-display text-5xl font-semibold leading-[1.05] text-[color:var(--ink)] sm:text-6xl tracking-tight">
             {title}
           </h2>
           {body && (

@@ -16,7 +16,7 @@ export function SiteFooter() {
               Smile Hub Premium Dental Care
             </p>
           </div>
-          <h2 className="font-[family:var(--font-display)] text-3xl lg:text-4xl text-white tracking-tight leading-[1.1]">
+          <h2 className="font-display text-3xl lg:text-4xl text-white tracking-tight leading-[1.1]">
             Redefining dental care in Kandy.
           </h2>
           <p className="max-w-md text-sm leading-relaxed text-white/60 font-medium">
@@ -71,7 +71,7 @@ export function SiteFooter() {
 
       {/* The Mega Brand Watermark */}
       <div className="absolute bottom-0 left-0 right-0 w-full overflow-hidden flex justify-center pointer-events-none select-none">
-        <h1 className="font-[family:var(--font-display)] font-black text-[15vw] leading-none text-white opacity-10 translate-y-1/4 whitespace-nowrap">
+        <h1 className="font-display font-black text-[15vw] leading-none text-white opacity-10 translate-y-1/4 whitespace-nowrap">
           SMILE HUB
         </h1>
       </div>

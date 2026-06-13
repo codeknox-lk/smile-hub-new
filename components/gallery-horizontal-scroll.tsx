@@ -39,7 +39,7 @@ export function GalleryHorizontalScroll({ items }: GalleryHorizontalScrollProps)
         {/* Context / Intro Block that stays fixed on the left */}
         <div className="absolute left-0 top-1/2 -translate-y-1/2 w-full lg:w-1/3 px-6 lg:px-12 z-20 pointer-events-none text-[color:var(--ink)]">
           <p className="text-xs font-bold uppercase tracking-[0.3em] text-[color:var(--accent-strong)]">The Experience</p>
-          <h2 className="mt-4 font-[family:var(--font-display)] text-5xl lg:text-7xl font-semibold leading-tight">
+          <h2 className="mt-4 font-display text-5xl lg:text-7xl font-semibold leading-tight">
             Take a walk <br className="hidden lg:block"/> through the <span className="font-serif italic font-light text-[color:var(--accent-strong)]">clinic.</span>
           </h2>
           <p className="mt-6 max-w-sm text-lg font-medium text-[color:var(--muted)]">
@@ -65,7 +65,7 @@ export function GalleryHorizontalScroll({ items }: GalleryHorizontalScrollProps)
                   
                   <div className="relative z-10 p-8 lg:p-10 text-white transform transition-transform duration-500 group-hover:-translate-y-2">
                     <p className="text-[10px] font-bold uppercase tracking-widest text-[color:var(--accent)]">{item.category}</p>
-                    <h3 className="mt-3 text-3xl font-[family:var(--font-display)] font-semibold">{item.title}</h3>
+                    <h3 className="mt-3 text-3xl font-display font-semibold">{item.title}</h3>
                     <p className="mt-3 text-sm text-white/80 line-clamp-2">{item.description}</p>
                   </div>
                 </div>

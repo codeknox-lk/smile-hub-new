@@ -50,7 +50,7 @@ export function AboutPillars({ eyebrow, title }: AboutPillarsProps) {
           <p className="text-[10px] font-bold uppercase tracking-[0.25em] text-[color:var(--accent-strong)]">
             {eyebrow}
           </p>
-          <h2 className="mt-6 font-[family:var(--font-display)] text-4xl sm:text-5xl lg:text-6xl font-semibold leading-[1.05] tracking-tight text-[color:var(--ink)] text-balance">
+          <h2 className="mt-6 font-display text-4xl sm:text-5xl lg:text-6xl font-semibold leading-[1.05] tracking-tight text-[color:var(--ink)] text-balance">
             {title}
           </h2>
         </div>
@@ -83,7 +83,7 @@ export function AboutPillars({ eyebrow, title }: AboutPillarsProps) {
                       <Icon className="h-5 w-5" />
                     </div>
                     <h3 className={cn(
-                      "text-xl sm:text-2xl font-semibold font-[family:var(--font-display)] transition-colors duration-500",
+                      "text-xl sm:text-2xl font-semibold font-display transition-colors duration-500",
                       isActive ? "text-[color:var(--ink)]" : "text-[color:var(--muted)] group-hover:text-[color:var(--ink)]"
                     )}>
                       {pillar.title}

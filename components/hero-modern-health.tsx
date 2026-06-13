@@ -171,8 +171,7 @@ export function HeroModernHealth({ reviewSnapshot }: HeroModernHealthProps) {
         </motion.div>
       </div>
 
-      {/* Aesthetic Decorator: Grain Noise Overlay */}
-      <div className="absolute inset-0 z-40 pointer-events-none opacity-[0.02] mix-blend-multiply bg-[url('https://grainy-gradients.vercel.app/noise.svg')]" />
+      <div className="absolute inset-0 z-40 pointer-events-none opacity-[0.02] mix-blend-multiply bg-[url('data:image/svg+xml,%3Csvg%20viewBox=%220%200%20200%20200%22%20xmlns=%22http://www.w3.org/2000/svg%22%3E%3Cfilter%20id=%22noiseFilter%22%3E%3CfeTurbulence%20type=%22fractalNoise%22%20baseFrequency=%220.65%22%20numOctaves=%223%22%20stitchTiles=%22stitch%22/%3E%3C/filter%3E%3Crect%20width=%22100%25%22%20height=%22100%25%22%20filter=%22url(%23noiseFilter)%22/%3E%3C/svg%3E')] bg-repeat" />
     </section>
   );
 }

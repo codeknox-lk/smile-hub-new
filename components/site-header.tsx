@@ -33,13 +33,19 @@ export function SiteHeader() {
     });
   }, [scrollY]);
 
+
+  // Auto-close mobile menu when navigating to another page
+  useEffect(() => {
+    setOpen(false);
+  }, [pathname]);
+
   return (
-    <header className="sticky top-0 z-50 pt-4 px-4 sm:px-6 lg:px-8 transition-all duration-300">
+    <header className="sticky top-0 z-50 pt-2 px-2 sm:pt-4 sm:px-6 lg:px-8 transition-all duration-300">
       <motion.div 
         className={`mx-auto flex max-w-7xl items-center justify-between gap-4 transition-all duration-500 relative
           ${isScrolled 
-            ? "rounded-2xl border border-black/5 bg-white/95 backdrop-blur-xl px-4 sm:px-6 py-3 shadow-[0_12px_40px_rgba(0,0,0,0.08)]" 
-            : "rounded-3xl sm:rounded-[2.5rem] border border-white bg-white/100 px-4 sm:px-8 py-3 sm:py-4 shadow-[0_4px_20px_rgba(0,0,0,0.04)]"
+            ? "rounded-xl border border-black/5 bg-white/95 backdrop-blur-xl px-3 py-2 sm:px-6 sm:py-3 shadow-[0_12px_40px_rgba(0,0,0,0.08)]" 
+            : "rounded-2xl sm:rounded-[2.5rem] border border-white bg-white/100 px-4 py-2.5 sm:px-8 sm:py-4 shadow-[0_4px_20px_rgba(0,0,0,0.04)]"
           }`}
         initial={{ y: -20, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
@@ -52,7 +58,11 @@ export function SiteHeader() {
               <img 
                 src="/images/logo white back.png" 
                 alt="Smile Hub" 
-                className={`transition-all duration-500 object-contain ${isScrolled ? "h-10 w-10" : "h-16 w-16"}`} 
+                className={`transition-all duration-500 object-contain ${
+                  isScrolled 
+                    ? "h-8 w-8 lg:h-10 lg:w-10" 
+                    : "h-12 w-12 lg:h-16 lg:w-16"
+                }`} 
               />
             </motion.div>
           </ActionLink>
@@ -198,41 +208,44 @@ export function SiteHeader() {
       {/* Mobile Menu Overlay */}
       <AnimatePresence>
         {open && (
-          <motion.div
-            initial={{ opacity: 0, y: -10 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -10 }}
-            transition={{ type: "spring", bounce: 0, duration: 0.3 }}
-            className="absolute top-[calc(100%+0.5rem)] inset-x-4 rounded-3xl border border-black/5 bg-white p-6 shadow-2xl lg:hidden z-50 overflow-hidden"
-          >
-             <div className="absolute top-0 right-0 p-8 opacity-5 pointer-events-none">
-                <Smile className="h-32 w-32 text-[color:var(--ink)]" />
-             </div>
-             
-            <nav className="flex flex-col gap-4 relative z-10">
-              {navItems.map((item) => {
-                const active = item.href === "/" ? pathname === item.href : pathname.startsWith(item.href);
-                return (
-                  <ActionLink
-                    key={item.href}
-                    href={item.href}
-                    className={`flex items-center justify-between p-4 rounded-2xl transition ${
-                      active ? "bg-black/5 text-[color:var(--ink)]" : "text-[color:var(--ink)]/60"
-                    }`}
-                  >
-                    <span className="text-lg font-bold">{item.label}</span>
-                    <ArrowRight className={`h-5 w-5 transition-transform ${active ? "translate-x-0" : "-translate-x-4 opacity-0"}`} />
-                  </ActionLink>
-                );
-              })}
-              
-              <div className="mt-4 pt-6 border-t border-black/10 flex flex-col gap-3">
-                 <ActionLink href={quickWhatsAppMessages.general} external className="w-full bg-[color:var(--accent-strong)] text-white p-5 rounded-2xl text-center font-bold shadow-lg shadow-[color:var(--accent-strong)]/20">
-                    Message via WhatsApp
-                 </ActionLink>
-              </div>
-            </nav>
-          </motion.div>
+          <>
+            <style>{`body { overflow: hidden !important; }`}</style>
+            <motion.div
+              initial={{ opacity: 0, y: -10 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -10 }}
+              transition={{ type: "spring", bounce: 0, duration: 0.3 }}
+              className="absolute top-[calc(100%+0.5rem)] inset-x-4 rounded-3xl border border-black/5 bg-white p-6 shadow-2xl lg:hidden z-50 overflow-hidden"
+            >
+               <div className="absolute top-0 right-0 p-8 opacity-5 pointer-events-none">
+                  <Smile className="h-32 w-32 text-[color:var(--ink)]" />
+               </div>
+               
+              <nav className="flex flex-col gap-4 relative z-10">
+                {navItems.map((item) => {
+                  const active = item.href === "/" ? pathname === item.href : pathname.startsWith(item.href);
+                  return (
+                    <ActionLink
+                      key={item.href}
+                      href={item.href}
+                      className={`flex items-center justify-between p-4 rounded-2xl transition ${
+                        active ? "bg-black/5 text-[color:var(--ink)]" : "text-[color:var(--ink)]/60"
+                      }`}
+                    >
+                      <span className="text-lg font-bold">{item.label}</span>
+                      <ArrowRight className={`h-5 w-5 transition-transform ${active ? "translate-x-0" : "-translate-x-4 opacity-0"}`} />
+                    </ActionLink>
+                  );
+                })}
+                
+                <div className="mt-4 pt-6 border-t border-black/10 flex flex-col gap-3">
+                   <ActionLink href={quickWhatsAppMessages.general} external className="w-full bg-[color:var(--accent-strong)] text-white p-5 rounded-2xl text-center font-bold shadow-lg shadow-[color:var(--accent-strong)]/20">
+                      Message via WhatsApp
+                   </ActionLink>
+                </div>
+              </nav>
+            </motion.div>
+          </>
         )}
       </AnimatePresence>
     </header>

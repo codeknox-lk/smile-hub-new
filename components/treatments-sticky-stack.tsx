@@ -20,7 +20,7 @@ export function TreatmentsStickyStack({ treatments }: TreatmentsStickyStackProps
              </p>
              <div className="h-[2px] w-8 lg:w-12 bg-[color:var(--accent-strong)]" />
            </div>
-           <h2 className="font-display text-5xl sm:text-6xl lg:text-7xl font-bold leading-[0.95] tracking-tight text-[color:var(--ink)] mb-6 text-balance">
+           <h2 className="font-display text-4xl sm:text-6xl lg:text-7xl font-bold leading-[0.95] tracking-tight text-[color:var(--ink)] mb-6 text-balance">
              Guided Pathways <br/>
              <span className="font-serif italic font-light text-[color:var(--accent)]">to Your Best Smile</span>
            </h2>
@@ -35,7 +35,7 @@ export function TreatmentsStickyStack({ treatments }: TreatmentsStickyStackProps
             return (
               <div 
                 key={treatment.slug}
-                className="relative lg:sticky w-full rounded-t-[2rem] lg:rounded-t-[3rem] rounded-b-xl lg:rounded-b-3xl overflow-hidden shadow-[0_-20px_40px_rgba(0,0,0,0.1)] bg-white border-t border-x border-[color:var(--line)] group flex flex-col mb-8 lg:mb-0 lg:top-[calc(15vh+calc(var(--index)*4rem))] h-auto lg:h-[calc(85vh-calc(var(--index)*4rem))] transform-gpu"
+                className="sticky w-full rounded-t-[2rem] lg:rounded-t-[3rem] rounded-b-xl lg:rounded-b-3xl overflow-hidden shadow-[0_-20px_40px_rgba(0,0,0,0.1)] bg-white border-t border-x border-[color:var(--line)] group flex flex-col mb-0 top-[calc(5rem+calc(var(--index)*3.5rem))] lg:top-[calc(15vh+calc(var(--index)*4rem))] h-[calc(70dvh-calc(var(--index)*3.5rem))] lg:h-[calc(85vh-calc(var(--index)*4rem))] transform-gpu"
                 style={{ 
                   '--index': index,
                 } as React.CSSProperties}
@@ -65,8 +65,8 @@ export function TreatmentsStickyStack({ treatments }: TreatmentsStickyStackProps
                    <div className="absolute inset-0 bg-black/10 transition-colors duration-700 z-10" />
                    
                    {/* Content */}
-                   <div className="relative z-20 p-5 pb-24 sm:p-8 lg:p-14 flex flex-col items-start w-full transform transition-transform duration-700 lg:group-hover:-translate-y-2">
-                     <h3 className="font-display text-2xl sm:text-4xl lg:text-5xl font-extrabold text-white leading-tight tracking-tight max-w-[100%] lg:max-w-[90%]">
+                   <div className="relative z-20 p-5 pb-8 sm:p-8 lg:p-14 flex flex-col items-start w-full transform transition-transform duration-700 lg:group-hover:-translate-y-2">
+                     <h3 className="font-display text-xl sm:text-4xl lg:text-5xl font-extrabold text-white leading-tight tracking-tight max-w-[100%] lg:max-w-[90%]">
                        {treatment.shortTitle}
                      </h3>
                      
@@ -86,7 +86,7 @@ export function TreatmentsStickyStack({ treatments }: TreatmentsStickyStackProps
                        ))}
                      </div>
    
-                     <div className="mt-6 lg:mt-10 w-full pt-5 lg:pt-8 border-t border-white/20 pb-24 lg:pb-0">
+                     <div className="mt-6 lg:mt-10 w-full pt-5 lg:pt-8 border-t border-white/20 pb-6 lg:pb-0">
                        <ActionLink
                          href={`/treatments/${treatment.slug}`}
                          className="inline-flex items-center gap-2 lg:gap-3 text-xs lg:text-base font-bold text-white transition-all hover:gap-4 lg:hover:gap-6 group/link"

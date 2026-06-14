@@ -2,31 +2,49 @@
 
 import { motion, AnimatePresence } from "framer-motion";
 import { useEffect, useState } from "react";
+import { usePathname } from "next/navigation";
+import Image from "next/image";
 
 export function SplashScreen() {
-  const [loading, setLoading] = useState(true);
+  const pathname = usePathname();
+  const [isMounted, setIsMounted] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
+    setIsMounted(true);
+    
+    // Only run splash screen on the home page (root route)
+    const isHome = pathname === "/";
     const hasSeenSplash = sessionStorage.getItem("splash_seen");
-    if (hasSeenSplash === "true") {
-      setLoading(false);
-      return;
+
+    if (isHome && hasSeenSplash !== "true") {
+      setLoading(true);
+
+      const timer = setTimeout(() => {
+        setLoading(false);
+      }, 2000); // Snappy 2.0s duration as requested
+
+      return () => {
+        clearTimeout(timer);
+      };
     }
+  }, [pathname]);
 
-    const timer = setTimeout(() => {
-      setLoading(false);
-      // Optional: uncomment below to ONLY show once per session
-      // sessionStorage.setItem("splash_seen", "true");
-    }, 3200); // Wait for animations to complete
-
-    return () => clearTimeout(timer);
-  }, []);
+  // Prevent hydration mismatches by rendering nothing during SSR
+  if (!isMounted) return null;
 
   return (
-    <AnimatePresence>
+    <AnimatePresence 
+      onExitComplete={() => {
+        // Set persistence flag only after exit animation finishes
+        sessionStorage.setItem("splash_seen", "true");
+      }}
+    >
       {loading && (
-        <motion.div
-          className="fixed inset-0 z-[100] flex flex-col items-center justify-center bg-white overflow-hidden"
+        <>
+          <style>{`body { overflow: hidden !important; }`}</style>
+          <motion.div
+            className="fixed inset-0 z-[100] flex flex-col items-center justify-center bg-white overflow-hidden h-[100dvh] w-screen"
           initial={{ opacity: 1 }}
           exit={{ 
             opacity: 0,
@@ -36,7 +54,7 @@ export function SplashScreen() {
           }}
         >
           {/* Subtle Background Radial Glows */}
-          <div className="absolute inset-0 z-0">
+          <div className="absolute inset-0 z-0 pointer-events-none">
             <div className="absolute -top-20 -left-20 h-72 w-72 rounded-full opacity-20 filter blur-3xl bg-[color:var(--accent)]" />
             <div className="absolute -bottom-20 -right-20 h-72 w-72 rounded-full opacity-20 filter blur-3xl bg-[color:var(--accent-strong)]" />
           </div>
@@ -55,7 +73,7 @@ export function SplashScreen() {
             >
               {/* Cinematic Shimmer Light Ray Overlay */}
               <motion.div 
-                className="absolute inset-x-0 h-full z-20 bg-[linear-gradient(110deg,rgba(255,255,255,0)_0%,rgba(255,255,255,0.45)_50%,rgba(255,255,255,0)_100%)] w-[120%]"
+                className="absolute inset-x-0 h-full z-20 bg-[linear-gradient(110deg,rgba(255,255,255,0)_0%,rgba(255,255,255,0.45)_50%,rgba(255,255,255,0)_100%)] w-[120%] pointer-events-none"
                 initial={{ x: "-120%" }}
                 animate={{ x: "120%" }}
                 transition={{ 
@@ -67,16 +85,20 @@ export function SplashScreen() {
                 }}
               />
 
-              <img 
+              <Image 
                 src="/images/logo white back.png"
                 alt="Smile Hub Logo"
+                width={256}
+                height={96}
+                priority
                 className="w-56 md:w-64 h-auto relative z-10 drop-shadow-[0_16px_45px_rgba(66,150,212,0.14)] object-contain mix-blend-multiply"
               />
             </motion.div>
-
           </div>
         </motion.div>
+        </>
       )}
     </AnimatePresence>
   );
 }
+

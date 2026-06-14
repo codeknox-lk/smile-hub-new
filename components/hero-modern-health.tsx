@@ -20,7 +20,7 @@ interface HeroModernHealthProps {
 
 export function HeroModernHealth({ reviewSnapshot }: HeroModernHealthProps) {
   return (
-    <section className="relative min-h-[95dvh] flex items-center justify-center overflow-hidden bg-[color:var(--background)] -mt-24 pt-32 pb-16 lg:-mt-28 lg:pt-40 lg:pb-24">
+    <section className="relative min-h-[95dvh] flex items-end md:items-center justify-center overflow-hidden bg-[color:var(--background)] -mt-20 pt-24 pb-4 md:pb-12 lg:-mt-24 lg:pt-32 lg:pb-16">
       
       {/* 1. Cinematic Background Backdrop (Bright Mode) - True Disappearing Bottom Mask */}
       <div className="absolute inset-0 z-0 select-none pointer-events-none" style={{ WebkitMaskImage: "linear-gradient(to bottom, black 60%, transparent 100%)", maskImage: "linear-gradient(to bottom, black 60%, transparent 100%)" }}>
@@ -52,7 +52,7 @@ export function HeroModernHealth({ reviewSnapshot }: HeroModernHealthProps) {
       </div>
 
       {/* 2. Main Content Container */}
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-30 flex flex-col justify-center min-h-[80vh] pb-12">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-30 flex flex-col justify-end md:justify-center min-h-[80vh] pb-28 md:pb-12">
         
         <div className="max-w-4xl mx-auto lg:mx-0">
           {/* Eyebrow Signal */}
@@ -70,7 +70,7 @@ export function HeroModernHealth({ reviewSnapshot }: HeroModernHealthProps) {
 
           {/* Headline */}
           <motion.h1 
-            className="font-display text-4xl sm:text-6xl lg:text-[6.5rem] font-bold leading-[1.05] lg:leading-[0.95] tracking-tight text-[color:var(--ink)] mb-6 lg:mb-8 drop-shadow-sm text-balance"
+            className="font-display text-4xl sm:text-6xl lg:text-7xl xl:text-8xl font-bold leading-[1.05] lg:leading-[0.95] tracking-tight text-[color:var(--ink)] mb-6 lg:mb-8 drop-shadow-sm text-balance"
             initial={{ opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, ease: [0.22, 1, 0.36, 1], delay: 0.6 }}
@@ -95,7 +95,7 @@ export function HeroModernHealth({ reviewSnapshot }: HeroModernHealthProps) {
 
           {/* Primary Action Zone */}
           <motion.div 
-            className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 lg:gap-4 mt-8 lg:mt-12"
+            className="hidden md:flex flex-col sm:flex-row items-stretch sm:items-center gap-3 lg:gap-4 mt-8 lg:mt-12"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 1 }}
@@ -121,49 +121,49 @@ export function HeroModernHealth({ reviewSnapshot }: HeroModernHealthProps) {
 
         {/* 3. Trust Signals (Light Mode) */}
         <motion.div 
-          className="mt-12 lg:mt-24 grid grid-cols-1 gap-6 lg:gap-8 border-t border-[color:var(--line)]/80 pt-8 lg:pt-10 sm:grid-cols-3 relative z-30"
+          className="mt-8 lg:mt-16 grid grid-cols-3 gap-2 sm:gap-6 lg:gap-8 border-t border-[color:var(--line)]/80 pt-6 sm:pt-8 lg:pt-10 relative z-30"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 1.2 }}
         >
           {/* Signal 1: Reviews */}
-          <div className="flex items-center gap-4 group">
-            <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-white shadow-sm border border-[color:var(--line)] transition-transform group-hover:scale-105">
-              <span className="text-xl font-black text-[color:var(--ink)]">5.0</span>
+          <div className="flex flex-col sm:flex-row items-center sm:items-center text-center sm:text-left gap-2 sm:gap-4 group">
+            <div className="flex h-10 w-10 sm:h-14 sm:w-14 shrink-0 items-center justify-center rounded-xl sm:rounded-2xl bg-white shadow-sm border border-[color:var(--line)] transition-transform group-hover:scale-105">
+              <span className="text-base sm:text-xl font-black text-[color:var(--ink)]">5.0</span>
             </div>
             <div>
-              <div className="flex gap-1 text-amber-400">
+              <div className="flex justify-center sm:justify-start gap-0.5 sm:gap-1 text-amber-400">
                 {[...Array(5)].map((_, i) => (
-                  <Star key={i} className="h-4 w-4 fill-current" />
+                  <Star key={i} className="h-3 w-3 sm:h-4 sm:w-4 fill-current" />
                 ))}
               </div>
-              <p className="text-[11px] font-bold uppercase tracking-wider text-[color:var(--muted)] mt-1">
+              <p className="text-[9px] sm:text-[11px] font-bold uppercase tracking-wider text-[color:var(--muted)] mt-1">
                 {reviewSnapshot?.reviewCount || "60+"} Google Reviews
               </p>
             </div>
           </div>
 
           {/* Signal 2: Availability */}
-          <div className="flex items-center gap-4 group">
-             <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-[color:var(--surface)] shadow-sm border border-[color:var(--line)] text-[color:var(--accent-strong)] transition-transform group-hover:scale-105">
-              <Clock className="h-6 w-6" />
+          <div className="flex flex-col sm:flex-row items-center sm:items-center text-center sm:text-left gap-2 sm:gap-4 group">
+             <div className="flex h-10 w-10 sm:h-14 sm:w-14 shrink-0 items-center justify-center rounded-xl sm:rounded-2xl bg-[color:var(--surface)] shadow-sm border border-[color:var(--line)] text-[color:var(--accent-strong)] transition-transform group-hover:scale-105">
+              <Clock className="h-5 w-5 sm:h-6 sm:w-6" />
             </div>
             <div>
-              <p className="text-sm font-bold text-[color:var(--ink)]">Flexible Booking</p>
-              <p className="text-[11px] font-bold uppercase tracking-wider text-[color:var(--accent-strong)] mt-1">
-                Evening & Weekend Slots
+              <p className="text-xs sm:text-sm font-bold text-[color:var(--ink)] leading-tight">Flexible Booking</p>
+              <p className="text-[9px] sm:text-[11px] font-bold uppercase tracking-wider text-[color:var(--accent-strong)] mt-0.5 sm:mt-1">
+                Weekend Slots
               </p>
             </div>
           </div>
 
           {/* Signal 3: Comfort Promise */}
-          <div className="flex items-center gap-4 group">
-             <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-rose-50 shadow-sm border border-rose-100 text-rose-500 transition-transform group-hover:scale-105">
-              <Heart className="h-6 w-6" />
+          <div className="flex flex-col sm:flex-row items-center sm:items-center text-center sm:text-left gap-2 sm:gap-4 group">
+             <div className="flex h-10 w-10 sm:h-14 sm:w-14 shrink-0 items-center justify-center rounded-xl sm:rounded-2xl bg-rose-50 shadow-sm border border-rose-100 text-rose-500 transition-transform group-hover:scale-105">
+              <Heart className="h-5 w-5 sm:h-6 sm:w-6" />
             </div>
             <div>
-              <p className="text-sm font-bold text-[color:var(--ink)]">Comfort-First Care</p>
-              <p className="text-[11px] font-bold uppercase tracking-wider text-[color:var(--muted)] mt-1">
+              <p className="text-xs sm:text-sm font-bold text-[color:var(--ink)] leading-tight">Comfort-First</p>
+              <p className="text-[9px] sm:text-[11px] font-bold uppercase tracking-wider text-[color:var(--muted)] mt-0.5 sm:mt-1">
                 Gentle & Reassuring
               </p>
             </div>

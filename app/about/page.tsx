@@ -31,8 +31,8 @@ export default async function AboutPage() {
         primaryLabel="Ask a question"
         secondaryHref="/book"
         secondaryLabel="Book consultation"
-        image="/images/doctor-1.png"
-        imageAlt="Smile Hub Clinical Team"
+        image="/images/about-hero-doctor.png"
+        imageAlt="Smile Hub Clinical Team Doctor"
       />
 
       <AboutPillars
@@ -73,7 +73,7 @@ export default async function AboutPage() {
         image="/images/patient-1.png"
       />
 
-      <section className="bg-[color:var(--surface)] py-24 lg:py-32">
+      <section className="bg-[color:var(--surface)] py-16 md:py-24 lg:py-32">
         <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="mb-12">
             <p className="text-[10px] font-bold uppercase tracking-[0.25em] text-[color:var(--accent-strong)]">

@@ -56,7 +56,7 @@ export function ReviewCarousel({ snapshot }: ReviewCarouselProps) {
   return (
     <div className="flex flex-col">
       {/* Sleek, refined Google Proof Badge at the top instead of a giant box */}
-      <div className="mb-16 flex flex-col sm:flex-row sm:items-center justify-between border-b border-[color:var(--line)] pb-6 gap-4">
+      <div className="mb-8 sm:mb-16 flex flex-col sm:flex-row sm:items-center justify-between border-b border-[color:var(--line)] pb-6 gap-4">
         <div className="flex items-center gap-4">
           <div className="flex items-center gap-1.5 rounded-full bg-[color:var(--ink)] px-4 py-2 text-white">
              <span className="font-bold text-sm">5.0</span>
@@ -96,12 +96,12 @@ export function ReviewCarousel({ snapshot }: ReviewCarouselProps) {
             </div>
             
             {/* The Text */}
-            <p className="relative z-10 font-serif italic text-2xl md:text-3xl lg:text-4xl xl:text-4xl leading-[1.4] text-[color:var(--ink)] opacity-90 max-w-5xl">
+            <p className="relative z-10 font-serif italic text-xl sm:text-2xl md:text-3xl lg:text-4xl leading-[1.4] text-[color:var(--ink)] opacity-90 max-w-5xl">
               "{currentReview.text}"
             </p>
             
             {/* The Author */}
-            <div className="relative z-10 mt-12 flex flex-col sm:flex-row sm:items-end justify-between gap-6">
+            <div className="relative z-10 mt-6 sm:mt-12 flex flex-col sm:flex-row sm:items-end justify-between gap-4 sm:gap-6">
                <div className="flex items-center gap-4">
                  {currentReview.authorPhoto ? (
                    <img src={currentReview.authorPhoto} alt={currentReview.author} referrerPolicy="no-referrer" className="w-12 h-12 rounded-full object-cover shadow-sm border border-[color:var(--line)]" />
@@ -137,24 +137,24 @@ export function ReviewCarousel({ snapshot }: ReviewCarouselProps) {
       </div>
 
       {/* Navigation Controls */}
-      <div className="mt-16 flex items-center gap-4">
+      <div className="mt-8 sm:mt-16 flex items-center justify-between w-full px-4 sm:px-0 sm:justify-start sm:w-auto sm:gap-4">
         <button 
           onClick={prevReview}
-          className="flex h-14 w-14 items-center justify-center rounded-full border border-[color:var(--line)] bg-white text-[color:var(--ink)] hover:border-[color:var(--accent-strong)] hover:text-[color:var(--accent-strong)] transition-all shadow-sm"
+          className="order-1 flex h-12 w-12 sm:h-14 sm:w-14 items-center justify-center rounded-full border border-[color:var(--line)] bg-white text-[color:var(--ink)] hover:border-[color:var(--accent-strong)] hover:text-[color:var(--accent-strong)] transition-all shadow-sm shrink-0"
           aria-label="Previous review"
         >
-          <ChevronLeft className="h-6 w-6" />
+          <ChevronLeft className="h-5 w-5 sm:h-6 sm:w-6" />
         </button>
         <button 
           onClick={nextReview}
-          className="flex h-14 w-14 items-center justify-center rounded-full border border-[color:var(--line)] bg-white text-[color:var(--ink)] hover:border-[color:var(--accent-strong)] hover:text-[color:var(--accent-strong)] transition-all shadow-sm"
+          className="order-3 sm:order-2 flex h-12 w-12 sm:h-14 sm:w-14 items-center justify-center rounded-full border border-[color:var(--line)] bg-white text-[color:var(--ink)] hover:border-[color:var(--accent-strong)] hover:text-[color:var(--accent-strong)] transition-all shadow-sm shrink-0"
           aria-label="Next review"
         >
-          <ChevronRight className="h-6 w-6" />
+          <ChevronRight className="h-5 w-5 sm:h-6 sm:w-6" />
         </button>
         
         {/* Progress indicators */}
-        <div className="ml-4 flex gap-2">
+        <div className="order-2 sm:order-3 sm:ml-4 flex gap-2">
            {reviews.map((_, i) => (
              <div 
                key={i} 

@@ -17,13 +17,13 @@ interface AboutDoctorProps {
 
 export function AboutDoctor({ eyebrow, name, role, quote, body, credentials, image, signatureText }: AboutDoctorProps) {
   return (
-    <section className="relative w-full py-24 lg:py-32 bg-white overflow-hidden border-t border-[color:var(--line)]">
+    <section className="relative w-full py-16 md:py-24 lg:py-32 bg-white overflow-hidden border-t border-[color:var(--line)]/80">
       <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
         
         <div className="flex flex-col lg:flex-row items-center">
           
-          {/* Left: Massive Portrait */}
-          <div className="relative w-full lg:w-[50%] xl:w-[45%] aspect-[3/4] sm:aspect-square lg:aspect-[3/4] rounded-[2.5rem] overflow-hidden bg-[color:var(--surface)] shadow-2xl z-0">
+          {/* Left: Portrait image */}
+          <div className="relative w-[calc(100%-2rem)] sm:w-[calc(100%-4rem)] lg:w-[50%] xl:w-[45%] mx-auto lg:mx-0 aspect-[1.1] sm:aspect-square lg:aspect-[3/4] rounded-[2rem] lg:rounded-[2.5rem] overflow-hidden bg-[color:var(--surface)] shadow-xl lg:shadow-2xl z-0">
             <img 
               src={image} 
               alt={name}
@@ -44,20 +44,20 @@ export function AboutDoctor({ eyebrow, name, role, quote, body, credentials, ima
           </div>
 
           {/* Right: The Letter / Bio */}
-          <div className="relative z-10 w-full lg:w-[55%] xl:w-[60%] lg:-ml-12 mt-8 lg:mt-0 bg-white lg:bg-white/95 lg:backdrop-blur-xl p-8 sm:p-12 lg:p-16 rounded-[2.5rem] shadow-[0_20px_60px_rgba(22,88,138,0.08)] border border-[color:var(--line)]">
-            <p className="text-[10px] font-bold uppercase tracking-[0.25em] text-[color:var(--accent-strong)] mb-8">
+          <div className="relative z-10 w-full lg:w-[55%] xl:w-[60%] lg:-ml-12 -mt-8 lg:mt-0 bg-white lg:bg-white/95 lg:backdrop-blur-xl p-6 sm:p-10 lg:p-16 rounded-[2rem] lg:rounded-[2.5rem] shadow-[0_20px_60px_rgba(22,88,138,0.08)] border border-[color:var(--line)] mx-2 lg:mx-0">
+            <p className="text-[10px] font-bold uppercase tracking-[0.25em] text-[color:var(--accent-strong)] mb-6 sm:mb-8">
               {eyebrow}
             </p>
             
-            <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl font-medium leading-[1.1] tracking-tight text-[color:var(--ink)] mb-8">
+            <h2 className="font-display text-2xl sm:text-3xl lg:text-5xl font-medium leading-[1.1] tracking-tight text-[color:var(--ink)] mb-6 sm:mb-8">
               "{quote}"
             </h2>
             
-            <div className="text-base sm:text-lg leading-relaxed text-[color:var(--muted)] space-y-6 mb-12">
+            <div className="text-base sm:text-lg leading-relaxed text-[color:var(--muted)] space-y-6 mb-8 sm:mb-12">
               {body}
             </div>
             
-            <div className="border-t border-[color:var(--line)] pt-10 mb-10">
+            <div className="border-t border-[color:var(--line)] pt-8 sm:pt-10 mb-8 sm:mb-10">
               <p className={cn(signatureFont.className, "text-5xl md:text-6xl text-[color:var(--accent-strong)] mb-4 -rotate-3 origin-left opacity-90 mix-blend-multiply")}>
                 {signatureText || name}
               </p>

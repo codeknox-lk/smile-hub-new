@@ -17,6 +17,7 @@
   --accent-strong: #136f9b;
   --accent-deep: #0e668c;
   --accent-soft: #a6e6fc;
+  --accent-light: #d0f4ff;
 }
 
 @layer base {

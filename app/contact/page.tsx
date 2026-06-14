@@ -64,50 +64,50 @@ export default function ContactPage() {
       >
         <MapCard />
 
-        <div className="mt-8 grid gap-4 md:grid-cols-2 xl:grid-cols-4">
+        <div className="mt-8 grid grid-cols-2 gap-3 sm:gap-4 xl:grid-cols-4">
           {/* WhatsApp Card - Highly Emphasized */}
           <ActionLink
             href={quickWhatsAppMessages.general}
             external
             eventName="contact_whatsapp_click"
-            className="surface-card flex items-center gap-4 group hover:-translate-y-1 hover:shadow-xl hover:shadow-green-500/10 hover:border-green-200 transition-all duration-300"
+            className="surface-card flex flex-col sm:flex-row items-start sm:items-center gap-3 sm:gap-4 group hover:-translate-y-1 hover:shadow-xl hover:shadow-green-500/10 hover:border-green-200 transition-all duration-300"
           >
-            <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-[#25D366]/10 text-[#25D366] group-hover:scale-110 group-hover:bg-[#25D366] group-hover:text-white transition-all duration-300">
-              <MessageCircleMore className="h-6 w-6" />
+            <div className="flex h-10 w-10 sm:h-12 sm:w-12 shrink-0 items-center justify-center rounded-xl sm:rounded-2xl bg-[#25D366]/10 text-[#25D366] group-hover:scale-110 group-hover:bg-[#25D366] group-hover:text-white transition-all duration-300">
+              <MessageCircleMore className="h-5 w-5 sm:h-6 sm:w-6" />
             </div>
-            <div>
+            <div className="min-w-0">
               <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-[#25D366]">WhatsApp</p>
-              <p className="mt-1 text-base font-bold text-[color:var(--ink)]">{siteSettings.phonePrimary}</p>
+              <p className="mt-1 text-sm sm:text-base font-bold text-[color:var(--ink)] truncate">{siteSettings.phonePrimary}</p>
             </div>
           </ActionLink>
 
-          <a href={`tel:${formatPhoneForTel(siteSettings.phoneSecondary)}`} className="surface-card flex items-center gap-4 group hover:-translate-y-1 hover:shadow-xl hover:border-transparent transition-all duration-300">
-            <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-[color:var(--sand-strong)] text-[color:var(--accent-strong)] group-hover:scale-110 group-hover:bg-[color:var(--accent-strong)] group-hover:text-white transition-all duration-300">
-              <Phone className="h-6 w-6" />
+          <a href={`tel:${formatPhoneForTel(siteSettings.phoneSecondary)}`} className="surface-card flex flex-col sm:flex-row items-start sm:items-center gap-3 sm:gap-4 group hover:-translate-y-1 hover:shadow-xl hover:border-transparent transition-all duration-300">
+            <div className="flex h-10 w-10 sm:h-12 sm:w-12 shrink-0 items-center justify-center rounded-xl sm:rounded-2xl bg-[color:var(--sand-strong)] text-[color:var(--accent-strong)] group-hover:scale-110 group-hover:bg-[color:var(--accent-strong)] group-hover:text-white transition-all duration-300">
+              <Phone className="h-5 w-5 sm:h-6 sm:w-6" />
             </div>
-            <div>
+            <div className="min-w-0">
               <p className="section-kicker">Call</p>
-              <p className="mt-1 text-base font-bold text-[color:var(--ink)]">{siteSettings.phoneSecondary}</p>
+              <p className="mt-1 text-sm sm:text-base font-bold text-[color:var(--ink)] truncate">{siteSettings.phoneSecondary}</p>
             </div>
           </a>
 
-          <a href={`mailto:${siteSettings.emailPrimary}`} className="surface-card flex items-center gap-4 group hover:-translate-y-1 hover:shadow-xl hover:border-transparent transition-all duration-300">
-            <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-[color:var(--sand-strong)] text-[color:var(--accent-strong)] group-hover:scale-110 group-hover:bg-[color:var(--accent-strong)] group-hover:text-white transition-all duration-300">
-              <Mail className="h-6 w-6" />
+          <a href={`mailto:${siteSettings.emailPrimary}`} className="surface-card flex flex-col sm:flex-row items-start sm:items-center gap-3 sm:gap-4 group hover:-translate-y-1 hover:shadow-xl hover:border-transparent transition-all duration-300">
+            <div className="flex h-10 w-10 sm:h-12 sm:w-12 shrink-0 items-center justify-center rounded-xl sm:rounded-2xl bg-[color:var(--sand-strong)] text-[color:var(--accent-strong)] group-hover:scale-110 group-hover:bg-[color:var(--accent-strong)] group-hover:text-white transition-all duration-300">
+              <Mail className="h-5 w-5 sm:h-6 sm:w-6" />
             </div>
-            <div>
+            <div className="min-w-0">
               <p className="section-kicker">Email</p>
-              <p className="mt-1 text-base font-bold text-[color:var(--ink)]">{siteSettings.emailPrimary}</p>
+              <p className="mt-1 text-sm sm:text-base font-bold text-[color:var(--ink)] truncate">{siteSettings.emailPrimary}</p>
             </div>
           </a>
 
-          <ActionLink href={siteSettings.googleMapsUrl} external className="surface-card flex items-center gap-4 group hover:-translate-y-1 hover:shadow-xl hover:border-transparent transition-all duration-300">
-            <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-[color:var(--sand-strong)] text-[color:var(--accent-strong)] group-hover:scale-110 group-hover:bg-[color:var(--accent-strong)] group-hover:text-white transition-all duration-300">
-              <MapPinned className="h-6 w-6" />
+          <ActionLink href={siteSettings.googleMapsUrl} external className="surface-card flex flex-col sm:flex-row items-start sm:items-center gap-3 sm:gap-4 group hover:-translate-y-1 hover:shadow-xl hover:border-transparent transition-all duration-300">
+            <div className="flex h-10 w-10 sm:h-12 sm:w-12 shrink-0 items-center justify-center rounded-xl sm:rounded-2xl bg-[color:var(--sand-strong)] text-[color:var(--accent-strong)] group-hover:scale-110 group-hover:bg-[color:var(--accent-strong)] group-hover:text-white transition-all duration-300">
+              <MapPinned className="h-5 w-5 sm:h-6 sm:w-6" />
             </div>
-            <div>
+            <div className="min-w-0">
               <p className="section-kicker">Location</p>
-              <p className="mt-1 text-base font-bold text-[color:var(--ink)]">Open map and directions</p>
+              <p className="mt-1 text-sm sm:text-base font-bold text-[color:var(--ink)]">Open map and directions</p>
             </div>
           </ActionLink>
         </div>

@@ -15,6 +15,7 @@ import {
   Star
 } from "lucide-react";
 import { ActionLink } from "@/components/action-link";
+import { AnimatedCounter } from "@/components/animated-counter";
 import { BeforeAfterSlider } from "@/components/before-after-slider";
 import { HeroModernHealth } from "@/components/hero-modern-health";
 import { MapCard } from "@/components/map-card";
@@ -93,7 +94,7 @@ export default async function HomePage() {
       >
         <div className="grid gap-8 lg:grid-cols-12">
           {/* Main Value Prop - Bento Hero */}
-          <article className="lg:col-span-7 group relative overflow-hidden rounded-[3.5rem] border border-[color:var(--line)] bg-[color:var(--ink)] p-10 lg:p-14 shadow-2xl transition-all duration-700 hover:-translate-y-2 flex flex-col justify-end">
+          <article className="lg:col-span-7 group relative overflow-hidden rounded-[2.5rem] sm:rounded-[3.5rem] border border-[color:var(--line)] bg-[color:var(--ink)] p-6 sm:p-10 lg:p-14 shadow-2xl transition-all duration-700 hover:-translate-y-2 flex flex-col justify-end">
             {/* Background Image with Deep Ink Overlay */}
             <div className="absolute inset-0 z-0">
               <img 
@@ -109,10 +110,10 @@ export default async function HomePage() {
               <div className="inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-white/10 backdrop-blur-xl text-white ring-1 ring-white/20">
                 <ShieldCheck className="h-6 w-6" />
               </div>
-              <h3 className="mt-8 font-display text-4xl lg:text-5xl font-bold text-white leading-[1.05] tracking-tight">
+              <h3 className="mt-6 sm:mt-8 font-display text-3xl sm:text-4xl lg:text-5xl font-bold text-white leading-[1.05] tracking-tight">
                 The Clinical Standard
               </h3>
-              <p className="mt-6 text-lg leading-relaxed text-white/80 max-w-xl font-medium">
+              <p className="mt-4 sm:mt-6 text-base sm:text-lg leading-relaxed text-white/80 max-w-xl font-medium">
                 Smile Hub prioritizes evidence-based dentistry and patient education. Every plan is explained in plain language, ensuring you're a partner in your own care journey.
               </p>
               
@@ -156,7 +157,7 @@ export default async function HomePage() {
                 <article 
                   key={item.title} 
                   className={cn(
-                    "group relative overflow-hidden rounded-[2.5rem] p-8 transition-all duration-500 hover:shadow-xl hover:-translate-y-1 flex flex-col justify-between border",
+                    "group relative overflow-hidden rounded-[2rem] sm:rounded-[2.5rem] p-5 sm:p-8 transition-all duration-500 hover:shadow-xl hover:-translate-y-1 flex flex-col justify-between border",
                     isAccent 
                       ? "bg-gradient-to-br from-[color:var(--accent)] to-[color:var(--accent-strong)] border-transparent text-white shadow-lg shadow-[color:var(--accent)]/20" 
                       : "bg-white border-[color:var(--line)] text-[color:var(--ink)]"
@@ -178,15 +179,15 @@ export default async function HomePage() {
                     </div>
                   </div>
 
-                  <div className="relative z-20 mt-12">
+                  <div className="relative z-20 mt-8 sm:mt-12">
                     <h4 className={cn(
-                      "font-bold tracking-tight text-lg",
+                      "font-bold tracking-tight text-base sm:text-lg",
                       isAccent ? "text-white" : "text-[color:var(--ink)]"
                     )}>
                       {item.title}
                     </h4>
                     <p className={cn(
-                      "mt-2 text-xs leading-relaxed font-medium",
+                      "mt-1.5 sm:mt-2 text-xs leading-relaxed font-medium",
                       isAccent ? "text-white/90" : "text-[color:var(--muted)]"
                     )}>
                       {item.description}
@@ -240,9 +241,9 @@ export default async function HomePage() {
         body="Our team combines clinical precision with a gentle, patient-first philosophy."
         align="center"
       >
-        <div className="relative mt-20 pt-16 lg:pt-24 max-w-6xl mx-auto">
+        <div className="relative mt-20 pt-8 lg:pt-24 max-w-6xl mx-auto flex flex-col lg:block px-4 lg:px-0">
           {/* Bottom Layer: The Navy Banner */}
-          <article className="relative z-0 rounded-[3rem] lg:rounded-[4rem] bg-[color:var(--ink)] px-8 pb-12 pt-48 lg:px-20 lg:pb-20 lg:pt-36 text-white flex flex-col lg:flex-row lg:items-end justify-between gap-12 shadow-2xl overflow-hidden">
+          <article className="relative z-0 rounded-[3rem] lg:rounded-[4rem] bg-[color:var(--ink)] px-8 pb-12 pt-24 lg:px-20 lg:pb-20 lg:pt-36 -mt-16 lg:mt-0 text-white flex flex-col lg:flex-row lg:items-end justify-between gap-12 shadow-2xl overflow-hidden">
             <div className="absolute inset-0 bg-gradient-to-br from-[color:var(--ink)] to-black opacity-50 pointer-events-none" />
             
             <div className="relative z-10 max-w-xl">
@@ -257,36 +258,36 @@ export default async function HomePage() {
             
             <div className="relative z-10 grid grid-cols-2 gap-8 lg:gap-12 lg:min-w-[300px] border-t border-white/10 lg:border-t-0 lg:border-l pt-10 lg:pt-0 lg:pl-12">
               <div>
-                <p className="text-5xl lg:text-6xl font-black font-display text-[color:var(--accent-light)]">5k<span className="text-3xl lg:text-4xl text-white/40">+</span></p>
+                <p className="text-5xl lg:text-6xl font-black font-display text-[color:var(--accent-light)]"><AnimatedCounter value={5} />k<span className="text-3xl lg:text-4xl text-white/40">+</span></p>
                 <p className="text-[10px] uppercase tracking-[0.2em] text-white/50 mt-3 font-bold">Successful Cases</p>
               </div>
               <div>
-                <p className="text-5xl lg:text-6xl font-black font-display text-[color:var(--accent-light)]">100<span className="text-3xl lg:text-4xl text-white/40">%</span></p>
+                <p className="text-5xl lg:text-6xl font-black font-display text-[color:var(--accent-light)]"><AnimatedCounter value={100} /><span className="text-3xl lg:text-4xl text-white/40">%</span></p>
                 <p className="text-[10px] uppercase tracking-[0.2em] text-white/50 mt-3 font-bold">Digital Workflow</p>
               </div>
             </div>
           </article>
 
           {/* Top Layer: Overlapping Doctor Card */}
-          <article className="absolute top-0 left-4 right-4 lg:left-16 lg:w-[600px] z-10 group overflow-hidden rounded-[2.5rem] border border-[color:var(--line)] bg-white/90 backdrop-blur-xl p-5 shadow-2xl transition-all duration-500 hover:shadow-3xl hover:-translate-y-2">
-            <div className="grid gap-6 md:grid-cols-[180px_1fr] items-center">
-              <div className="relative aspect-[4/5] overflow-hidden rounded-[1.5rem]">
-                <img src="/images/doctor-1.png" alt="Clinical Lead" className="absolute inset-0 h-full w-full object-cover grayscale transition-all duration-700 group-hover:grayscale-0 group-hover:scale-105" />
+          <article className="relative lg:absolute lg:top-0 left-0 right-0 lg:left-16 w-full lg:w-[600px] z-10 order-first lg:order-none group overflow-hidden rounded-[2rem] md:rounded-[2.5rem] border border-[color:var(--line)] bg-white/90 backdrop-blur-xl p-4 md:p-5 shadow-2xl transition-all duration-500 hover:shadow-3xl hover:-translate-y-2">
+            <div className="grid grid-cols-[100px_1fr] md:grid-cols-[180px_1fr] gap-4 md:gap-6 items-center">
+              <div className="relative aspect-[4/5] overflow-hidden rounded-[1.2rem] md:rounded-[1.5rem] w-[100px] md:w-auto">
+                <img src="/images/doctor-1.png" alt="Clinical Lead" className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-105" />
               </div>
-              <div className="flex flex-col justify-center py-2 pr-4">
-                <div className="inline-flex items-center gap-2 text-[10px] font-bold uppercase tracking-widest text-[color:var(--accent-deep)]">
-                  <Star className="h-3 w-3 fill-current" />
+              <div className="flex flex-col justify-center py-1 md:py-2 pr-2 md:pr-4">
+                <div className="inline-flex items-center gap-1.5 text-[8px] md:text-[10px] font-bold uppercase tracking-widest text-[color:var(--accent-deep)]">
+                  <Star className="h-2.5 w-2.5 md:h-3 md:w-3 fill-current" />
                   <span>{doctors[0]?.role}</span>
                 </div>
-                <h3 className="mt-3 font-display text-2xl lg:text-3xl font-bold text-[color:var(--ink)] tracking-tight">
+                <h3 className="mt-1.5 md:mt-3 font-display text-lg md:text-2xl lg:text-3xl font-bold text-[color:var(--ink)] tracking-tight">
                   {doctors[0]?.name}
                 </h3>
-                <p className="mt-3 text-xs lg:text-sm leading-relaxed text-[color:var(--muted)] line-clamp-2 font-medium">
+                <p className="mt-1 md:mt-3 text-[10px] md:text-xs lg:text-sm leading-normal md:leading-relaxed text-[color:var(--muted)] line-clamp-2 font-medium">
                   Focused on clear patient guidance and gentle, evidence-based care.
                 </p>
-                <div className="mt-5 flex flex-wrap gap-1.5">
-                  {doctors[0]?.specialties.slice(0, 3).map((s) => (
-                    <span key={s} className="rounded-full bg-slate-50 px-2.5 py-1 text-[9px] font-bold text-[color:var(--ink)] border border-slate-100 uppercase tracking-wider">
+                <div className="mt-2 md:mt-5 flex flex-wrap gap-1 md:gap-1.5">
+                  {doctors[0]?.specialties.slice(0, 3).map((s, idx) => (
+                    <span key={s} className={`rounded-full bg-slate-50 px-2 py-0.5 md:px-2.5 md:py-1 text-[8px] md:text-[9px] font-bold text-[color:var(--ink)] border border-slate-100 uppercase tracking-wider ${idx === 2 ? 'hidden sm:inline-block' : 'inline-block'}`}>
                       {s}
                     </span>
                   ))}

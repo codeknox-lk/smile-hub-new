@@ -57,7 +57,7 @@ export function BookingForm() {
   }
 
   return (
-    <form onSubmit={handleSubmit} className="relative overflow-hidden rounded-[2.5rem] bg-white p-8 sm:p-12 shadow-[0_20px_60px_rgba(23,94,146,0.06)] border border-[color:var(--line)] space-y-8">
+    <form onSubmit={handleSubmit} className="relative overflow-hidden rounded-[2rem] sm:rounded-[2.5rem] bg-white p-6 sm:p-12 shadow-[0_20px_60px_rgba(23,94,146,0.06)] border border-[color:var(--line)] space-y-6 sm:space-y-8">
       
       {/* Decorative top border line */}
       <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-[color:var(--accent-strong)] to-transparent opacity-20" />

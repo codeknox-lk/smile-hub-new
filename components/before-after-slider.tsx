@@ -33,7 +33,7 @@ export function BeforeAfterSlider({
             loading="lazy"
           />
         )}
-        <div className="absolute top-4 left-4 rounded-full border border-white/80 bg-white/84 px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.16em] text-[color:var(--accent-deep)] shadow-[0_8px_20px_rgba(23,94,146,0.06)]">
+        <div className="absolute top-2.5 left-2.5 sm:top-4 sm:left-4 rounded-full border border-white/80 bg-white/84 px-2.5 py-1 sm:px-4 sm:py-1.5 text-[10px] sm:text-xs font-semibold uppercase tracking-[0.16em] text-[color:var(--accent-deep)] shadow-[0_8px_20px_rgba(23,94,146,0.06)]">
           {beforeLabel}
         </div>
       </div>
@@ -51,7 +51,7 @@ export function BeforeAfterSlider({
             loading="lazy"
           />
         )}
-        <div className="absolute top-4 right-4 rounded-full border border-white/80 bg-white/84 px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.16em] text-white shadow-[0_8px_20px_rgba(23,94,146,0.06)] bg-[linear-gradient(135deg,var(--accent-strong)_0%,var(--accent-deep)_100%)]">
+        <div className="absolute top-2.5 right-2.5 sm:top-4 sm:right-4 rounded-full border border-white/80 bg-white/84 px-2.5 py-1 sm:px-4 sm:py-1.5 text-[10px] sm:text-xs font-semibold uppercase tracking-[0.16em] text-white shadow-[0_8px_20px_rgba(23,94,146,0.06)] bg-[linear-gradient(135deg,var(--accent-strong)_0%,var(--accent-deep)_100%)]">
           {afterLabel}
         </div>
       </div>

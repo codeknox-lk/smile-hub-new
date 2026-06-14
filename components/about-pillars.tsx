@@ -17,7 +17,7 @@ const defaultPillars: Pillar[] = [
     title: "Clear explanations",
     body: "Patients should understand what is happening, why it matters, and what comes next.",
     icon: Stethoscope,
-    image: "/images/doctor-1.png"
+    image: "/images/about-hero-doctor.png"
   },
   {
     title: "Comfort-first care",
@@ -42,15 +42,15 @@ export function AboutPillars({ eyebrow, title }: AboutPillarsProps) {
   const [activeIndex, setActiveIndex] = useState(0);
 
   return (
-    <section className="relative w-full py-24 lg:py-32 bg-[color:var(--surface)] overflow-hidden">
+    <section className="relative w-full py-16 md:py-24 lg:py-32 bg-[color:var(--surface)] overflow-hidden">
       <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
 
         {/* Header */}
-        <div className="mb-16 md:mb-24 max-w-3xl">
+        <div className="mb-10 lg:mb-24 max-w-3xl">
           <p className="text-[10px] font-bold uppercase tracking-[0.25em] text-[color:var(--accent-strong)]">
             {eyebrow}
           </p>
-          <h2 className="mt-6 font-display text-4xl sm:text-5xl lg:text-6xl font-semibold leading-[1.05] tracking-tight text-[color:var(--ink)] text-balance">
+          <h2 className="mt-4 sm:mt-6 font-display text-3xl sm:text-4xl lg:text-6xl font-semibold leading-[1.05] tracking-tight text-[color:var(--ink)] text-balance">
             {title}
           </h2>
         </div>
@@ -71,7 +71,7 @@ export function AboutPillars({ eyebrow, title }: AboutPillarsProps) {
                   key={pillar.title}
                   onClick={() => setActiveIndex(index)}
                   className={cn(
-                    "group relative flex flex-col items-start text-left w-full p-6 sm:p-8 rounded-[2rem] transition-all duration-500",
+                    "group relative flex flex-col items-start text-left w-full p-5 sm:p-6 lg:p-8 rounded-[2rem] transition-all duration-500",
                     isActive ? "bg-white shadow-[0_8px_30px_rgb(0,0,0,0.04)]" : "hover:bg-white/50"
                   )}
                 >
@@ -98,11 +98,19 @@ export function AboutPillars({ eyebrow, title }: AboutPillarsProps) {
                         animate={{ height: "auto", opacity: 1 }}
                         exit={{ height: 0, opacity: 0 }}
                         transition={{ duration: 0.4, ease: [0.25, 1, 0.5, 1] }}
-                        className="overflow-hidden"
+                        className="overflow-hidden w-full"
                       >
                         <p className="text-base sm:text-lg leading-relaxed text-[color:var(--muted)] pt-2 pb-2 pl-0 sm:pl-16">
                           {pillar.body}
                         </p>
+                        {/* Nested image on mobile/tablet viewports */}
+                        <div className="mt-4 pl-0 sm:pl-16 lg:hidden w-full max-w-md">
+                          <img 
+                            src={pillar.image} 
+                            alt={pillar.title} 
+                            className="w-full h-48 sm:h-64 object-cover rounded-2xl shadow-md saturate-[0.95]"
+                          />
+                        </div>
                       </motion.div>
                     )}
                   </AnimatePresence>
@@ -120,8 +128,8 @@ export function AboutPillars({ eyebrow, title }: AboutPillarsProps) {
             })}
           </div>
 
-          {/* Right: Cinematic Image Crossfade */}
-          <div className="relative w-full aspect-[4/5] sm:aspect-square lg:aspect-[4/5] rounded-[2.5rem] overflow-hidden bg-[color:var(--background)] shadow-2xl">
+          {/* Right: Cinematic Image Crossfade - Desktop Only */}
+          <div className="relative w-full aspect-[4/5] sm:aspect-square lg:aspect-[4/5] rounded-[2.5rem] overflow-hidden bg-[color:var(--background)] shadow-2xl hidden lg:block">
             <AnimatePresence mode="wait">
               <motion.div
                 key={activeIndex}

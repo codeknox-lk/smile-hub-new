@@ -23,6 +23,8 @@ import { ReviewCarousel } from "@/components/review-carousel";
 import { SectionShell } from "@/components/section-shell";
 import { TreatmentsStickyStack } from "@/components/treatments-sticky-stack";
 import { ClinicAtmosphereReveal } from "@/components/clinic-atmosphere-reveal";
+import { SmileHubStandard } from "@/components/smile-hub-standard";
+import { EliteSuiteBanner } from "@/components/elite-suite-banner";
 import {
   doctors,
   galleryItems,
@@ -216,18 +218,17 @@ export default async function HomePage() {
       </SectionShell>
 
       <SectionShell
-        eyebrow="Clinic atmosphere"
-        title={
-          <>
-            Designed for clarity <br className="hidden md:block" />
-            <span className="font-serif italic font-light text-[color:var(--accent)]">and patient calm.</span>
-          </>
-        }
-        body="A preview of the spaces where our clinical team provides gentle, expert care."
+        eyebrow="Clinical Spaces"
+        title="Redefining Premium Dental Care in Kandy"
+        body="Experience dentistry reimagined. We have transformed the traditional dental visit into a premium, calming experience. Step into our modern Kandy dental clinic, where unparalleled clinical precision meets absolute comfort and strict cross-infection control."
         className="bg-white/46"
         align="center"
       >
-        <ClinicAtmosphereReveal />
+        <div className="space-y-16 lg:space-y-24">
+          <ClinicAtmosphereReveal />
+          <SmileHubStandard />
+          <EliteSuiteBanner />
+        </div>
       </SectionShell>
 
       <SectionShell

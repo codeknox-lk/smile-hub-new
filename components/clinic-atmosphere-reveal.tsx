@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { cn } from "@/lib/utils";
+import { motion } from "framer-motion";
 
 const spaces = [
   {
@@ -54,22 +55,24 @@ export function ClinicAtmosphereReveal() {
 
       {/* Interactive List Content */}
       <div className="relative z-20 w-full px-8 md:px-16 lg:px-24">
-        <div className="max-w-md space-y-2">
+        <div className="max-w-xl space-y-2">
           {spaces.map((space) => (
             <div 
               key={space.id}
-              className="group cursor-pointer py-3 lg:py-4 transition-all duration-300"
+              className="group cursor-pointer py-3 lg:py-4 transition-all duration-300 relative"
               onMouseEnter={() => setActiveSpace(space.id)}
               onClick={() => setActiveSpace(space.id)}
             >
-              <div className="flex items-center gap-3 lg:gap-4">
-                {/* Animated Line Indicator */}
-                <div className={cn(
-                  "h-[2px] transition-all duration-500",
-                  activeSpace === space.id ? "w-6 lg:w-12 bg-[color:var(--accent-light)]" : "w-0 bg-white/30 group-hover:w-4"
-                )} />
+              <div className="flex items-center min-h-[40px] lg:min-h-[60px]">
+                {/* Animated Line Indicator (absolutely positioned to prevent layout shift) */}
+                <div className="absolute left-0 top-1/2 -translate-y-1/2 flex items-center justify-start pointer-events-none">
+                  <div className={cn(
+                    "h-[2px] transition-all duration-500 ease-out",
+                    activeSpace === space.id ? "w-6 lg:w-12 bg-[color:var(--accent-light)]" : "w-0 bg-white/30 group-hover:w-4"
+                  )} />
+                </div>
                 <h3 className={cn(
-                  "font-display text-2xl lg:text-5xl font-bold transition-all duration-500 tracking-tight",
+                  "font-display text-2xl lg:text-5xl font-bold transition-all duration-500 tracking-tight pl-8 lg:pl-16",
                   activeSpace === space.id ? "text-white" : "text-white/40 group-hover:text-white/70"
                 )}>
                   {space.title}
@@ -77,14 +80,23 @@ export function ClinicAtmosphereReveal() {
               </div>
               
               {/* Expandable Subtitle */}
-              <div className={cn(
-                "grid transition-all duration-500 pl-12 lg:pl-16",
-                activeSpace === space.id ? "grid-rows-[1fr] opacity-100 mt-4" : "grid-rows-[0fr] opacity-0"
-              )}>
-                <p className="overflow-hidden text-sm lg:text-base leading-relaxed text-white/80 font-medium">
+              <motion.div
+                initial={false}
+                animate={{
+                  height: activeSpace === space.id ? "auto" : 0,
+                  opacity: activeSpace === space.id ? 1 : 0,
+                  marginTop: activeSpace === space.id ? 16 : 0,
+                }}
+                transition={{
+                  duration: 0.5,
+                  ease: [0.16, 1, 0.3, 1], // easeOutExpo
+                }}
+                className="pl-8 lg:pl-16 overflow-hidden"
+              >
+                <p className="text-sm lg:text-base leading-relaxed text-white/80 font-medium">
                   {space.subtitle}
                 </p>
-              </div>
+              </motion.div>
             </div>
           ))}
         </div>

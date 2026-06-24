@@ -28,7 +28,7 @@ export function AboutHero({
   imageAlt
 }: AboutHeroProps) {
   return (
-    <section className="relative w-full min-h-[95vh] flex items-end lg:items-center justify-start overflow-hidden -mt-20 pt-20 pb-0 lg:-mt-28 lg:pt-0 lg:pb-0">
+    <section className="relative w-full min-h-[95vh] flex items-end lg:items-center justify-start overflow-hidden -mt-24 pt-24 pb-0 lg:-mt-28 lg:pt-28 lg:pb-0">
       
       {/* Background Image & Overlays (Gallery Hero Style) */}
       <div className="absolute inset-0 z-0 overflow-hidden bg-[color:var(--background)]">
@@ -48,7 +48,7 @@ export function AboutHero({
       </div>
 
       {/* Left Typography Side */}
-      <div className="relative z-10 w-full lg:w-[50%] xl:w-[45%] flex flex-col justify-end lg:justify-center px-6 pt-32 pb-8 sm:px-12 sm:pb-20 lg:pl-20 xl:pl-24 lg:pr-12 lg:py-28">
+      <div className="relative z-10 w-full lg:w-[50%] xl:w-[45%] flex flex-col justify-end lg:justify-center px-6 pt-12 pb-8 sm:px-12 sm:pb-20 lg:pl-20 xl:pl-24 lg:pr-12 lg:py-20">
         <motion.div 
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}

@@ -3,7 +3,7 @@ import { ActionLink } from "./action-link";
 
 type PageHeroProps = {
   eyebrow: string;
-  title: string;
+  title: React.ReactNode;
   body: string;
   primaryHref: string;
   primaryLabel: string;

@@ -20,7 +20,7 @@ interface HeroModernHealthProps {
 
 export function HeroModernHealth({ reviewSnapshot }: HeroModernHealthProps) {
   return (
-    <section className="relative min-h-[95dvh] flex items-end md:items-center justify-center overflow-hidden bg-[color:var(--background)] -mt-20 pt-24 pb-4 md:pb-12 lg:-mt-24 lg:pt-32 lg:pb-16">
+    <section className="relative min-h-[95dvh] flex items-end md:items-center justify-center overflow-hidden bg-[color:var(--background)] -mt-24 lg:-mt-28 pt-24 lg:pt-28 pb-8 lg:pb-10">
       
       {/* 1. Cinematic Background Backdrop (Bright Mode) - True Disappearing Bottom Mask */}
       <div className="absolute inset-0 z-0 select-none pointer-events-none" style={{ WebkitMaskImage: "linear-gradient(to bottom, black 60%, transparent 100%)", maskImage: "linear-gradient(to bottom, black 60%, transparent 100%)" }}>
@@ -37,7 +37,8 @@ export function HeroModernHealth({ reviewSnapshot }: HeroModernHealthProps) {
             loop
             playsInline
             poster="/images/hero-bright-bg-ai.png"
-            className="absolute inset-0 h-full w-full object-cover object-center scale-105"
+            className="absolute inset-0 h-full w-full object-cover object-top"
+            style={{ objectPosition: "center 8%" }}
           >
             <source src="/images/7803281-hd_1920_1078_30fps.mp4" type="video/mp4" />
           </video>
@@ -52,76 +53,87 @@ export function HeroModernHealth({ reviewSnapshot }: HeroModernHealthProps) {
       </div>
 
       {/* 2. Main Content Container */}
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-30 flex flex-col justify-end md:justify-center min-h-[80vh] pb-28 md:pb-12">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-30 flex flex-col justify-end md:justify-center min-h-[80vh] lg:min-h-[72vh] pb-0 md:pb-0">
         
         <div className="max-w-4xl mx-auto lg:mx-0">
           {/* Eyebrow Signal */}
           <motion.div 
-            className="flex items-center gap-3 mb-6"
+            className="flex items-center gap-3 mb-2"
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ delay: 0.5 }}
           >
             <div className="h-[2px] w-12 bg-[color:var(--accent-strong)]" />
-            <p className="text-xs sm:text-sm font-bold uppercase tracking-[0.4em] text-[color:var(--accent-strong)]">
-              SMILE HUB PREMIUM CARE
+            <p className="font-display text-xs sm:text-sm font-bold uppercase tracking-[0.4em] text-[color:var(--accent-strong)]">
+              SMILE HUB PREMIUM DENTAL CARE
             </p>
           </motion.div>
 
           {/* Headline */}
           <motion.h1 
-            className="font-display text-4xl sm:text-6xl lg:text-7xl xl:text-8xl font-bold leading-[1.05] lg:leading-[0.95] tracking-tight text-[color:var(--ink)] mb-6 lg:mb-8 drop-shadow-sm text-balance"
+            className="font-display text-4xl sm:text-5xl lg:text-6xl xl:text-[4.5rem] font-bold leading-[1.1] lg:leading-[0.95] tracking-tight text-[color:var(--ink)] mb-2 lg:mb-3 drop-shadow-sm text-balance"
             initial={{ opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, ease: [0.22, 1, 0.36, 1], delay: 0.6 }}
           >
-            Smile Brightly,<br />
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-[color:var(--accent-strong)] to-[color:var(--accent)] font-serif italic font-light pr-2 lg:pr-4 pb-2">Smile Confidently</span>
+            Defining Your Perfect Smile,<br />
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-[color:var(--accent-strong)] to-[color:var(--accent)] font-serif italic font-light pr-2 lg:pr-4 pb-2">Precisely.</span>
           </motion.h1>
 
-          {/* Subtext */}
+          {/* Sub-Headline */}
+          <motion.h2 
+            className="font-display text-base sm:text-xl lg:text-2xl font-semibold tracking-tight text-[color:var(--accent-strong)] mb-3 lg:mb-4 drop-shadow-sm text-balance"
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1], delay: 0.75 }}
+          >
+            Premium Digital Dentistry in the Heart of Kandy
+          </motion.h2>
+
+          {/* Body Text */}
           <motion.div 
-            className="relative inline-block max-w-xl group"
+            className="relative inline-block max-w-xl lg:max-w-2xl group"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.8 }}
+            transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1], delay: 0.9 }}
           >
-            <p className="text-lg sm:text-xl leading-relaxed text-[color:var(--muted)] font-medium relative text-pretty drop-shadow-sm">
-              Experience modern dental care that prioritizes your comfort, 
-              providing clear guidance from your first message to your final visit 
-              in the heart of Kandy.
+            <p className="text-sm sm:text-base lg:text-[1.05rem] leading-relaxed text-[color:var(--ink)]/85 font-medium relative text-pretty drop-shadow-sm">
+              Experience a new standard of clinical excellence at Smile Hub Premium Dental Care. 
+              Combining advanced digital diagnostics with a calming, patient-first environment, 
+              our experienced team of dental surgeons and specialists provides trusted, precise, 
+              and transparent care from your first consultation to your final result.
             </p>
           </motion.div>
 
           {/* Primary Action Zone */}
           <motion.div 
-            className="hidden md:flex flex-col sm:flex-row items-stretch sm:items-center gap-3 lg:gap-4 mt-8 lg:mt-12"
+            className="hidden md:flex flex-col sm:flex-row items-stretch sm:items-center gap-3 lg:gap-4 mt-4 lg:mt-6"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 1 }}
+            transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1], delay: 1.05 }}
           >
             <ActionLink 
-              href={quickWhatsAppMessages.general} 
-              external 
-              className="group inline-flex items-center gap-3 justify-center rounded-full bg-[color:var(--ink)] px-6 lg:px-8 py-4 text-base lg:text-lg font-bold text-white transition-all duration-300 hover:scale-[1.03] hover:shadow-[0_15px_40px_rgba(11,25,44,0.3)] active:scale-95 shadow-md border border-[color:var(--ink)] w-full sm:w-auto"
+              href="/book" 
+              className="group inline-flex items-center gap-3 justify-center rounded-full bg-[color:var(--ink)] px-5 lg:px-7 py-3 lg:py-3.5 text-base font-bold text-white transition-all duration-300 hover:scale-[1.03] hover:shadow-[0_15px_40px_rgba(11,25,44,0.3)] active:scale-95 shadow-md border border-[color:var(--ink)] w-full sm:w-auto"
             >
-              <MessageCircleMore className="h-5 w-5 text-[#25D366] transition-colors duration-300 group-hover:text-white" />
-              Chat on WhatsApp
+              <CalendarDays className="h-5 w-5 text-[color:var(--accent-strong)] transition-colors duration-300 group-hover:text-white" />
+              Book Consultation
             </ActionLink>
 
             <ActionLink 
-              href="/book" 
-              className="inline-flex items-center gap-3 justify-center rounded-full border border-[color:var(--line)] bg-white/70 backdrop-blur-xl px-6 lg:px-8 py-4 text-base lg:text-lg font-bold text-[color:var(--ink)] transition-all hover:border-[color:var(--accent-strong)] hover:bg-white active:scale-95 shadow-sm w-full sm:w-auto"
+              href={quickWhatsAppMessages.general} 
+              external 
+              className="group inline-flex items-center gap-3 justify-center rounded-full border border-[color:var(--line)] bg-white/70 backdrop-blur-xl px-5 lg:px-7 py-3 lg:py-3.5 text-base font-bold text-[color:var(--ink)] transition-all hover:border-[color:var(--accent-strong)] hover:bg-white active:scale-95 shadow-sm w-full sm:w-auto"
             >
-              <CalendarDays className="h-5 w-5 text-[color:var(--accent-strong)]" />
-              Book Consultation
+              <MessageCircleMore className="h-5 w-5 text-[#25D366]" />
+              Chat on WhatsApp
             </ActionLink>
           </motion.div>
         </div>
 
         {/* 3. Trust Signals (Light Mode) */}
         <motion.div 
-          className="mt-8 lg:mt-16 grid grid-cols-3 gap-2 sm:gap-6 lg:gap-8 border-t border-[color:var(--line)]/80 pt-6 sm:pt-8 lg:pt-10 relative z-30"
+          className="mt-4 lg:mt-5 grid grid-cols-3 gap-2 sm:gap-6 lg:gap-8 border-t border-[color:var(--line)]/80 pt-3 lg:pt-4 relative z-30"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 1.2 }}

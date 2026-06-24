@@ -21,11 +21,13 @@ export function ActionLink({
   eventPayload,
   external
 }: ActionLinkProps) {
+  const isAnchorLink = href.startsWith("#");
   const isProtocolLink =
     href.startsWith("http://") ||
     href.startsWith("https://") ||
     href.startsWith("tel:") ||
-    href.startsWith("mailto:");
+    href.startsWith("mailto:") ||
+    isAnchorLink;
 
   const handleClick = () => {
     if (eventName) {

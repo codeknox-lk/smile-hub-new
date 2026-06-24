@@ -88,7 +88,7 @@ export function GalleryHero({
         <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-[color:var(--background)] to-transparent" />
       </div>
 
-      <div className="relative z-10 mx-auto w-full grid max-w-7xl gap-6 lg:gap-12 px-4 pt-20 pb-8 sm:px-6 sm:py-16 md:py-24 lg:grid-cols-[1.05fr_0.95fr] lg:px-8">
+      <div className="relative z-10 mx-auto w-full grid max-w-7xl gap-6 lg:gap-12 px-4 pt-8 pb-8 sm:px-6 sm:py-16 md:py-24 lg:grid-cols-[1.05fr_0.95fr] lg:px-8">
 
         {/* ── Left / Text column ── */}
         <motion.div

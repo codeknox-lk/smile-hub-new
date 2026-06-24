@@ -17,7 +17,14 @@ export default function TreatmentsPage() {
     <>
       <PageHero
         eyebrow="Treatments"
-        title="A cleaner service library for patients who browse and decide on mobile."
+        title={
+          <span>
+            A cleaner service library for patients who browse and decide on{" "}
+            <span className="font-serif italic font-light text-[color:var(--accent-strong)]">
+              mobile.
+            </span>
+          </span>
+        }
         body="These treatment pages are structured for quick understanding: who the treatment helps, what to expect, and how to take the next step without reading through clutter."
         primaryHref={quickWhatsAppMessages.general}
         primaryLabel="Ask about treatment"
@@ -29,7 +36,14 @@ export default function TreatmentsPage() {
 
       <SectionShell
         eyebrow="Treatment library"
-        title="Service pages that feel clearer, more premium, and more useful than the old brochure layout."
+        title={
+          <span>
+            Service pages that feel clearer, more premium, and more useful than the old{" "}
+            <span className="font-serif italic font-light text-[color:var(--accent-strong)]">
+              brochure layout.
+            </span>
+          </span>
+        }
         body="Each card leads into a focused treatment page with benefits, process, FAQs, and better mobile pacing."
       >
         <div className="grid gap-4 md:grid-cols-2">

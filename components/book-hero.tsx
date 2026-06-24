@@ -21,7 +21,7 @@ export function BookHero({
   quickActions,
 }: BookHeroProps) {
   return (
-    <section className="relative w-full -mt-24 pt-28 pb-12 lg:-mt-28 lg:pt-40 lg:pb-24 bg-[color:var(--background)] overflow-hidden">
+    <section className="relative w-full -mt-24 lg:-mt-28 pt-32 pb-12 lg:pt-40 lg:pb-24 bg-[color:var(--background)] overflow-hidden">
       
       {/* 1. Dynamic Aurora Orbs Background (Richer & more saturated) */}
       <div className="absolute inset-0 z-0 overflow-hidden bg-[color:var(--background)] pointer-events-none">

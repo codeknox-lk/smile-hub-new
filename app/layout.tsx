@@ -68,9 +68,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessSchema) }}
         />
         <SplashScreen />
-        <div className="relative isolate min-h-screen overflow-x-clip">
+        <div className="relative isolate min-h-screen">
           <SiteHeader />
-          <main>{children}</main>
+          <main className="overflow-x-clip">{children}</main>
           <SiteFooter />
           <MobileActionDock />
         </div>

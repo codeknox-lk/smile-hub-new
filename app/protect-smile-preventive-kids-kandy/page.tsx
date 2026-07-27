@@ -276,8 +276,8 @@ export default function ProtectAndSmilePage() {
       >
         <div className="mt-12 mx-auto max-w-2xl px-2">
           <BeforeAfterSlider 
-            beforeImage="/images/results/kids-before.png" 
-            afterImage="/images/results/kids-after.png" 
+            beforeImage="/images/results/kids-before.webp" 
+            afterImage="/images/results/kids-after.webp" 
             beforeLabel="Before Kids Cleaning" 
             afterLabel="After Gentle Polishing" 
           />

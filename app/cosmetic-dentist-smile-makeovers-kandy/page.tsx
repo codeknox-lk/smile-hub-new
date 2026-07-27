@@ -222,8 +222,8 @@ export default function DefineAndSmilePage() {
       >
         <div className="mt-12 mx-auto max-w-2xl px-2">
           <BeforeAfterSlider 
-            beforeImage="/images/results/cosmetic-before.png" 
-            afterImage="/images/results/cosmetic-after.png" 
+            beforeImage="/images/results/cosmetic-before.webp" 
+            afterImage="/images/results/cosmetic-after.webp" 
             beforeLabel="Before Makeover" 
             afterLabel="After Custom Veneers" 
           />

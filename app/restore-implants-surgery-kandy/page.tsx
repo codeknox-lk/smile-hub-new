@@ -273,8 +273,8 @@ export default function RestoreAndSmilePage() {
       >
         <div className="mt-12 mx-auto max-w-2xl px-2">
           <BeforeAfterSlider 
-            beforeImage="/images/results/restore-before.png" 
-            afterImage="/images/results/restore-after.png" 
+            beforeImage="/images/results/restore-before.webp" 
+            afterImage="/images/results/restore-after.webp" 
             beforeLabel="Missing Tooth" 
             afterLabel="After Implant Restoration" 
           />

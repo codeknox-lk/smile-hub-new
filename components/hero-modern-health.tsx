@@ -36,11 +36,11 @@ export function HeroModernHealth({ reviewSnapshot }: HeroModernHealthProps) {
             muted
             loop
             playsInline
-            poster="/images/hero-bright-bg-ai.png"
+            poster="/images/hero-bright-bg-ai.webp"
             className="absolute inset-0 h-full w-full object-cover object-top"
             style={{ objectPosition: "center 8%" }}
           >
-            <source src="/images/7803281-hd_1920_1078_30fps.mp4" type="video/mp4" />
+            <source src="/images/hero-video-compressed.m4v" type="video/mp4" />
           </video>
         </motion.div>
 

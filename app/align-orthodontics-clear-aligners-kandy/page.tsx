@@ -237,8 +237,8 @@ export default function AlignAndSmilePage() {
       >
         <div className="mt-12 mx-auto max-w-2xl px-2">
           <BeforeAfterSlider 
-            beforeImage="/images/results/ortho-before.png" 
-            afterImage="/images/results/ortho-after.png" 
+            beforeImage="/images/results/ortho-before.webp" 
+            afterImage="/images/results/ortho-after.webp" 
             beforeLabel="Before Alignment" 
             afterLabel="After Orthodontics" 
           />

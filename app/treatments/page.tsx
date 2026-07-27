@@ -73,7 +73,7 @@ export default function TreatmentsPage() {
                   ))}
                 </div>
                 <ActionLink
-                  href={`/treatments/${treatment.slug}`}
+                  href={treatment.slug.startsWith("/") ? treatment.slug : `/treatments/${treatment.slug}`}
                   className="mt-7 inline-flex items-center gap-2 text-sm font-medium text-[color:var(--accent-deep)] underline-offset-4 hover:underline"
                 >
                   View treatment details

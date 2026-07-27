@@ -39,9 +39,11 @@ type TreatmentDetailPageProps = {
 };
 
 export async function generateStaticParams() {
-  return treatments.map((treatment) => ({
-    slug: treatment.slug
-  }));
+  return treatments
+    .filter((t) => !t.slug.startsWith("/"))
+    .map((treatment) => ({
+      slug: treatment.slug
+    }));
 }
 
 export async function generateMetadata({ params }: TreatmentDetailPageProps) {

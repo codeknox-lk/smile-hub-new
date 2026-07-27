@@ -18,7 +18,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       lastModified: new Date()
     })),
     ...treatments.map((treatment) => ({
-      url: `https://smilehub.lk/treatments/${treatment.slug}`,
+      url: `https://smilehub.lk${treatment.slug.startsWith("/") ? treatment.slug : `/treatments/${treatment.slug}`}`,
       lastModified: new Date()
     }))
   ];

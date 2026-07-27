@@ -35,7 +35,7 @@ export function TreatmentsStickyStack({ treatments }: TreatmentsStickyStackProps
             return (
               <div 
                 key={treatment.slug}
-                className="sticky w-full rounded-t-[2rem] lg:rounded-t-[3rem] rounded-b-xl lg:rounded-b-3xl overflow-hidden shadow-[0_-20px_40px_rgba(0,0,0,0.1)] bg-white border-t border-x border-[color:var(--line)] group flex flex-col mb-0 top-[calc(5rem+calc(var(--index)*3.5rem))] lg:top-[calc(15vh+calc(var(--index)*4rem))] h-[calc(70dvh-calc(var(--index)*3.5rem))] lg:h-[calc(85vh-calc(var(--index)*4rem))] transform-gpu"
+                className="sticky w-full rounded-t-[2rem] lg:rounded-t-[3rem] rounded-b-xl lg:rounded-b-3xl overflow-hidden shadow-[0_-20px_40px_rgba(0,0,0,0.1)] bg-white border-t border-x border-[color:var(--line)] group flex flex-col mb-0 top-[calc(5rem+calc(var(--index)*3.5rem))] lg:top-[calc(15vh+calc(var(--index)*4rem))] h-[72dvh] lg:h-[82vh] transform-gpu"
                 style={{ 
                   '--index': index,
                 } as React.CSSProperties}
@@ -45,55 +45,56 @@ export function TreatmentsStickyStack({ treatments }: TreatmentsStickyStackProps
                   Responsive height: 3.5rem (56px) on mobile, 4rem (64px) on desktop.
                   Must precisely match the rem multipliers in the top-[calc(...)] offset above.
                 */}
-                <div className="h-[3.5rem] lg:h-[4rem] w-full bg-white/95 backdrop-blur-md flex items-center px-5 lg:px-12 shrink-0 border-b border-[color:var(--line)] z-30 relative">
-                   <span className="text-[color:var(--accent-strong)] font-bold font-display text-lg lg:text-2xl mr-3 lg:mr-4">
-                     0{index + 1}
-                   </span>
-                   <h3 className="text-[color:var(--ink)] font-bold uppercase tracking-[0.1em] lg:tracking-[0.2em] text-[10px] lg:text-sm truncate">
-                     {treatment.category}
-                   </h3>
+                <div className="h-[3.5rem] lg:h-[4rem] w-full bg-white/95 backdrop-blur-md flex items-center justify-between px-5 lg:px-12 shrink-0 border-b border-[color:var(--line)] z-30 relative">
+                   <div className="flex items-center">
+                     <span className="text-[color:var(--accent-strong)] font-bold font-display text-lg lg:text-2xl mr-3 lg:mr-4">
+                       0{index + 1}
+                     </span>
+                     <h3 className="text-[color:var(--ink)] font-bold uppercase tracking-[0.1em] lg:tracking-[0.2em] text-[10px] lg:text-sm truncate">
+                       {treatment.category}
+                     </h3>
+                   </div>
+
+                    <ActionLink
+                      href={treatment.slug.startsWith("/") ? treatment.slug : `/treatments/${treatment.slug}`}
+                      className="inline-flex items-center gap-1.5 rounded-full bg-white px-3.5 py-1.5 lg:px-5 lg:py-2 text-[10px] lg:text-xs font-bold text-[color:var(--accent-strong)] transition-all hover:bg-[color:var(--accent-strong)] hover:text-white shrink-0 group/btn"
+                      eventName={`stack_card_${index + 1}_explore_click`}
+                    >
+                      <span>Explore</span>
+                      <ArrowRight className="h-3 w-3 text-[color:var(--accent-strong)] group-hover/btn:text-white transition-colors" />
+                    </ActionLink>
                 </div>
                 
                 {/* The Full Bleed Image Body */}
-                <div className="relative w-full flex-grow flex flex-col justify-end overflow-hidden">
+                <div className="relative w-full flex-grow flex flex-col justify-start overflow-hidden">
                    <img 
                      src={treatment.image} 
                      alt={treatment.shortTitle}
                      className="absolute inset-0 h-full w-full object-cover transition-transform duration-[2s] ease-out group-hover:scale-105" 
                    />
-                   <div className="absolute inset-0 bg-gradient-to-t from-black via-black/70 to-black/20 lg:via-black/60 lg:to-black/10 z-10" />
+                   <div className="absolute inset-0 bg-gradient-to-b from-black/85 via-black/60 to-black/10 z-10" />
                    <div className="absolute inset-0 bg-black/10 transition-colors duration-700 z-10" />
                    
                    {/* Content */}
-                   <div className="relative z-20 p-5 pb-8 sm:p-8 lg:p-14 flex flex-col items-start w-full transform transition-transform duration-700 lg:group-hover:-translate-y-2">
-                     <h3 className="font-display text-xl sm:text-4xl lg:text-5xl font-extrabold text-white leading-tight tracking-tight max-w-[100%] lg:max-w-[90%]">
+                   <div className="relative z-20 px-5 lg:px-12 pt-12 sm:pt-20 lg:pt-28 pb-8 flex flex-col items-start w-full transform transition-transform duration-700 lg:group-hover:translate-y-1">
+                     <h3 className="font-display text-2xl sm:text-4xl lg:text-6xl font-extrabold text-white/70 leading-tight tracking-tight max-w-[100%] lg:max-w-[90%]">
                        {treatment.shortTitle}
                      </h3>
                      
-                     <p className="mt-3 lg:mt-4 text-xs sm:text-base lg:text-lg leading-relaxed text-white/80 max-w-xl line-clamp-2 sm:line-clamp-none">
+                     <p className="mt-4 lg:mt-6 text-sm sm:text-base lg:text-xl leading-relaxed text-white/90 max-w-2xl line-clamp-2 sm:line-clamp-none font-medium">
                        {treatment.summary}
                      </p>
                      
                      {/* Benefits Grid - Hidden on smallest phones to save space, visible on sm+ */}
-                     <div className="mt-4 lg:mt-8 hidden sm:grid grid-cols-1 sm:grid-cols-2 gap-2 lg:gap-4 w-full max-w-2xl">
+                     <div className="mt-6 lg:mt-12 hidden sm:grid grid-cols-1 sm:grid-cols-2 gap-4 lg:gap-8 w-full max-w-4xl">
                        {treatment.benefits.slice(0, 4).map((benefit) => (
-                         <div key={benefit} className="flex items-center gap-3">
-                           <div className="shrink-0 h-4 w-4 lg:h-6 lg:w-6 rounded-full bg-white/10 flex items-center justify-center border border-white/20">
-                             <CheckCircle2 className="h-2.5 w-2.5 lg:h-3.5 lg:w-3.5 text-[color:var(--accent)]" />
+                         <div key={benefit} className="flex items-start gap-4">
+                           <div className="shrink-0 mt-0.5 lg:mt-1 h-5 w-5 lg:h-7 lg:w-7 rounded-full bg-white/10 flex items-center justify-center border border-white/20">
+                             <CheckCircle2 className="h-3 w-3 lg:h-4 lg:w-4 text-[color:var(--accent)]" />
                            </div>
-                           <p className="text-xs lg:text-sm font-medium tracking-tight text-white/90">{benefit}</p>
+                           <p className="text-sm lg:text-base font-medium leading-relaxed tracking-wide text-white/90">{benefit}</p>
                          </div>
                        ))}
-                     </div>
-   
-                     <div className="mt-6 lg:mt-10 w-full pt-5 lg:pt-8 border-t border-white/20 pb-6 lg:pb-0">
-                       <ActionLink
-                         href={`/treatments/${treatment.slug}`}
-                         className="inline-flex items-center gap-2 lg:gap-3 text-xs lg:text-base font-bold text-white transition-all hover:gap-4 lg:hover:gap-6 group/link"
-                       >
-                         <span>Begin Your Treatment Journey</span>
-                         <ArrowRight className="h-3 w-3 lg:h-5 lg:w-5 text-[color:var(--accent)] transition-transform group-hover/link:translate-x-2" />
-                       </ActionLink>
                      </div>
                    </div>
                 </div>

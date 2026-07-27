@@ -105,9 +105,8 @@ export function HeroModernHealth({ reviewSnapshot }: HeroModernHealthProps) {
             </p>
           </motion.div>
 
-          {/* Primary Action Zone */}
           <motion.div 
-            className="hidden md:flex flex-col sm:flex-row items-stretch sm:items-center gap-3 lg:gap-4 mt-4 lg:mt-6"
+            className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 lg:gap-4 mt-6 lg:mt-8"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1], delay: 1.05 }}

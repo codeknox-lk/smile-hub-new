@@ -40,14 +40,16 @@ export function SiteHeader() {
   }, [pathname]);
 
   return (
-    <header className="sticky top-0 z-50 pt-2 px-2 sm:pt-4 sm:px-6 lg:px-8">
+    <header 
+      className={`sticky top-0 z-50 w-full transition-all duration-500 border-b
+        ${isScrolled 
+          ? "bg-[#0f2a4a]/95 backdrop-blur-xl border-white/10 shadow-[0_12px_40px_rgba(0,0,0,0.2)]" 
+          : "bg-[#0f2a4a] border-white/15 shadow-[0_4px_20px_rgba(0,0,0,0.15)]"
+        }`}
+    >
       <div className="w-full relative">
         <div 
-          className={`mx-auto flex max-w-7xl items-center justify-between gap-4 px-4 py-3 sm:px-8 sm:py-3.5 transition-[border-radius,background-color,border-color,box-shadow] duration-500 relative
-            ${isScrolled 
-              ? "rounded-xl border border-white/10 bg-[#0f2a4a]/98 backdrop-blur-xl shadow-[0_12px_40px_rgba(0,0,0,0.3)]" 
-              : "rounded-2xl sm:rounded-[2.5rem] border border-white/15 bg-[#0f2a4a] shadow-[0_4px_20px_rgba(0,0,0,0.2)]"
-            }`}
+          className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-4 py-2 sm:px-8 sm:py-3 transition-all duration-500 relative"
         >
           {/* 1. Branding Zone */}
           <div className="flex items-center gap-8">
@@ -104,11 +106,11 @@ export function SiteHeader() {
                           >
                             <div className="w-[520px] rounded-3xl border border-black/5 bg-white p-6 shadow-[0_30px_70px_rgba(0,0,0,0.12)] grid grid-cols-2 gap-4">
                               {treatments.map((t) => {
-                                const Icon = t.slug === "preventive-care" ? ShieldCheck : t.slug === "restorative-care" ? HeartPulse : t.slug === "cosmetic-dentistry" ? Sparkles : Smile;
+                                const Icon = (t.slug === "preventive-care" || t.slug === "/protect-smile-preventive-kids-kandy") ? ShieldCheck : (t.slug === "restorative-care" || t.slug === "/restore-implants-surgery-kandy") ? HeartPulse : (t.slug === "cosmetic-dentistry" || t.slug === "/cosmetic-dentist-smile-makeovers-kandy") ? Sparkles : Smile;
                                 return (
                                   <ActionLink
                                     key={t.slug}
-                                    href={`/treatments/${t.slug}`}
+                                    href={t.slug.startsWith("/") ? t.slug : `/treatments/${t.slug}`}
                                     className="group/item relative flex flex-col justify-end min-h-[140px] p-4 rounded-2xl overflow-hidden transition-all bg-black"
                                   >
                                     {/* Background Image & Overlays */}

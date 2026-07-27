@@ -46,6 +46,7 @@ export type TreatmentPage = {
   process: string[];
   faqs: { question: string; answer: string }[];
   image: string;
+  ctaText?: string;
 };
 
 export type GalleryItem = {
@@ -151,19 +152,20 @@ export const doctors: DoctorProfile[] = [
 
 export const treatments: TreatmentPage[] = [
   {
-    slug: "preventive-care",
+    slug: "/protect-smile-preventive-kids-kandy",
     category: "Protect & Smile",
-    shortTitle: "Preventive Care",
-    title: "Preventive Dental Care",
+    shortTitle: "Family Preventive & Kids Dentistry",
+    title: "Family Preventive & Kids Dentistry",
     summary:
-      "Routine exams, professional cleaning, and oral health guidance that help prevent future problems and protect your smile early.",
+      "From childhood's first tooth to comprehensive adult maintenance, we provide expert care in a welcoming, anxiety-free environment designed for every member of your family.",
     idealFor: "Patients who want consistent maintenance, early detection, and healthier gums and teeth.",
     heroTag: "Healthy foundations",
     benefits: [
-      "Catch issues before they become painful or expensive",
-      "Keep teeth and gums healthier with regular maintenance",
-      "Build a simple oral-care routine with professional guidance"
+      "Catch dental issues early, preventing pain and costly treatment.",
+      "Expert preventive care for adults and growing smiles.",
+      "A curated, tranquil sanctuary thoughtfully designed for the comfort of your family."
     ],
+    ctaText: "Begin Your Treatment Journey",
     process: [
       "Consultation and oral health check",
       "Cleaning and hygiene review",
@@ -183,18 +185,19 @@ export const treatments: TreatmentPage[] = [
     image: "/images/treatments/preventive.png"
   },
   {
-    slug: "restorative-care",
+    slug: "/restore-implants-surgery-kandy",
     category: "Restore & Smile",
-    shortTitle: "Restorative Care",
-    title: "Restorative Dental Care",
+    shortTitle: "Complete Smile Restoration",
+    title: "Complete Smile Restoration",
     summary:
-      "Treatment designed to rebuild comfort, function, and confidence using fillings, crowns, root canal support, and other restorative solutions.",
+      "Advanced implants, restorative therapies, and expert oral surgery designed to seamlessly rebuild your confidence. We bring full function and flawless aesthetics back to your smile with uncompromising precision.",
     idealFor: "Patients with damaged, painful, worn, or missing tooth structure who want function restored.",
     heroTag: "Repair with confidence",
     benefits: [
-      "Relieve discomfort and restore bite function",
-      "Protect weakened teeth from further damage",
-      "Bring back a natural, secure smile experience"
+      "Regain flawless functionality with dental implants guided by advanced 3D technology.",
+      "Preserve your natural teeth with precise, pain-free restorative and root canal therapies.",
+      "Expert oral surgery delivered in a calming, sophisticated environment.",
+      "Seamlessly blend structural strength with premium aesthetics for a natural finish."
     ],
     process: [
       "Problem-focused consultation and diagnostics",
@@ -215,19 +218,21 @@ export const treatments: TreatmentPage[] = [
     image: "/images/treatments/restorative.png"
   },
   {
-    slug: "cosmetic-dentistry",
-    category: "Glow & Smile",
-    shortTitle: "Cosmetic Dentistry",
-    title: "Cosmetic Dentistry",
+    slug: "/cosmetic-dentist-smile-makeovers-kandy",
+    category: "Define & Smile",
+    shortTitle: "Smile Makeovers & Cosmetic Dentistry",
+    title: "Smile Makeovers & Cosmetic Dentistry",
     summary:
-      "Aesthetic smile improvements designed to brighten, refine, and balance your smile while staying aligned with overall oral health.",
+      "Transform your appearance with bespoke cosmetic treatments tailored to your unique facial features. We believe in defining your ideal smile with absolute precision, utilizing premium materials to deliver a radiant, natural, and enduring glow.",
     idealFor: "Patients looking for whitening, smile enhancement, and more confidence in photos, work, and social life.",
     heroTag: "Refine your smile",
     benefits: [
-      "Create a brighter, fresher smile appearance",
-      "Improve harmony, balance, and confidence",
-      "Match cosmetic changes to your facial features and goals"
+      "Preview your future smile with advanced digital imaging before any treatment begins.",
+      "Correct imperfections flawlessly using ultra-thin, custom-crafted porcelain veneers.",
+      "Achieve a luminous, deeply refreshed appearance with professional whitening therapies.",
+      "Experience minimally invasive aesthetic contouring for perfect symmetry and balance."
     ],
+    ctaText: "Begin Your Aesthetic Journey",
     process: [
       "Smile consultation and goals discussion",
       "Assessment of tooth color, shape, and balance",
@@ -247,19 +252,21 @@ export const treatments: TreatmentPage[] = [
     image: "/images/treatments/cosmetic.png"
   },
   {
-    slug: "orthodontics",
+    slug: "/align-orthodontics-clear-aligners-kandy",
     category: "Align & Smile",
-    shortTitle: "Orthodontics",
-    title: "Orthodontic Treatment",
+    shortTitle: "Orthodontics & Clear Aligners",
+    title: "Orthodontics & Clear Aligners",
     summary:
-      "Alignment-focused care for straighter teeth, improved bite balance, and a smile that feels easier to maintain over time.",
+      "Straighten your teeth with absolute precision and unmatched discretion. We offer modern, customized orthodontic solutions designed to define your perfect smile while complementing your lifestyle.",
     idealFor: "Patients with crowding, spacing, bite concerns, or cosmetic alignment goals.",
     heroTag: "Straighten with clarity",
     benefits: [
-      "Improve alignment and bite harmony",
-      "Support easier cleaning and long-term maintenance",
-      "Build confidence with a more balanced smile"
+      "Achieve perfectly straight teeth using virtually invisible, removable clear aligner technology.",
+      "Experience comfortable, impression-free planning with our highly accurate 3D intraoral scanners.",
+      "Enjoy highly personalized, focused care within our dedicated, premium Aligner Suite.",
+      "Correct complex alignment and bite issues with modern, low-profile traditional bracket systems."
     ],
+    ctaText: "Begin Your Alignment Journey",
     process: [
       "Initial assessment and alignment goals",
       "Bite and spacing review",

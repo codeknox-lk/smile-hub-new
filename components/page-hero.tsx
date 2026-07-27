@@ -1,4 +1,7 @@
-import { ArrowUpRight } from "lucide-react";
+"use client";
+
+import { motion } from "framer-motion";
+import { ArrowRight } from "lucide-react";
 import { ActionLink } from "./action-link";
 
 type PageHeroProps = {
@@ -25,76 +28,67 @@ export function PageHero({
   heroImageAlt
 }: PageHeroProps) {
   return (
-    <section className="relative overflow-hidden border-b border-[color:var(--line)]">
-      <div className="hero-orb left-[-6rem] top-[-3rem]" />
-      <div className="hero-orb right-[-5rem] top-16" />
-      <div className="mx-auto grid max-w-7xl gap-12 px-4 py-16 sm:px-6 md:py-24 lg:grid-cols-[1.05fr_0.95fr] lg:px-8">
-        <div className="space-y-6">
-          <p className="section-kicker">{eyebrow}</p>
-          <h1 className="text-balance font-display text-5xl leading-[1.02] text-[color:var(--ink)] md:text-7xl">
+    <section className="relative w-full min-h-[95vh] flex items-end lg:items-center justify-start overflow-hidden -mt-24 pt-24 lg:-mt-28 lg:pt-28 lg:pb-0 bg-[color:var(--background)]">
+      
+      {/* Background Image & Overlays */}
+      <div className="absolute inset-0 z-0 overflow-hidden bg-[color:var(--background)]">
+        {heroImage && (
+          <motion.img 
+            initial={{ scale: 1.05 }}
+            animate={{ scale: 1 }}
+            transition={{ duration: 1.5, ease: "easeOut" }}
+            src={heroImage} 
+            alt={heroImageAlt || "Page Hero"} 
+            className="absolute inset-0 w-full h-full object-cover object-center saturate-[0.95]"
+          />
+        )}
+        {/* Subtle gradient to ensure text readability on the left, fading out faster */}
+        <div className="absolute inset-0 bg-gradient-to-r from-[color:var(--background)]/90 via-[color:var(--background)]/40 to-transparent" />
+        
+        {/* Seamless blend into the next section */}
+        <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-[color:var(--background)] to-transparent" />
+      </div>
+
+      {/* Left Typography Side */}
+      <div className="relative z-10 w-full lg:w-[50%] xl:w-[45%] flex flex-col justify-end lg:justify-center px-6 pt-12 pb-8 sm:px-12 sm:pb-20 lg:pl-20 xl:pl-24 lg:pr-12 lg:py-20">
+        <motion.div 
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, ease: "easeOut" }}
+          className="max-w-xl mx-auto lg:mx-0"
+        >
+          <p className="text-[10px] font-bold uppercase tracking-[0.25em] text-[color:var(--accent-strong)]">
+            {eyebrow}
+          </p>
+          <h1 className="mt-4 sm:mt-8 font-display text-4xl sm:text-6xl lg:text-[5rem] font-semibold leading-[1.05] tracking-tight text-[color:var(--ink)]">
             {title}
           </h1>
-          <p className="max-w-2xl text-lg leading-8 text-[color:var(--muted)]">{body}</p>
-          <div className="flex flex-col gap-3 sm:flex-row">
-            <ActionLink href={primaryHref} className="button-primary" eventName="hero_primary_click" external={primaryHref.startsWith("http")}>
+          <p className="mt-4 sm:mt-8 text-base sm:text-lg md:text-xl leading-relaxed text-[color:var(--muted)] font-medium">
+            {body}
+          </p>
+          
+          <div className="mt-8 sm:mt-12 flex flex-col gap-4 sm:gap-6 sm:flex-row sm:items-center">
+            <ActionLink 
+              href={primaryHref} 
+              className="inline-flex items-center justify-center rounded-full bg-[color:var(--accent-strong)] px-8 sm:px-10 py-4 sm:py-5 text-sm font-semibold text-white transition-all duration-300 hover:scale-105 hover:shadow-xl hover:shadow-[color:var(--accent-strong)]/20 w-full sm:w-auto" 
+              eventName="hero_primary_click" 
+              external={primaryHref.startsWith("http")}
+            >
               {primaryLabel}
             </ActionLink>
             {secondaryHref && secondaryLabel ? (
               <ActionLink
                 href={secondaryHref}
-                className="button-secondary"
+                className="inline-flex items-center justify-center sm:justify-start gap-2 text-sm font-semibold text-[color:var(--ink)] transition-colors hover:text-[color:var(--accent-strong)] group py-2"
                 eventName="hero_secondary_click"
                 external={secondaryHref.startsWith("http")}
               >
                 {secondaryLabel}
+                <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
               </ActionLink>
             ) : null}
           </div>
-        </div>
-        <div className="relative h-full min-h-[420px]">
-          {heroImage ? (
-            <div className="surface-panel h-full p-2 md:p-3 flex flex-col items-center justify-center">
-              <div className="relative h-full w-full overflow-hidden rounded-[1.8rem] min-h-[400px]">
-                <img 
-                  src={heroImage} 
-                  alt={heroImageAlt || "Page Hero"} 
-                  className="absolute inset-0 h-full w-full object-cover transition-transform duration-1000 hover:scale-105" 
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent pointer-events-none" />
-              </div>
-            </div>
-          ) : (
-            <div className="surface-panel min-h-[420px] p-5 md:p-6 h-full">
-              <div className="relative h-full overflow-hidden rounded-[2rem] bg-[linear-gradient(145deg,rgba(44,127,189,0.18)_0%,rgba(255,255,255,0.96)_42%,rgba(166,224,246,0.54)_100%)]">
-                <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(103,198,238,0.34),transparent_32%)]" />
-                <div className="absolute left-5 top-5 rounded-full border border-white/80 bg-white/86 px-4 py-2 text-[11px] font-medium uppercase tracking-[0.18em] text-[color:var(--accent-deep)]">
-                  Modern dental experience
-                </div>
-                <div className="absolute right-5 top-5 rounded-[1.4rem] border border-white/75 bg-white/84 px-4 py-3 shadow-[0_18px_40px_rgba(22,88,138,0.08)]">
-                  <p className="text-[11px] uppercase tracking-[0.2em] text-[color:var(--muted)]">Fast action</p>
-                  <p className="mt-2 text-sm text-[color:var(--ink)]">WhatsApp, call, and book in one thumb zone.</p>
-                </div>
-                <div className="absolute inset-x-5 bottom-5 rounded-[2rem] border border-white/80 bg-white/84 p-6 shadow-[0_24px_60px_rgba(22,88,138,0.1)]">
-                  <div className="flex items-start justify-between gap-4">
-                    <div>
-                      <p className="text-xs uppercase tracking-[0.22em] text-[color:var(--muted)]">Experience direction</p>
-                      <p className="mt-3 max-w-md text-balance font-display text-3xl leading-tight text-[color:var(--ink)]">
-                        Cleaner, brighter, and easier to trust on mobile.
-                      </p>
-                    </div>
-                    <span className="rounded-full bg-[color:var(--sand-strong)] p-3 text-[color:var(--accent-deep)]">
-                      <ArrowUpRight className="h-5 w-5" />
-                    </span>
-                  </div>
-                </div>
-                <div className="absolute bottom-30 left-5 right-5 rounded-[1.8rem] bg-[linear-gradient(135deg,var(--accent-deep)_0%,var(--accent-strong)_100%)] p-6 text-white shadow-[0_18px_40px_rgba(22,88,138,0.16)]">
-                  <p className="text-[11px] uppercase tracking-[0.2em] text-white/65">Clinic feel</p>
-                  <p className="mt-3 text-2xl leading-tight">Premium care without the cold corporate clinic look.</p>
-                </div>
-              </div>
-            </div>
-          )}
-        </div>
+        </motion.div>
       </div>
     </section>
   );

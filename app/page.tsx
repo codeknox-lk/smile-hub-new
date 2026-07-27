@@ -323,11 +323,11 @@ export default async function HomePage() {
           {/* Map and Contacts Grid */}
           <div className="grid gap-6 lg:grid-cols-[1fr_400px]">
             {/* The Map */}
-            <div className="relative h-[400px] lg:h-auto min-h-[400px] rounded-[2rem] overflow-hidden border border-white/10 shadow-2xl">
+            <div className="relative h-[400px] lg:h-full min-h-[400px] rounded-[2rem] overflow-hidden border border-white/10 shadow-2xl bg-white/5">
               <iframe
                 title="Smile Hub map"
-                src="https://www.google.com/maps?q=Smile%20Hub%20Premium%20Dental%20Care%2C%20Kandy&z=16&output=embed"
-                className="absolute inset-0 h-full w-full border-0 opacity-90"
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d126646.20963503612!2d80.523803!3d7.2842107!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ae366266498ecd3%3A0x2a3e10db74d754b2!2sKandy%2C%20Sri%20Lanka!5e0!3m2!1sen!2sus!4v1691234567890!5m2!1sen!2sus"
+                className="absolute inset-0 h-full w-full border-0 opacity-80 mix-blend-luminosity hover:mix-blend-normal hover:opacity-100 transition-all duration-500"
                 loading="lazy"
                 referrerPolicy="no-referrer-when-downgrade"
               />

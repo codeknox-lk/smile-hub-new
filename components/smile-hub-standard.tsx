@@ -5,40 +5,40 @@ import { Sparkles, ShieldCheck, Heart, Cpu } from "lucide-react";
 
 const standardCards = [
   {
-    icon: <Sparkles className="size-4 text-emerald-600" />,
+    icon: <Sparkles className="size-4 text-[color:var(--accent-strong)]" />,
     title: "Anxiety-Free Atmosphere",
-    description: "Specially designed interiors to help you unwind and feel at ease.",
+    description: "Specially designed interiors crafted to help you completely unwind and feel at ease.",
     date: "01 / Atmosphere",
-    titleClassName: "text-emerald-700 font-bold",
+    titleClassName: "text-[color:var(--ink)] font-bold",
     className:
-      "[grid-area:stack] z-0 hover:z-40 hover:-translate-y-12 before:absolute before:inset-0 before:rounded-xl before:bg-white/40 before:content-[''] grayscale hover:grayscale-0 before:transition-opacity before:duration-700 hover:before:opacity-0 bg-white border-[color:var(--line)] text-[color:var(--ink)] hover:border-emerald-500 hover:bg-white",
+      "[grid-area:stack] z-0 hover:z-40 hover:-translate-y-8 before:absolute before:inset-0 before:rounded-xl before:bg-white/40 before:content-[''] grayscale hover:grayscale-0 before:transition-opacity before:duration-700 hover:before:opacity-0 bg-white border-[color:var(--line)] text-[color:var(--ink)] hover:border-[color:var(--accent)] hover:bg-white",
   },
   {
-    icon: <ShieldCheck className="size-4 text-blue-600" />,
+    icon: <ShieldCheck className="size-4 text-[color:var(--accent-strong)]" />,
     title: "Uncompromising Sterility",
-    description: "The highest international hygiene standards for clinical safety.",
+    description: "The highest international hygiene protocols for your absolute clinical safety.",
     date: "02 / Sterility",
-    titleClassName: "text-blue-700 font-bold",
+    titleClassName: "text-[color:var(--ink)] font-bold",
     className:
-      "[grid-area:stack] z-10 hover:z-40 translate-x-4 sm:translate-x-12 translate-y-3 sm:translate-y-8 hover:-translate-y-6 before:absolute before:inset-0 before:rounded-xl before:bg-white/40 before:content-[''] grayscale hover:grayscale-0 before:transition-opacity before:duration-700 hover:before:opacity-0 bg-white border-[color:var(--line)] text-[color:var(--ink)] hover:border-blue-500 hover:bg-white",
+      "[grid-area:stack] z-10 hover:z-40 translate-x-3 sm:translate-x-8 translate-y-8 sm:translate-y-16 hover:-translate-y-2 sm:hover:translate-y-8 before:absolute before:inset-0 before:rounded-xl before:bg-white/40 before:content-[''] grayscale hover:grayscale-0 before:transition-opacity before:duration-700 hover:before:opacity-0 bg-white border-[color:var(--line)] text-[color:var(--ink)] hover:border-[color:var(--accent)] hover:bg-white",
   },
   {
-    icon: <Heart className="size-4 text-rose-500" />,
+    icon: <Heart className="size-4 text-[color:var(--accent-strong)]" />,
     title: "Compassionate Care",
-    description: "A highly trained, empathetic dental team focused on your comfort.",
+    description: "A highly trained, empathetic dental team focused entirely on your well-being.",
     date: "03 / Compassion",
-    titleClassName: "text-rose-700 font-bold",
+    titleClassName: "text-[color:var(--ink)] font-bold",
     className:
-      "[grid-area:stack] z-20 hover:z-40 translate-x-8 sm:translate-x-24 translate-y-6 sm:translate-y-16 hover:-translate-y-0 before:absolute before:inset-0 before:rounded-xl before:bg-white/40 before:content-[''] grayscale hover:grayscale-0 before:transition-opacity before:duration-700 hover:before:opacity-0 bg-white border-[color:var(--line)] text-[color:var(--ink)] hover:border-rose-500 hover:bg-white",
+      "[grid-area:stack] z-20 hover:z-40 translate-x-6 sm:translate-x-16 translate-y-16 sm:translate-y-32 hover:translate-y-8 sm:hover:translate-y-24 before:absolute before:inset-0 before:rounded-xl before:bg-white/40 before:content-[''] grayscale hover:grayscale-0 before:transition-opacity before:duration-700 hover:before:opacity-0 bg-white border-[color:var(--line)] text-[color:var(--ink)] hover:border-[color:var(--accent)] hover:bg-white",
   },
   {
-    icon: <Cpu className="size-4 text-purple-600" />,
+    icon: <Cpu className="size-4 text-[color:var(--accent-strong)]" />,
     title: "Precision Technology",
-    description: "Integrating advanced digital systems for flawless results.",
+    description: "Integrating advanced digital systems for accurate diagnostics and predictable, flawless results.",
     date: "04 / Precision",
-    titleClassName: "text-purple-700 font-bold",
+    titleClassName: "text-[color:var(--ink)] font-bold",
     className:
-      "[grid-area:stack] z-30 translate-x-12 sm:translate-x-36 translate-y-9 sm:translate-y-24 hover:translate-y-12 bg-white border-[color:var(--line)] text-[color:var(--ink)] hover:border-purple-500 hover:bg-white shadow-xl hover:shadow-2xl",
+      "[grid-area:stack] z-30 translate-x-9 sm:translate-x-24 translate-y-24 sm:translate-y-48 hover:translate-y-16 sm:hover:translate-y-40 bg-white border-[color:var(--line)] text-[color:var(--ink)] hover:border-[color:var(--accent)] hover:bg-white shadow-xl hover:shadow-2xl",
   },
 ];
 
@@ -72,7 +72,7 @@ export function SmileHubStandard() {
       </div>
 
       {/* Right side stacked cards deck column */}
-      <div className="lg:col-span-7 flex justify-center py-10 lg:py-16 overflow-visible pr-0 sm:pr-24 lg:pr-36">
+      <div className="lg:col-span-7 flex justify-center pt-10 pb-32 lg:pt-16 lg:pb-56 overflow-visible pr-0 sm:pr-24 lg:pr-32">
         <DisplayCards cards={standardCards} />
       </div>
     </div>

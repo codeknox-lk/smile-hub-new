@@ -25,18 +25,18 @@ export function DisplayCard({
   return (
     <div
       className={cn(
-        "relative flex h-36 w-[18rem] sm:w-[22rem] -skew-y-[8deg] select-none flex-col justify-between rounded-xl border-2 bg-muted/70 backdrop-blur-sm px-4 py-3 transition-all duration-700 after:absolute after:-right-1 after:top-[-5%] after:h-[110%] after:w-[12rem] sm:after:w-[20rem] after:bg-gradient-to-l after:from-background after:to-transparent after:content-[''] hover:border-white/20 hover:bg-muted [&>*]:flex [&>*]:items-center [&>*]:gap-2",
+        "relative flex h-44 sm:h-48 w-[20rem] sm:w-[25rem] -skew-y-[8deg] select-none flex-col justify-between rounded-2xl border-2 bg-muted/70 backdrop-blur-sm p-5 sm:p-6 transition-all duration-700 after:absolute after:-right-1 after:top-[-5%] after:h-[110%] after:w-[14rem] sm:after:w-[22rem] after:bg-gradient-to-l after:from-background after:to-transparent after:content-[''] hover:border-white/20 hover:bg-muted [&>*]:flex [&>*]:items-center [&>*]:gap-2",
         className
       )}
     >
       <div>
-        <span className="relative inline-block rounded-full bg-blue-800 p-1">
+        <span className="relative flex items-center justify-center rounded-full bg-gradient-to-br from-[color:var(--accent-light)] to-[color:var(--surface)] p-2 shadow-sm border border-white/60">
           {icon}
         </span>
         <p className={cn("text-lg font-medium", titleClassName)}>{title}</p>
       </div>
-      <p className="text-xs sm:text-sm leading-snug max-w-[70%] text-pretty">{description}</p>
-      <p className="text-muted-foreground">{date}</p>
+      <p className="text-sm leading-relaxed max-w-[85%] text-pretty text-[color:var(--ink)]/80">{description}</p>
+      <p className="text-xs font-semibold text-[color:var(--muted)]">{date}</p>
     </div>
   );
 }

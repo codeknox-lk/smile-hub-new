@@ -31,7 +31,7 @@ export const CLINICAL_TEAM: TeamMember[] = [
       "Full Mouth Rehabilitation",
       "Digital Smile Design"
     ],
-    "image": "/images/doctor-1.png",
+    "image": "/images/uploads/upload-1785359379441.jpg",
     "featured": true
   },
   {

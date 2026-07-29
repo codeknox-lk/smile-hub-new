@@ -43,8 +43,8 @@ export default function AdminPage() {
     }
   };
 
-  // File Uploader Handler
-  const handleImageUpload = async (
+  // Client-Side Canvas Image Compressor & Uploader (100% Vercel & Mobile Compatible)
+  const handleImageUpload = (
     e: React.ChangeEvent<HTMLInputElement>,
     onSuccess: (url: string) => void
   ) => {
@@ -53,26 +53,58 @@ export default function AdminPage() {
 
     setUploading(true);
     setStatusMsg(null);
-    try {
-      const formData = new FormData();
-      formData.append("file", file);
 
-      const res = await fetch("/api/admin/upload", {
-        method: "POST",
-        body: formData,
-      });
-      const data = await res.json();
-      if (res.ok && data.url) {
-        onSuccess(data.url);
-        setStatusMsg({ type: "success", text: "New photo uploaded and updated!" });
-      } else {
-        setStatusMsg({ type: "error", text: data.error || "Image upload failed." });
+    const reader = new FileReader();
+    reader.onload = (event) => {
+      const img = new Image();
+      img.onload = () => {
+        // Create canvas for high-quality instant compression
+        const canvas = document.createElement("canvas");
+        const MAX_WIDTH = 800;
+        const MAX_HEIGHT = 800;
+        let width = img.width;
+        let height = img.height;
+
+        if (width > height) {
+          if (width > MAX_WIDTH) {
+            height = Math.round((height * MAX_WIDTH) / width);
+            width = MAX_WIDTH;
+          }
+        } else {
+          if (height > MAX_HEIGHT) {
+            width = Math.round((width * MAX_HEIGHT) / height);
+            height = MAX_HEIGHT;
+          }
+        }
+
+        canvas.width = width;
+        canvas.height = height;
+        const ctx = canvas.getContext("2d");
+        if (ctx) {
+          ctx.drawImage(img, 0, 0, width, height);
+          const compressedDataUrl = canvas.toDataURL("image/jpeg", 0.85);
+          onSuccess(compressedDataUrl);
+          setStatusMsg({ type: "success", text: "Photo uploaded & updated successfully!" });
+        }
+        setUploading(false);
+      };
+
+      img.onerror = () => {
+        setStatusMsg({ type: "error", text: "Failed to process image file." });
+        setUploading(false);
+      };
+
+      if (event.target?.result) {
+        img.src = event.target.result as string;
       }
-    } catch (err) {
-      setStatusMsg({ type: "error", text: "Failed to upload image." });
-    } finally {
+    };
+
+    reader.onerror = () => {
+      setStatusMsg({ type: "error", text: "Error reading image file." });
       setUploading(false);
-    }
+    };
+
+    reader.readAsDataURL(file);
   };
 
   // Save Pricing Handler

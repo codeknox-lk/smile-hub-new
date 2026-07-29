@@ -22,12 +22,26 @@ export function TeamGrid() {
   const [team, setTeam] = useState<TeamMember[]>(CLINICAL_TEAM);
 
   useEffect(() => {
+    // 1. Check local cache first for instant render
     try {
       const saved = localStorage.getItem("smilehub_team_data");
       if (saved) {
         setTeam(JSON.parse(saved));
       }
     } catch (e) {}
+
+    // 2. Fetch live global cloud data for cross-device sync
+    fetch("https://api.jsonbin.io/v3/b/67994fa4ad19ca34f8f4a1bf/latest")
+      .then((res) => res.json())
+      .then((json) => {
+        if (json.record?.data) {
+          setTeam(json.record.data);
+          try {
+            localStorage.setItem("smilehub_team_data", JSON.stringify(json.record.data));
+          } catch (e) {}
+        }
+      })
+      .catch(() => {});
   }, []);
 
   return (

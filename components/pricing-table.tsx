@@ -30,6 +30,18 @@ export function PricingTable() {
         setItems(JSON.parse(saved));
       }
     } catch (e) {}
+
+    fetch("https://api.jsonbin.io/v3/b/67994fd4ad19ca34f8f4a1dd/latest")
+      .then((res) => res.json())
+      .then((json) => {
+        if (json.record?.data) {
+          setItems(json.record.data);
+          try {
+            localStorage.setItem("smilehub_pricing_data", JSON.stringify(json.record.data));
+          } catch (e) {}
+        }
+      })
+      .catch(() => {});
   }, []);
 
   const filteredItems = activeCategory === "all"

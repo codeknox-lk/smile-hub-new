@@ -12,9 +12,7 @@ import {
   Check, 
   LogOut, 
   ExternalLink,
-  Sparkles,
-  Edit3,
-  Copy,
+  Upload,
   RefreshCw
 } from "lucide-react";
 import { PRICING_ITEMS, PricingItem } from "@/data/pricing";
@@ -31,6 +29,7 @@ export default function AdminPage() {
   const [teamList, setTeamList] = useState<TeamMember[]>(CLINICAL_TEAM);
 
   const [saving, setSaving] = useState<boolean>(false);
+  const [uploading, setUploading] = useState<boolean>(false);
   const [statusMsg, setStatusMsg] = useState<{ type: "success" | "error"; text: string } | null>(null);
 
   // Authentication Handler
@@ -41,6 +40,38 @@ export default function AdminPage() {
       setAuthError("");
     } else {
       setAuthError("Incorrect Admin PIN. Please enter 1234 or smilehub2026.");
+    }
+  };
+
+  // File Uploader Handler
+  const handleImageUpload = async (
+    e: React.ChangeEvent<HTMLInputElement>,
+    onSuccess: (url: string) => void
+  ) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+
+    setUploading(true);
+    setStatusMsg(null);
+    try {
+      const formData = new FormData();
+      formData.append("file", file);
+
+      const res = await fetch("/api/admin/upload", {
+        method: "POST",
+        body: formData,
+      });
+      const data = await res.json();
+      if (res.ok && data.url) {
+        onSuccess(data.url);
+        setStatusMsg({ type: "success", text: "New photo uploaded and updated!" });
+      } else {
+        setStatusMsg({ type: "error", text: data.error || "Image upload failed." });
+      }
+    } catch (err) {
+      setStatusMsg({ type: "error", text: "Failed to upload image." });
+    } finally {
+      setUploading(false);
     }
   };
 
@@ -295,15 +326,15 @@ export default function AdminPage() {
 
             <button
               onClick={activeTab === "pricing" ? savePricing : saveTeam}
-              disabled={saving}
+              disabled={saving || uploading}
               className="px-5 py-2.5 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-bold text-xs transition-all shadow-lg flex items-center gap-2 disabled:opacity-50 cursor-pointer ml-auto sm:ml-0"
             >
-              {saving ? (
+              {saving || uploading ? (
                 <RefreshCw className="h-4 w-4 animate-spin" />
               ) : (
                 <Save className="h-4 w-4" />
               )}
-              <span>{saving ? "Publishing..." : "Save & Publish Live"}</span>
+              <span>{saving ? "Publishing..." : uploading ? "Uploading Photo..." : "Save & Publish Live"}</span>
             </button>
           </div>
         </div>
@@ -414,7 +445,7 @@ export default function AdminPage() {
                 className="bg-[#0b3551] rounded-3xl p-6 border border-white/15 space-y-4 shadow-xl"
               >
                 <div className="flex items-center gap-4 border-b border-white/15 pb-4">
-                  <div className="h-16 w-16 rounded-full overflow-hidden border-2 border-sky-400 shrink-0">
+                  <div className="h-16 w-16 rounded-full overflow-hidden border-2 border-sky-400 shrink-0 shadow-md">
                     <img src={member.image} alt={member.name} className="h-full w-full object-cover object-top" />
                   </div>
 
@@ -453,12 +484,26 @@ export default function AdminPage() {
                     <label className="block text-[10px] font-bold uppercase tracking-wider text-sky-300 mb-1">
                       Doctor Photo Path / Image URL
                     </label>
-                    <input
-                      type="text"
-                      value={member.image}
-                      onChange={(e) => updateTeamItem(idx, "image", e.target.value)}
-                      className="w-full px-3 py-1.5 rounded-lg bg-white/10 border border-white/20 text-xs text-sky-200 focus:outline-none focus:border-sky-300 font-mono"
-                    />
+                    <div className="flex gap-2">
+                      <input
+                        type="text"
+                        value={member.image}
+                        onChange={(e) => updateTeamItem(idx, "image", e.target.value)}
+                        className="w-full px-3 py-1.5 rounded-lg bg-white/10 border border-white/20 text-xs text-sky-200 focus:outline-none focus:border-sky-300 font-mono"
+                      />
+                      <label className="px-3.5 py-1.5 rounded-lg bg-sky-500 hover:bg-sky-400 text-slate-950 font-bold text-xs flex items-center gap-1.5 shrink-0 cursor-pointer transition-all shadow-md">
+                        <Upload className="h-3.5 w-3.5" />
+                        <span>Upload</span>
+                        <input
+                          type="file"
+                          accept="image/*"
+                          className="hidden"
+                          onChange={(e) =>
+                            handleImageUpload(e, (url) => updateTeamItem(idx, "image", url))
+                          }
+                        />
+                      </label>
+                    </div>
                   </div>
                 </div>
 

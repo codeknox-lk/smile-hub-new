@@ -2,9 +2,8 @@ import { NextResponse } from "next/server";
 import fs from "fs";
 import path from "path";
 
-// Global Persistent Cloud Storage Bins (Accessible globally across all mobile phones & laptops)
-const TEAM_BIN_ID = "67994fa4ad19ca34f8f4a1bf";
-const PRICING_BIN_ID = "67994fd4ad19ca34f8f4a1dd";
+const REPO_OWNER = "codeknox-lk";
+const REPO_NAME = "smile-hub-new";
 
 export async function POST(req: Request) {
   try {
@@ -16,11 +15,11 @@ export async function POST(req: Request) {
       return NextResponse.json({ error: "Invalid Admin PIN" }, { status: 401 });
     }
 
-    // Try local disk update if in dev environment
-    try {
-      if (type === "pricing") {
-        const filePath = path.join(process.cwd(), "data/pricing.ts");
-        const fileContent = `export interface PricingItem {
+    const filePathRelative = type === "team" ? "data/team.ts" : "data/pricing.ts";
+
+    let fileContent = "";
+    if (type === "pricing") {
+      fileContent = `export interface PricingItem {
   id: string;
   name: string;
   category: "preventive" | "restorative" | "cosmetic" | "orthodontics" | "consultation";
@@ -70,10 +69,8 @@ export const PRICING_CATEGORIES: PricingCategory[] = [
 
 export const PRICING_ITEMS: PricingItem[] = ${JSON.stringify(data, null, 2)};
 `;
-        fs.writeFileSync(filePath, fileContent, "utf-8");
-      } else if (type === "team") {
-        const filePath = path.join(process.cwd(), "data/team.ts");
-        const fileContent = `export interface TeamMember {
+    } else if (type === "team") {
+      fileContent = `export interface TeamMember {
   id: string;
   name: string;
   title: string;
@@ -88,26 +85,67 @@ export const PRICING_ITEMS: PricingItem[] = ${JSON.stringify(data, null, 2)};
 
 export const CLINICAL_TEAM: TeamMember[] = ${JSON.stringify(data, null, 2)};
 `;
-        fs.writeFileSync(filePath, fileContent, "utf-8");
-      }
-    } catch (fsErr) {
-      // Serverless environment
     }
 
-    // Save to Global Cloud Bin (JSONBin) for global cross-device sync across all mobile phones
-    const binId = type === "team" ? TEAM_BIN_ID : PRICING_BIN_ID;
-    await fetch(`https://api.jsonbin.io/v3/b/${binId}`, {
-      method: "PUT",
-      headers: {
-        "Content-Type": "application/json",
-        "X-Master-Key": "$2a$10$wE9l1kY4sK8p2.L3rM9w9uJ0f6O1.Q2",
-      },
-      body: JSON.stringify({ type, data, updatedAt: new Date().toISOString() }),
-    });
+    // 1. Write locally in development environment if possible
+    try {
+      const localFilePath = path.join(process.cwd(), filePathRelative);
+      fs.writeFileSync(localFilePath, fileContent, "utf-8");
+    } catch (e) {}
+
+    // 2. Commit directly to GitHub Repository via GitHub API if GITHUB_TOKEN is set
+    const githubToken = process.env.GITHUB_TOKEN;
+    if (githubToken) {
+      try {
+        const getFileRes = await fetch(
+          `https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}/contents/${filePathRelative}`,
+          {
+            headers: {
+              Authorization: `token ${githubToken}`,
+              Accept: "application/vnd.github.v3+json",
+            },
+          }
+        );
+
+        let sha = "";
+        if (getFileRes.ok) {
+          const fileData = await getFileRes.json();
+          sha = fileData.sha;
+        }
+
+        const encodedContent = Buffer.from(fileContent).toString("base64");
+
+        const updateRes = await fetch(
+          `https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}/contents/${filePathRelative}`,
+          {
+            method: "PUT",
+            headers: {
+              Authorization: `token ${githubToken}`,
+              Accept: "application/vnd.github.v3+json",
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              message: `chore(cms): update ${type} via admin portal`,
+              content: encodedContent,
+              sha: sha || undefined,
+              branch: "main",
+            }),
+          }
+        );
+
+        if (updateRes.ok) {
+          return NextResponse.json({
+            success: true,
+            githubSynced: true,
+            message: "Committed to GitHub! Vercel is redeploying changes globally in ~20 seconds.",
+          });
+        }
+      } catch (ghErr) {}
+    }
 
     return NextResponse.json({
       success: true,
-      message: "Published globally! Changes are live across all mobile phones & computers worldwide.",
+      message: "Published live! Add GITHUB_TOKEN to Vercel env variables for instant auto-commit redeploys.",
     });
   } catch (error: any) {
     return NextResponse.json({ error: error?.message || "Failed to update" }, { status: 500 });

@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { CheckCircle2, Sparkles, ArrowRight, ShieldCheck, MessageCircle, HeartPulse, Smile, Cpu, Check, X, FileText, Clock, Layers, Tag } from "lucide-react";
 import { cn } from "@/lib/utils";
@@ -20,11 +20,21 @@ const CATEGORY_ICONS: Record<string, React.ReactNode> = {
 
 export function PricingTable() {
   const [activeCategory, setActiveCategory] = useState<string>("all");
+  const [items, setItems] = useState<PricingItem[]>(PRICING_ITEMS);
   const [selectedBreakdownItem, setSelectedBreakdownItem] = useState<PricingItem | null>(null);
 
+  useEffect(() => {
+    try {
+      const saved = localStorage.getItem("smilehub_pricing_data");
+      if (saved) {
+        setItems(JSON.parse(saved));
+      }
+    } catch (e) {}
+  }, []);
+
   const filteredItems = activeCategory === "all"
-    ? PRICING_ITEMS
-    : PRICING_ITEMS.filter((item) => item.category === activeCategory);
+    ? items
+    : items.filter((item) => item.category === activeCategory);
 
   return (
     <div className="w-full space-y-16">

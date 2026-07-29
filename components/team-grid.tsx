@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { MessageCircle, Quote, Clock, ArrowRight, Sparkles, CheckCircle2 } from "lucide-react";
 import { CLINICAL_TEAM, TeamMember } from "@/data/team";
@@ -19,6 +19,17 @@ const SPECIALTIES: Record<string, string[]> = {
 };
 
 export function TeamGrid() {
+  const [team, setTeam] = useState<TeamMember[]>(CLINICAL_TEAM);
+
+  useEffect(() => {
+    try {
+      const saved = localStorage.getItem("smilehub_team_data");
+      if (saved) {
+        setTeam(JSON.parse(saved));
+      }
+    } catch (e) {}
+  }, []);
+
   return (
     <>
       <style>{`
@@ -91,7 +102,7 @@ export function TeamGrid() {
       `}</style>
 
       <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3 max-w-7xl mx-auto items-stretch">
-        {CLINICAL_TEAM.map((member, index) => (
+        {team.map((member, index) => (
           <DoctorCard key={member.id} member={member} index={index} />
         ))}
       </div>

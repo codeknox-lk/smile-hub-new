@@ -111,6 +111,12 @@ export default function AdminPage() {
   const savePricing = async () => {
     setSaving(true);
     setStatusMsg(null);
+
+    // Persist to local browser storage for instant live site sync across pages
+    try {
+      localStorage.setItem("smilehub_pricing_data", JSON.stringify(pricingList));
+    } catch (e) {}
+
     try {
       const res = await fetch("/api/admin/update", {
         method: "POST",
@@ -138,6 +144,12 @@ export default function AdminPage() {
   const saveTeam = async () => {
     setSaving(true);
     setStatusMsg(null);
+
+    // Persist to local browser storage for instant live site sync across pages
+    try {
+      localStorage.setItem("smilehub_team_data", JSON.stringify(teamList));
+    } catch (e) {}
+
     try {
       const res = await fetch("/api/admin/update", {
         method: "POST",

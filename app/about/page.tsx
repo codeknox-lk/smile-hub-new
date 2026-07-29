@@ -31,8 +31,8 @@ export default async function AboutPage() {
         primaryLabel="Ask a question"
         secondaryHref="/book"
         secondaryLabel="Book consultation"
-        image="/images/about-hero-doctor.png"
-        imageAlt="Smile Hub Clinical Team Doctor"
+        image="/images/clinic-1.png"
+        imageAlt="Smile Hub Clinic Reception"
       />
 
       <AboutPillars

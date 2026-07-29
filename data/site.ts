@@ -373,6 +373,8 @@ export const faqItems = [
 export const navItems = [
   { href: "/", label: "Home" },
   { href: "/treatments", label: "Treatments" },
+  { href: "/pricing", label: "Pricing" },
+  { href: "/team", label: "Our Team" },
   { href: "/about", label: "About" },
   { href: "/gallery", label: "Gallery" },
   { href: "/book", label: "Book" },

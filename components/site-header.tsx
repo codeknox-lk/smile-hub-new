@@ -52,9 +52,9 @@ export function SiteHeader() {
           className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-4 py-2 sm:px-8 sm:py-3 transition-all duration-500 relative"
         >
           {/* 1. Branding Zone */}
-          <div className="flex items-center gap-8">
-            <ActionLink href="/" className="flex min-w-0 items-center justify-center group" eventName="nav_logo_click">
-              <div className="relative h-16 w-40 lg:h-20 lg:w-48 flex items-center justify-center">
+          <div className="flex items-center gap-3 xl:gap-8 min-w-0">
+            <ActionLink href="/" className="flex min-w-0 items-center justify-center group shrink-0" eventName="nav_logo_click">
+              <div className="relative h-14 w-32 sm:h-16 sm:w-40 lg:h-20 lg:w-44 flex items-center justify-center">
                 <img 
                   src="/images/logo_cropped.png" 
                   alt="Smile Hub" 
@@ -68,7 +68,7 @@ export function SiteHeader() {
             </ActionLink>
 
             {/* 2. Primary Navigation */}
-            <nav className="hidden lg:flex items-center gap-2">
+            <nav className="hidden lg:flex items-center gap-1 xl:gap-2 shrink-0">
               {navItems.map((item, idx) => {
                 const active = item.href === "/" ? pathname === item.href : pathname.startsWith(item.href);
 
@@ -82,7 +82,7 @@ export function SiteHeader() {
                     >
                       <button
                         type="button"
-                        className={`relative inline-flex items-center gap-1.5 px-4 py-2 text-sm transition-all font-bold tracking-tight rounded-full hover:bg-white/10
+                        className={`relative inline-flex items-center gap-1.5 px-3 py-2 text-sm transition-all font-bold tracking-tight rounded-full hover:bg-white/10 whitespace-nowrap
                           ${active ? "text-white" : "text-white/60 hover:text-white"}`}
                       >
                         {active && (
@@ -147,7 +147,7 @@ export function SiteHeader() {
                   <ActionLink
                     key={item.href}
                     href={item.href}
-                    className={`relative px-4 py-2 text-sm font-bold tracking-tight rounded-full transition-all hover:bg-white/10
+                    className={`relative px-3 py-2 text-sm font-bold tracking-tight rounded-full transition-all hover:bg-white/10 whitespace-nowrap
                       ${active ? "text-white" : "text-white/60 hover:text-white"}`}
                   >
                     {active && (
@@ -164,14 +164,14 @@ export function SiteHeader() {
           </div>
 
           {/* 3. Action Bridge Zone */}
-          <div className="flex items-center gap-6">
-            <div className="hidden lg:flex items-center border-l border-white/15 pl-6 gap-6">
+          <div className="flex items-center gap-4 xl:gap-6 shrink-0">
+            <div className="hidden lg:flex items-center border-l border-white/15 pl-4 xl:pl-6 gap-4 xl:gap-6 shrink-0">
               <a
                 href={`tel:${formatPhoneForTel(siteSettings.phonePrimary)}`}
-                className="group flex flex-col items-end"
+                className="group flex flex-col items-end shrink-0"
               >
-                <span className="text-[10px] uppercase tracking-widest text-white/50 font-bold">Inquiry</span>
-                <span className="text-sm text-white/90 font-bold group-hover:text-[color:var(--accent)] transition-colors">
+                <span className="text-[10px] uppercase tracking-widest text-white/50 font-bold whitespace-nowrap">Inquiry</span>
+                <span className="text-sm text-white/90 font-bold group-hover:text-[color:var(--accent)] transition-colors whitespace-nowrap">
                   {siteSettings.phonePrimary}
                 </span>
               </a>
@@ -179,12 +179,12 @@ export function SiteHeader() {
               <ActionLink
                 href={quickWhatsAppMessages.general}
                 external
-                className="relative group overflow-hidden bg-[color:var(--accent-strong)] text-white px-6 py-2.5 rounded-xl text-sm font-bold transition-all hover:scale-[1.03] active:scale-95 shadow-lg shadow-[color:var(--accent-strong)]/20"
+                className="relative group overflow-hidden bg-[color:var(--accent-strong)] text-white px-5 py-2.5 rounded-xl text-sm font-bold transition-all hover:scale-[1.03] active:scale-95 shadow-lg shadow-[color:var(--accent-strong)]/20 whitespace-nowrap shrink-0"
               >
                 <div className="absolute inset-0 bg-white/10 translate-y-full group-hover:translate-y-0 transition-transform duration-300" />
-                <span className="relative flex items-center gap-2">
+                <span className="relative flex items-center gap-2 whitespace-nowrap">
                   Get Started
-                  <ArrowRight className="h-4 w-4" />
+                  <ArrowRight className="h-4 w-4 shrink-0" />
                 </span>
               </ActionLink>
             </div>

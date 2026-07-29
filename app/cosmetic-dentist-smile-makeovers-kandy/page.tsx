@@ -205,6 +205,36 @@ export default function DefineAndSmilePage() {
         </div>
       </SectionShell>
 
+      {/* Transparent Investment Section */}
+      <SectionShell
+        eyebrow="Transparent Investment"
+        title="Cosmetic Makeover Starting Fees"
+        body="Every cosmetic treatment plan is provided in itemized detail before any procedure begins."
+        className="bg-sky-50/40"
+        align="center"
+      >
+        <div className="max-w-xl mx-auto rounded-3xl border border-[color:var(--line)] bg-white p-8 shadow-lg text-center space-y-4 mt-6">
+          <span className="inline-block px-3 py-1 rounded-full bg-sky-100 text-[color:var(--accent-strong)] text-xs font-bold uppercase tracking-wider">
+            Define & Smile Pricing
+          </span>
+          <h3 className="font-display text-3xl font-bold text-[color:var(--ink)]">
+            Starting from LKR 35,000
+          </h3>
+          <p className="text-xs text-[color:var(--muted)] font-medium leading-relaxed">
+            Includes 3D intraoral scan, shade matching, custom trial mockup, and post-treatment polish.
+          </p>
+          <div className="pt-2">
+            <ActionLink
+              href="/pricing"
+              className="inline-flex items-center gap-2 text-xs font-bold text-[color:var(--accent-strong)] hover:underline"
+            >
+              <span>Explore Full Treatment Fee Guide</span>
+              <ArrowRight className="h-4 w-4" />
+            </ActionLink>
+          </div>
+        </div>
+      </SectionShell>
+
       {/* Before & After Section */}
       <SectionShell
         eyebrow="Real Results"

@@ -30,7 +30,7 @@ export function PageHero({
   return (
     <section className="relative w-full min-h-[95vh] flex items-end lg:items-center justify-start overflow-hidden -mt-24 pt-24 lg:-mt-28 lg:pt-28 lg:pb-0 bg-[color:var(--background)]">
       
-      {/* Background Image & Overlays */}
+      {/* Background Image & Overlays (ContactHero Style 100% Match) */}
       <div className="absolute inset-0 z-0 overflow-hidden bg-[color:var(--background)]">
         {heroImage && (
           <motion.img 

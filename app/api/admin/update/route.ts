@@ -12,9 +12,12 @@ export async function POST(req: Request) {
       return NextResponse.json({ error: "Invalid Admin PIN" }, { status: 401 });
     }
 
+    let isReadOnly = false;
+
     if (type === "pricing") {
-      const filePath = path.join(process.cwd(), "data/pricing.ts");
-      const fileContent = `export interface PricingItem {
+      try {
+        const filePath = path.join(process.cwd(), "data/pricing.ts");
+        const fileContent = `export interface PricingItem {
   id: string;
   name: string;
   category: "preventive" | "restorative" | "cosmetic" | "orthodontics" | "consultation";
@@ -64,13 +67,24 @@ export const PRICING_CATEGORIES: PricingCategory[] = [
 
 export const PRICING_ITEMS: PricingItem[] = ${JSON.stringify(data, null, 2)};
 `;
-      fs.writeFileSync(filePath, fileContent, "utf-8");
-      return NextResponse.json({ success: true, message: "Pricing data updated successfully!" });
+        fs.writeFileSync(filePath, fileContent, "utf-8");
+      } catch (fsErr) {
+        isReadOnly = true;
+      }
+
+      return NextResponse.json({
+        success: true,
+        isReadOnly,
+        message: isReadOnly
+          ? "Saved to browser storage (Vercel Serverless environment)."
+          : "Pricing data updated & published live!",
+      });
     }
 
     if (type === "team") {
-      const filePath = path.join(process.cwd(), "data/team.ts");
-      const fileContent = `export interface TeamMember {
+      try {
+        const filePath = path.join(process.cwd(), "data/team.ts");
+        const fileContent = `export interface TeamMember {
   id: string;
   name: string;
   title: string;
@@ -85,8 +99,18 @@ export const PRICING_ITEMS: PricingItem[] = ${JSON.stringify(data, null, 2)};
 
 export const CLINICAL_TEAM: TeamMember[] = ${JSON.stringify(data, null, 2)};
 `;
-      fs.writeFileSync(filePath, fileContent, "utf-8");
-      return NextResponse.json({ success: true, message: "Clinical team data updated successfully!" });
+        fs.writeFileSync(filePath, fileContent, "utf-8");
+      } catch (fsErr) {
+        isReadOnly = true;
+      }
+
+      return NextResponse.json({
+        success: true,
+        isReadOnly,
+        message: isReadOnly
+          ? "Saved to browser storage (Vercel Serverless environment)."
+          : "Clinical team profiles updated live!",
+      });
     }
 
     return NextResponse.json({ error: "Invalid update type" }, { status: 400 });

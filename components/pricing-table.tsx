@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import { createPortal } from "react-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import { CheckCircle2, Sparkles, ArrowRight, ShieldCheck, MessageCircle, HeartPulse, Smile, Cpu, Check, X, FileText, Clock, Layers, Tag } from "lucide-react";
 import { cn } from "@/lib/utils";
@@ -241,7 +242,6 @@ function PricingCard({
     </motion.article>
   );
 }
-
 function FeeBreakdownModal({
   item,
   onClose,
@@ -249,13 +249,26 @@ function FeeBreakdownModal({
   item: PricingItem;
   onClose: () => void;
 }) {
-  return (
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+    const originalOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    return () => {
+      document.body.style.overflow = originalOverflow;
+    };
+  }, []);
+
+  if (!mounted) return null;
+
+  return createPortal(
     <motion.div
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
       onClick={onClose}
-      className="fixed inset-0 z-[100] flex items-center justify-center bg-slate-950/70 backdrop-blur-md p-4 sm:p-6 overflow-y-auto"
+      className="fixed inset-0 z-[99999] flex items-center justify-center bg-slate-950/80 backdrop-blur-md p-4 sm:p-6 overflow-y-auto"
     >
       <motion.div
         initial={{ opacity: 0, scale: 0.95, y: 20 }}
@@ -263,7 +276,7 @@ function FeeBreakdownModal({
         exit={{ opacity: 0, scale: 0.95, y: 20 }}
         transition={{ type: "spring", stiffness: 350, damping: 25 }}
         onClick={(e) => e.stopPropagation()}
-        className="relative w-full max-w-xl max-h-[85vh] sm:max-h-[88vh] rounded-3xl bg-white shadow-2xl border border-slate-200/80 flex flex-col my-auto overflow-hidden"
+        className="relative w-full max-w-xl max-h-[82vh] sm:max-h-[85vh] rounded-3xl bg-white shadow-2xl border border-slate-200/80 flex flex-col my-auto overflow-hidden text-left"
       >
         {/* Sticky Header with Title, Badges, & Close Button */}
         <div className="p-5 sm:p-7 pb-4 border-b border-slate-100 flex items-start justify-between gap-4 shrink-0 bg-white/95 backdrop-blur-md">
@@ -360,6 +373,7 @@ function FeeBreakdownModal({
           </ActionLink>
         </div>
       </motion.div>
-    </motion.div>
+    </motion.div>,
+    document.body
   );
 }

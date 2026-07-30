@@ -28,9 +28,23 @@ export default function AdminPage() {
   const [pricingList, setPricingList] = useState<PricingItem[]>(PRICING_ITEMS);
   const [teamList, setTeamList] = useState<TeamMember[]>(CLINICAL_TEAM);
 
+  const [githubToken, setGithubToken] = useState<string>(() => {
+    if (typeof window !== "undefined") {
+      return localStorage.getItem("smilehub_github_token") || "";
+    }
+    return "";
+  });
+
   const [saving, setSaving] = useState<boolean>(false);
   const [uploading, setUploading] = useState<boolean>(false);
   const [statusMsg, setStatusMsg] = useState<{ type: "success" | "error"; text: string } | null>(null);
+
+  const handleTokenChange = (val: string) => {
+    setGithubToken(val);
+    try {
+      localStorage.setItem("smilehub_github_token", val);
+    } catch (e) {}
+  };
 
   // Authentication Handler
   const handleLogin = (e: React.FormEvent) => {
@@ -150,6 +164,7 @@ export default function AdminPage() {
           type: "pricing",
           data: pricingList,
           password: pinInput || "1234",
+          githubToken: githubToken || undefined,
         }),
       });
       const data = await res.json();
@@ -185,6 +200,7 @@ export default function AdminPage() {
           type: "team",
           data: teamList,
           password: pinInput || "1234",
+          githubToken: githubToken || undefined,
         }),
       });
       const data = await res.json();
@@ -311,6 +327,19 @@ export default function AdminPage() {
           </div>
 
           <div className="flex items-center gap-3">
+            <div className="hidden lg:flex items-center gap-2 bg-white/10 px-3 py-1.5 rounded-xl border border-white/15">
+              <span className="text-[10px] font-bold uppercase tracking-wider text-sky-200 shrink-0">
+                GitHub Token:
+              </span>
+              <input
+                type="password"
+                placeholder="Paste ghp_... for Vercel auto-deploy"
+                value={githubToken}
+                onChange={(e) => handleTokenChange(e.target.value)}
+                className="bg-transparent text-xs text-white placeholder-white/40 focus:outline-none w-48 font-mono"
+              />
+            </div>
+
             <a
               href="/"
               target="_blank"

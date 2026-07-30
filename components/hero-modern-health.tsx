@@ -28,7 +28,7 @@ export function HeroModernHealth({ reviewSnapshot }: HeroModernHealthProps) {
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ duration: 2 }}
+          transition={{ duration: 1.5 }}
           className="absolute inset-0 h-full w-full overflow-hidden"
         >
           <video
@@ -36,20 +36,17 @@ export function HeroModernHealth({ reviewSnapshot }: HeroModernHealthProps) {
             muted
             loop
             playsInline
-            poster="/images/hero-bright-bg-ai.webp"
-            className="absolute inset-0 h-full w-full object-cover object-top"
-            style={{ objectPosition: "center 8%" }}
+            poster="/images/hero-bright-bg-ai.png"
+            className="absolute inset-0 h-full w-full object-cover"
+            style={{ objectPosition: "center 15%" }}
           >
             <source src="/images/hero-video-compressed.m4v" type="video/mp4" />
           </video>
         </motion.div>
 
-        {/* Layered Cinematic Overlays for Text Legibility on Light Images */}
-        <div className="absolute inset-0 bg-gradient-to-r from-white/90 via-white/50 to-transparent z-10" />
-        <div className="absolute inset-0 bg-gradient-to-b from-[color:var(--background)]/40 via-transparent to-transparent z-10" />
-        
-        {/* Soft blur overlay to give it a premium glow */}
-        <div className="absolute inset-0 backdrop-blur-[1px] z-10 opacity-60" />
+        {/* Crisp Gradient Overlays for High-Definition Clarity & Text Legibility */}
+        <div className="absolute inset-0 bg-gradient-to-r from-white/85 via-white/40 to-transparent/10 z-10" />
+        <div className="absolute inset-0 bg-gradient-to-b from-[color:var(--background)]/30 via-transparent to-transparent z-10" />
       </div>
 
       {/* 2. Main Content Container */}

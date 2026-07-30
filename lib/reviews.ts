@@ -21,10 +21,10 @@ export type ReviewSnapshot = {
 
 const fallbackSnapshot: ReviewSnapshot = {
   rating: 5,
-  reviewCount: 58,
+  reviewCount: 70,
   googleMapsUrl:
     "https://www.google.com/maps/search/?api=1&query=Smile%20Hub%20Premium%20Dental%20Care%2C%20Kandy",
-  lastUpdated: "2026-03-17",
+  lastUpdated: new Date().toISOString(),
   source: "fallback",
   featuredReviews: [
     {

@@ -27,21 +27,12 @@ export function PricingTable() {
     try {
       const saved = localStorage.getItem("smilehub_pricing_data");
       if (saved) {
-        setItems(JSON.parse(saved));
+        const parsed = JSON.parse(saved);
+        if (Array.isArray(parsed) && parsed.length > 0) {
+          setItems(parsed);
+        }
       }
     } catch (e) {}
-
-    fetch("https://api.jsonbin.io/v3/b/67994fd4ad19ca34f8f4a1dd/latest")
-      .then((res) => res.json())
-      .then((json) => {
-        if (json.record?.data) {
-          setItems(json.record.data);
-          try {
-            localStorage.setItem("smilehub_pricing_data", JSON.stringify(json.record.data));
-          } catch (e) {}
-        }
-      })
-      .catch(() => {});
   }, []);
 
   const filteredItems = activeCategory === "all"
@@ -263,85 +254,97 @@ function FeeBreakdownModal({
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
-      className="fixed inset-0 z-[100] flex items-center justify-center bg-black/60 backdrop-blur-md p-4"
+      onClick={onClose}
+      className="fixed inset-0 z-[100] flex items-center justify-center bg-slate-950/70 backdrop-blur-md p-4 sm:p-6 overflow-y-auto"
     >
       <motion.div
         initial={{ opacity: 0, scale: 0.95, y: 20 }}
         animate={{ opacity: 1, scale: 1, y: 0 }}
         exit={{ opacity: 0, scale: 0.95, y: 20 }}
         transition={{ type: "spring", stiffness: 350, damping: 25 }}
-        className="relative w-full max-w-xl rounded-3xl bg-white p-6 sm:p-8 shadow-2xl border border-slate-200 overflow-hidden"
+        onClick={(e) => e.stopPropagation()}
+        className="relative w-full max-w-xl max-h-[85vh] sm:max-h-[88vh] rounded-3xl bg-white shadow-2xl border border-slate-200/80 flex flex-col my-auto overflow-hidden"
       >
-        <button
-          type="button"
-          onClick={onClose}
-          className="absolute top-5 right-5 h-9 w-9 rounded-full bg-slate-100 text-slate-600 hover:bg-slate-200 flex items-center justify-center transition-colors cursor-pointer"
-        >
-          <X className="h-5 w-5" />
-        </button>
+        {/* Sticky Header with Title, Badges, & Close Button */}
+        <div className="p-5 sm:p-7 pb-4 border-b border-slate-100 flex items-start justify-between gap-4 shrink-0 bg-white/95 backdrop-blur-md">
+          <div className="space-y-1.5 min-w-0 flex-1">
+            <div className="flex flex-wrap items-center gap-2">
+              <span className="rounded-full bg-sky-50 px-3 py-1 text-[10px] font-extrabold uppercase tracking-wider text-[color:var(--accent-strong)] border border-sky-100/80">
+                {item.categoryLabel}
+              </span>
+              <span className="text-xs font-bold text-emerald-600 flex items-center gap-1 bg-emerald-50/80 px-2.5 py-0.5 rounded-full border border-emerald-100">
+                <ShieldCheck className="h-3.5 w-3.5" /> Guaranteed Price
+              </span>
+            </div>
 
-        <div className="flex items-center gap-2 mb-2">
-          <span className="rounded-full bg-sky-50 px-3 py-1 text-[10px] font-bold uppercase tracking-wider text-[color:var(--accent-strong)] border border-sky-100">
-            {item.categoryLabel}
-          </span>
-          <span className="text-xs font-bold text-emerald-600 flex items-center gap-1">
-            <ShieldCheck className="h-3.5 w-3.5" /> Guaranteed Price
-          </span>
-        </div>
-
-        <h3 className="font-display text-2xl font-bold text-[color:var(--ink)]">
-          {item.name}
-        </h3>
-        <p className="mt-2 text-xs sm:text-sm text-[color:var(--muted)] font-medium leading-relaxed">
-          {item.description}
-        </p>
-
-        {/* Price & Installment Highlight */}
-        <div className="mt-5 p-4 rounded-2xl bg-slate-50 border border-slate-200 flex items-center justify-between">
-          <div>
-            <span className="text-[10px] font-bold uppercase tracking-widest text-[color:var(--muted)] block">
-              Investment Rate
-            </span>
-            <span className="font-display text-2xl font-bold text-[color:var(--ink)]">
-              {item.startingPrice}
-            </span>
+            <h3 className="font-display text-xl sm:text-2xl font-bold text-[color:var(--ink)] leading-tight tracking-tight">
+              {item.name}
+            </h3>
+            <p className="text-xs sm:text-sm text-[color:var(--muted)] font-medium leading-relaxed">
+              {item.description}
+            </p>
           </div>
-          <span className="text-xs font-bold text-[color:var(--accent-strong)] bg-white px-3 py-1.5 rounded-xl border border-slate-200 shadow-sm">
-            0% Interest Available
-          </span>
-        </div>
 
-        {/* Step-by-Step Clinical Journey Breakdown */}
-        <div className="mt-6 space-y-3">
-          <span className="text-[11px] font-bold uppercase tracking-widest text-[color:var(--ink)]/70 block">
-            Step-by-Step Clinical Process Included:
-          </span>
-
-          <div className="space-y-3">
-            {item.inclusions.map((step, index) => (
-              <div
-                key={index}
-                className="flex items-start gap-3 p-3 rounded-xl bg-slate-50/80 border border-slate-150"
-              >
-                <div className="h-6 w-6 rounded-full bg-[color:var(--accent-strong)] text-white text-xs font-bold flex items-center justify-center shrink-0 mt-0.5">
-                  {index + 1}
-                </div>
-                <div>
-                  <p className="text-xs sm:text-sm font-bold text-[color:var(--ink)]">{step}</p>
-                  <p className="text-[11px] text-[color:var(--muted)] font-medium mt-0.5">
-                    Performed using 3D digital technology under sterile, pain-free protocol.
-                  </p>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-
-        <div className="mt-8 pt-4 border-t border-slate-100 flex gap-3">
           <button
             type="button"
             onClick={onClose}
-            className="flex-1 py-3 rounded-2xl border border-slate-200 text-slate-700 text-xs font-bold hover:bg-slate-100 transition-colors"
+            aria-label="Close modal"
+            className="h-9 w-9 rounded-full bg-slate-100 text-slate-500 hover:bg-slate-200 hover:text-slate-900 flex items-center justify-center transition-colors cursor-pointer shrink-0 mt-0.5"
+          >
+            <X className="h-5 w-5" />
+          </button>
+        </div>
+
+        {/* Scrollable Modal Content */}
+        <div className="p-5 sm:p-7 overflow-y-auto space-y-5 flex-1">
+          {/* Price & Installment Highlight */}
+          <div className="p-4 sm:p-5 rounded-2xl bg-gradient-to-br from-slate-50 to-sky-50/30 border border-slate-200/80 flex items-center justify-between gap-3">
+            <div>
+              <span className="text-[10px] font-bold uppercase tracking-widest text-[color:var(--muted)] block">
+                Investment Rate
+              </span>
+              <span className="font-display text-2xl sm:text-3xl font-extrabold text-[color:var(--ink)]">
+                {item.startingPrice}
+              </span>
+            </div>
+            <span className="text-xs font-bold text-[color:var(--accent-strong)] bg-white px-3.5 py-2 rounded-xl border border-slate-200/80 shadow-sm shrink-0">
+              0% Interest Available
+            </span>
+          </div>
+
+          {/* Step-by-Step Clinical Journey Breakdown */}
+          <div className="space-y-3">
+            <span className="text-[11px] font-extrabold uppercase tracking-widest text-[color:var(--ink)]/70 block">
+              Step-by-Step Clinical Process Included:
+            </span>
+
+            <div className="space-y-2.5">
+              {item.inclusions.map((step, index) => (
+                <div
+                  key={index}
+                  className="flex items-start gap-3.5 p-3.5 rounded-2xl bg-slate-50/80 border border-slate-150/80 hover:bg-slate-50 transition-colors"
+                >
+                  <div className="h-6 w-6 rounded-full bg-[color:var(--accent-strong)] text-white text-xs font-bold flex items-center justify-center shrink-0 mt-0.5 shadow-sm">
+                    {index + 1}
+                  </div>
+                  <div className="min-w-0 flex-1">
+                    <p className="text-xs sm:text-sm font-bold text-[color:var(--ink)]">{step}</p>
+                    <p className="text-[11px] text-[color:var(--muted)] font-medium mt-0.5 leading-normal">
+                      Performed using 3D digital technology under sterile, pain-free protocol.
+                    </p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        {/* Sticky Footer with Action Buttons */}
+        <div className="p-4 sm:p-5 border-t border-slate-100 bg-slate-50/90 backdrop-blur-md flex flex-col sm:flex-row gap-3 shrink-0">
+          <button
+            type="button"
+            onClick={onClose}
+            className="w-full sm:w-auto px-5 py-3 rounded-2xl border border-slate-200 text-slate-700 text-xs font-bold hover:bg-slate-100 transition-colors cursor-pointer text-center"
           >
             Close Breakdown
           </button>
@@ -350,7 +353,7 @@ function FeeBreakdownModal({
               `Hi Smile Hub! I viewed the itemized breakdown for "${item.name}" (${item.startingPrice}). I would like to book a consultation.`
             )}`}
             external
-            className="flex-[2] py-3 rounded-2xl bg-[color:var(--accent-strong)] text-white text-xs sm:text-sm font-bold flex items-center justify-center gap-2 hover:bg-[color:var(--ink)] transition-colors shadow-md"
+            className="flex-1 py-3 px-5 rounded-2xl bg-[color:var(--accent-strong)] text-white text-xs sm:text-sm font-bold flex items-center justify-center gap-2 hover:bg-[color:var(--ink)] transition-all shadow-md cursor-pointer"
           >
             <MessageCircle className="h-4 w-4 text-[#25d366]" />
             <span>Book via WhatsApp</span>

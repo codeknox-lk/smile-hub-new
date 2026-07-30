@@ -14,7 +14,7 @@ export interface TeamMember {
 export const CLINICAL_TEAM: TeamMember[] = [
   {
     "id": "lead-dentist",
-    "name": "Dr. Dilshan Wijesingheeee",
+    "name": "Dr. Dilshan Wijesinghe",
     "title": "BDS (Peradeniya), MSc (Aesthetic & Restorative Dentistry, UK)",
     "role": "Principal Dentist & Clinical Director",
     "bio": "Pioneering anxiety-free, technology-driven dentistry in Kandy with over 12 years of clinical experience in smile makeovers and implant surgery.",
@@ -31,7 +31,7 @@ export const CLINICAL_TEAM: TeamMember[] = [
       "Full Mouth Rehabilitation",
       "Digital Smile Design"
     ],
-    "image": "/images/uploads/upload-1785359379441.jpg",
+    "image": "/images/doctor-dilshan.png",
     "featured": true
   },
   {

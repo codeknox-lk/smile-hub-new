@@ -26,10 +26,23 @@ const slideVariants = {
 };
 
 export function ReviewCarousel({ snapshot }: ReviewCarouselProps) {
+  const [liveSnapshot, setLiveSnapshot] = useState<ReviewSnapshot>(snapshot);
   const [activeIndex, setActiveIndex] = useState(0);
   const [direction, setDirection] = useState(1);
   const [lastInteraction, setLastInteraction] = useState(0);
-  const reviews = snapshot.featuredReviews;
+
+  useEffect(() => {
+    fetch("/api/reviews", { cache: "no-store" })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data && data.featuredReviews && data.featuredReviews.length > 0) {
+          setLiveSnapshot(data);
+        }
+      })
+      .catch(() => {});
+  }, []);
+
+  const reviews = liveSnapshot.featuredReviews;
 
   const nextReview = () => {
     setDirection(1);
@@ -51,7 +64,7 @@ export function ReviewCarousel({ snapshot }: ReviewCarouselProps) {
     return () => clearInterval(timer);
   }, [reviews.length, lastInteraction]);
 
-  const currentReview = reviews[activeIndex];
+  const currentReview = reviews[activeIndex] || reviews[0];
 
   return (
     <div className="flex flex-col">
@@ -59,15 +72,15 @@ export function ReviewCarousel({ snapshot }: ReviewCarouselProps) {
       <div className="mb-8 sm:mb-16 flex flex-col sm:flex-row sm:items-center justify-between border-b border-[color:var(--line)] pb-6 gap-4">
         <div className="flex items-center gap-4">
           <div className="flex items-center gap-1.5 rounded-full bg-[color:var(--ink)] px-4 py-2 text-white">
-             <span className="font-bold text-sm">5.0</span>
+             <span className="font-bold text-sm">{liveSnapshot.rating ? liveSnapshot.rating.toFixed(1) : "5.0"}</span>
              <Star className="h-4 w-4 fill-[color:var(--accent)] text-[color:var(--accent)]" />
           </div>
           <div className="text-sm font-medium text-[color:var(--muted)]">
-            Based on {snapshot.reviewCount}+ reviews on Google
+            Based on {liveSnapshot.reviewCount}+ reviews on Google
           </div>
         </div>
         <ActionLink
-          href={snapshot.googleMapsUrl}
+          href={liveSnapshot.googleMapsUrl}
           external
           eventName="reviews_google_click"
           className="text-xs font-bold uppercase tracking-widest text-[color:var(--accent-strong)] hover:text-[color:var(--ink)] transition-colors"

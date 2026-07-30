@@ -138,7 +138,6 @@ export default function AdminPage() {
     setSaving(true);
     setStatusMsg(null);
 
-    // Persist to local browser storage for instant live site sync across pages
     try {
       localStorage.setItem("smilehub_pricing_data", JSON.stringify(pricingList));
     } catch (e) {}
@@ -155,7 +154,10 @@ export default function AdminPage() {
       });
       const data = await res.json();
       if (res.ok) {
-        setStatusMsg({ type: "success", text: "Treatment fee guide updated & published live!" });
+        setStatusMsg({
+          type: data.githubSynced ? "success" : "error",
+          text: data.message || "Pricing guide updated!",
+        });
       } else {
         setStatusMsg({ type: "error", text: data.error || "Failed to save pricing." });
       }
@@ -171,7 +173,6 @@ export default function AdminPage() {
     setSaving(true);
     setStatusMsg(null);
 
-    // Persist to local browser storage for instant live site sync across pages
     try {
       localStorage.setItem("smilehub_team_data", JSON.stringify(teamList));
     } catch (e) {}
@@ -188,7 +189,10 @@ export default function AdminPage() {
       });
       const data = await res.json();
       if (res.ok) {
-        setStatusMsg({ type: "success", text: "Clinical team profiles updated live!" });
+        setStatusMsg({
+          type: data.githubSynced ? "success" : "error",
+          text: data.message || "Clinical team profiles updated!",
+        });
       } else {
         setStatusMsg({ type: "error", text: data.error || "Failed to save team." });
       }

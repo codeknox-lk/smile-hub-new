@@ -22,16 +22,15 @@ export function TeamGrid() {
   const [team, setTeam] = useState<TeamMember[]>(CLINICAL_TEAM);
 
   useEffect(() => {
-    // Check local cache if present (for instant admin preview)
-    try {
-      const saved = localStorage.getItem("smilehub_team_data");
-      if (saved) {
-        const parsed = JSON.parse(saved);
-        if (Array.isArray(parsed) && parsed.length > 0) {
-          setTeam(parsed);
+    // 1. Fetch live team data from API
+    fetch("/api/team", { cache: "no-store" })
+      .then((res) => res.json())
+      .then((json) => {
+        if (json.success && Array.isArray(json.data) && json.data.length > 0) {
+          setTeam(json.data);
         }
-      }
-    } catch (e) {}
+      })
+      .catch(() => {});
   }, []);
 
   return (

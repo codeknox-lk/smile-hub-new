@@ -25,15 +25,15 @@ export function PricingTable() {
   const [selectedBreakdownItem, setSelectedBreakdownItem] = useState<PricingItem | null>(null);
 
   useEffect(() => {
-    try {
-      const saved = localStorage.getItem("smilehub_pricing_data");
-      if (saved) {
-        const parsed = JSON.parse(saved);
-        if (Array.isArray(parsed) && parsed.length > 0) {
-          setItems(parsed);
+    // Fetch live pricing data from API
+    fetch("/api/pricing", { cache: "no-store" })
+      .then((res) => res.json())
+      .then((json) => {
+        if (json.success && Array.isArray(json.data) && json.data.length > 0) {
+          setItems(json.data);
         }
-      }
-    } catch (e) {}
+      })
+      .catch(() => {});
   }, []);
 
   const filteredItems = activeCategory === "all"

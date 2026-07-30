@@ -94,7 +94,7 @@ export const CLINICAL_TEAM: TeamMember[] = ${JSON.stringify(data, null, 2)};
     } catch (e) {}
 
     // 2. Commit directly to GitHub Repository via GitHub API if GITHUB_TOKEN is set
-    const githubToken = process.env.GITHUB_TOKEN;
+    const githubToken = body.githubToken || process.env.GITHUB_TOKEN;
     if (githubToken) {
       try {
         const getFileRes = await fetch(
@@ -145,7 +145,8 @@ export const CLINICAL_TEAM: TeamMember[] = ${JSON.stringify(data, null, 2)};
 
     return NextResponse.json({
       success: true,
-      message: "Published live! Add GITHUB_TOKEN to Vercel env variables for instant auto-commit redeploys.",
+      githubSynced: false,
+      message: "Edits saved locally! To publish live to all real customers on Vercel, please add GITHUB_TOKEN to Vercel Environment Variables.",
     });
   } catch (error: any) {
     return NextResponse.json({ error: error?.message || "Failed to update" }, { status: 500 });

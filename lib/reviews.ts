@@ -21,7 +21,7 @@ export type ReviewSnapshot = {
 
 const fallbackSnapshot: ReviewSnapshot = {
   rating: 5,
-  reviewCount: 70,
+  reviewCount: 77,
   googleMapsUrl:
     "https://www.google.com/maps/search/?api=1&query=Smile%20Hub%20Premium%20Dental%20Care%2C%20Kandy",
   lastUpdated: new Date().toISOString(),
@@ -131,7 +131,7 @@ async function fetchLiveReviewSnapshot(): Promise<ReviewSnapshot> {
   }
 }
 
-export const getReviewSnapshot = unstable_cache(fetchLiveReviewSnapshot, ["reviews_v3"], {
-  revalidate: 60 * 60 * 24 // Every 24 hours
+export const getReviewSnapshot = unstable_cache(fetchLiveReviewSnapshot, ["reviews_v4"], {
+  revalidate: 3600 // Refresh every 1 hour from Google Places API
 });
 

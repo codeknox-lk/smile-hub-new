@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { 
   Lock, 
   ShieldCheck, 
@@ -27,6 +27,28 @@ export default function AdminPage() {
   const [activeTab, setActiveTab] = useState<"pricing" | "team" | "export">("pricing");
   const [pricingList, setPricingList] = useState<PricingItem[]>(PRICING_ITEMS);
   const [teamList, setTeamList] = useState<TeamMember[]>(CLINICAL_TEAM);
+
+  useEffect(() => {
+    // Fetch live team data
+    fetch("/api/team", { cache: "no-store" })
+      .then((res) => res.json())
+      .then((json) => {
+        if (json.success && Array.isArray(json.data) && json.data.length > 0) {
+          setTeamList(json.data);
+        }
+      })
+      .catch(() => {});
+
+    // Fetch live pricing data
+    fetch("/api/pricing", { cache: "no-store" })
+      .then((res) => res.json())
+      .then((json) => {
+        if (json.success && Array.isArray(json.data) && json.data.length > 0) {
+          setPricingList(json.data);
+        }
+      })
+      .catch(() => {});
+  }, []);
 
   const [githubToken, setGithubToken] = useState<string>(() => {
     if (typeof window !== "undefined") {
@@ -57,7 +79,7 @@ export default function AdminPage() {
     }
   };
 
-  // Global CDN Image Uploader (ImgBB API - 100% visible across all devices globally)
+  // Ultra-Fast Image Compressor & Data URL Generator (100% permanent, zero third-party dependency)
   const handleImageUpload = async (
     e: React.ChangeEvent<HTMLInputElement>,
     onSuccess: (url: string) => void
@@ -69,14 +91,13 @@ export default function AdminPage() {
     setStatusMsg(null);
 
     try {
-      // First compress client-side for ultra-fast global upload
       const reader = new FileReader();
       reader.onload = async (event) => {
         const img = new Image();
         img.onload = async () => {
           const canvas = document.createElement("canvas");
-          const MAX_WIDTH = 1000;
-          const MAX_HEIGHT = 1000;
+          const MAX_WIDTH = 700;
+          const MAX_HEIGHT = 700;
           let width = img.width;
           let height = img.height;
 
@@ -97,42 +118,11 @@ export default function AdminPage() {
           const ctx = canvas.getContext("2d");
           if (ctx) {
             ctx.drawImage(img, 0, 0, width, height);
-            canvas.toBlob(async (blob) => {
-              if (!blob) {
-                setUploading(false);
-                return;
-              }
-
-              try {
-                // Upload compressed blob to ImgBB Global CDN
-                const formData = new FormData();
-                formData.append("image", blob, file.name || "doctor.jpg");
-
-                // Public ImgBB CDN API Key
-                const res = await fetch("https://api.imgbb.com/1/upload?key=6d207e02198a847e5b2a06fe30e40b65", {
-                  method: "POST",
-                  body: formData,
-                });
-                const data = await res.json();
-
-                if (data.success && data.data?.url) {
-                  onSuccess(data.data.url);
-                  setStatusMsg({ type: "success", text: "Photo uploaded to Global CDN! Visible on all devices." });
-                } else {
-                  // Fallback to compressed Data URL
-                  const fallbackDataUrl = canvas.toDataURL("image/jpeg", 0.85);
-                  onSuccess(fallbackDataUrl);
-                  setStatusMsg({ type: "success", text: "Photo updated locally!" });
-                }
-              } catch (uploadErr) {
-                const fallbackDataUrl = canvas.toDataURL("image/jpeg", 0.85);
-                onSuccess(fallbackDataUrl);
-                setStatusMsg({ type: "success", text: "Photo updated!" });
-              } finally {
-                setUploading(false);
-              }
-            }, "image/jpeg", 0.85);
+            const compressedDataUrl = canvas.toDataURL("image/jpeg", 0.82);
+            onSuccess(compressedDataUrl);
+            setStatusMsg({ type: "success", text: "Photo uploaded & compressed! Click 'Save & Publish Live' to update." });
           }
+          setUploading(false);
         };
 
         if (event.target?.result) {

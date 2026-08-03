@@ -70,7 +70,7 @@ export function ContactHero({
   }, []);
 
   return (
-    <section className="relative w-full min-h-[95vh] flex items-end lg:items-center justify-start overflow-hidden -mt-24 pt-24 lg:-mt-28 lg:pt-28 lg:pb-0 bg-[color:var(--background)]">
+    <section className="relative w-full min-h-[92vh] flex items-end overflow-hidden -mt-24 pt-24 lg:-mt-28 lg:pt-28 pb-10 lg:pb-16 bg-[color:var(--background)]">
       
       {/* Background Image & Overlays (Gallery Hero Style) */}
       <div className="absolute inset-0 z-0 overflow-hidden bg-[color:var(--background)]">
@@ -82,77 +82,77 @@ export function ContactHero({
           alt={imageAlt} 
           className="absolute inset-0 w-full h-full object-cover object-center saturate-[0.95]"
         />
-        {/* Subtle gradient to ensure text readability on the left, fading out faster */}
-        <div className="absolute inset-0 bg-gradient-to-r from-[color:var(--background)]/90 via-[color:var(--background)]/40 to-transparent" />
-        
-        {/* Seamless blend into the next section */}
-        <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-[color:var(--background)] to-transparent" />
+        {/* Subtle gradient to ensure text readability on the left/bottom */}
+        <div className="absolute inset-0 bg-gradient-to-r from-[color:var(--background)]/90 via-[color:var(--background)]/50 to-transparent" />
+        <div className="absolute inset-x-0 bottom-0 h-56 bg-gradient-to-t from-[color:var(--background)] via-[color:var(--background)]/70 to-transparent" />
       </div>
 
-      {/* Left Typography Side */}
-      <div className="relative z-10 w-full lg:w-[50%] xl:w-[45%] flex flex-col justify-end lg:justify-center px-6 pt-12 pb-8 sm:px-12 sm:pb-20 lg:pl-20 xl:pl-24 lg:pr-12 lg:py-20">
+      {/* Side-by-side Bottom Layout */}
+      <div className="relative z-10 w-full max-w-7xl mx-auto px-6 sm:px-12 lg:px-16 pt-16">
         <motion.div 
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, ease: "easeOut" }}
-          className="max-w-xl mx-auto lg:mx-0"
+          className="flex flex-col lg:flex-row items-end justify-between gap-8 lg:gap-14"
         >
-          <p className="text-[10px] font-bold uppercase tracking-[0.25em] text-[color:var(--accent-strong)]">
-            {eyebrow}
-          </p>
-          <h1 className="mt-4 sm:mt-8 font-display text-4xl sm:text-6xl lg:text-[5rem] font-semibold leading-[1.05] tracking-tight text-[color:var(--ink)]">
-            {title}
-          </h1>
-          <p className="mt-4 sm:mt-8 text-base sm:text-lg md:text-xl leading-relaxed text-[color:var(--muted)] font-medium">
-            {body}
-          </p>
-          
-          <div className="mt-8 sm:mt-12 flex flex-col gap-4 sm:gap-6 sm:flex-row sm:items-center">
-            <ActionLink 
-              href={primaryHref} 
-              className="inline-flex items-center justify-center rounded-full bg-[color:var(--accent-strong)] px-8 sm:px-10 py-4 sm:py-5 text-sm font-semibold text-white transition-all duration-300 hover:scale-105 hover:shadow-xl hover:shadow-[color:var(--accent-strong)]/20 w-full sm:w-auto" 
-              eventName="contact_hero_primary_click" 
-              external={primaryHref.startsWith("http")}
-            >
-              {primaryLabel}
-            </ActionLink>
-            {secondaryHref && secondaryLabel ? (
-              <ActionLink
-                href={secondaryHref}
-                className="inline-flex items-center justify-center sm:justify-start gap-2 text-sm font-semibold text-[color:var(--ink)] transition-colors hover:text-[color:var(--accent-strong)] group py-2"
-                eventName="contact_hero_secondary_click"
-                external={secondaryHref.startsWith("http")}
-              >
-                {secondaryLabel}
-                <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
-              </ActionLink>
-            ) : null}
+          {/* Left Below Block: Eyebrow + Title */}
+          <div className="w-full lg:w-[46%] flex flex-col justify-end">
+            <p className="text-[10px] font-bold uppercase tracking-[0.25em] text-[color:var(--accent-strong)]">
+              {eyebrow}
+            </p>
+            <h1 className="mt-3 sm:mt-4 font-display text-4xl sm:text-5xl lg:text-5xl font-semibold leading-[1.08] tracking-tight text-[color:var(--ink)]">
+              {title}
+            </h1>
           </div>
- 
-          {/* Quick Info Indicators */}
-          <motion.div 
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 1, delay: 0.5 }}
-            className="mt-8 sm:mt-16 pt-6 sm:pt-8 border-t border-[color:var(--line)] flex flex-wrap items-center gap-x-8 gap-y-3"
-          >
-            <div className="flex items-center gap-2">
-              <Clock className="h-4 w-4 text-[color:var(--accent-strong)]" />
-              <span className="text-xs font-semibold text-[color:var(--ink)]">Tue-Sat 5PM-7PM • Sun 9AM-2PM</span>
+
+          {/* Next to that / Bottom Middle Block: Body + Buttons + Hours/Location */}
+          <div className="w-full lg:w-[50%] flex flex-col justify-end">
+            <p className="text-base sm:text-lg leading-relaxed text-[color:var(--muted)] font-medium">
+              {body}
+            </p>
+            
+            <div className="mt-6 flex flex-col gap-4 sm:gap-6 sm:flex-row sm:items-center">
+              <ActionLink 
+                href={primaryHref} 
+                className="inline-flex items-center justify-center rounded-full bg-[color:var(--accent-strong)] px-8 sm:px-10 py-4 sm:py-5 text-sm font-semibold text-white transition-all duration-300 hover:scale-105 hover:shadow-xl hover:shadow-[color:var(--accent-strong)]/20 w-full sm:w-auto" 
+                eventName="contact_hero_primary_click" 
+                external={primaryHref.startsWith("http")}
+              >
+                {primaryLabel}
+              </ActionLink>
+              {secondaryHref && secondaryLabel ? (
+                <ActionLink
+                  href={secondaryHref}
+                  className="inline-flex items-center justify-center sm:justify-start gap-2 text-sm font-semibold text-[color:var(--ink)] transition-colors hover:text-[color:var(--accent-strong)] group py-2"
+                  eventName="contact_hero_secondary_click"
+                  external={secondaryHref.startsWith("http")}
+                >
+                  {secondaryLabel}
+                  <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+                </ActionLink>
+              ) : null}
             </div>
-            <ActionLink 
-              href={siteSettings.googleMapsUrl} 
-              external 
-              eventName="contact_hero_map_click"
-              className="flex items-center gap-2 group cursor-pointer"
-            >
-              <MapPin className="h-4 w-4 text-[color:var(--accent-strong)] group-hover:scale-110 transition-transform" />
-              <span className="text-xs font-semibold text-[color:var(--ink)] group-hover:text-[color:var(--accent-strong)] transition-colors">Peradeniya Road, Kandy</span>
-            </ActionLink>
-          </motion.div>
+
+            {/* Quick Info Indicators */}
+            <div className="mt-6 pt-6 border-t border-[color:var(--line)] flex flex-wrap items-center gap-x-8 gap-y-3">
+              <div className="flex items-center gap-2">
+                <Clock className="h-4 w-4 text-[color:var(--accent-strong)]" />
+                <span className="text-xs font-semibold text-[color:var(--ink)]">Tue-Sat 5PM-7PM • Sun 9AM-2PM</span>
+              </div>
+              <ActionLink 
+                href={siteSettings.googleMapsUrl} 
+                external 
+                eventName="contact_hero_map_click"
+                className="flex items-center gap-2 group cursor-pointer"
+              >
+                <MapPin className="h-4 w-4 text-[color:var(--accent-strong)] group-hover:scale-110 transition-transform" />
+                <span className="text-xs font-semibold text-[color:var(--ink)] group-hover:text-[color:var(--accent-strong)] transition-colors">Peradeniya Road, Kandy</span>
+              </ActionLink>
+            </div>
+          </div>
         </motion.div>
       </div>
- 
+
       {/* Floating Live Status Badge */}
       <motion.div 
         initial={{ opacity: 0, scale: 0.9, y: 20 }}

@@ -49,7 +49,7 @@ export default function ContactPage() {
         primaryLabel="Message on WhatsApp"
         secondaryHref={siteSettings.googleMapsUrl}
         secondaryLabel="Get directions"
-        image="/images/clinic-1.png"
+        image="/images/new/contact-hero.jpg"
         imageAlt="Smile Hub Clinic Reception"
       />
 
